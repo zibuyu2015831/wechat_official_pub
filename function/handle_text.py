@@ -2,16 +2,17 @@
 import os
 import re
 import json
+import logging
 import base64
 from Crypto.Cipher import AES
 
 
 class TextHandler(object):
 
-    def __init__(self, config_dict):
+    def __init__(self, config_dict, logger: logging.Logger):
 
         self.config_dict = config_dict
-
+        self.logger = logger
         self.key = self.config_dict.get('wechat', {}).get('password_key')
         self.sep_char = self.config_dict.get('wechat', {}).get('sep_char')
 
@@ -24,9 +25,13 @@ class TextHandler(object):
         mapping_dict = {
             '加密': 'encrypt_oracle',
             '解密': 'decrypt_oracle',
+
             'ocr': 'picture_ocr',
             '图片转文本': 'picture_ocr',
             '图片转文字': 'picture_ocr',
+
+            '语音转文件': 'voice_to_file',
+
             '退出': 'cancel_short_cmd',
             '取消': 'cancel_short_cmd',
         }
@@ -96,18 +101,28 @@ class TextHandler(object):
         for item in results:
             print(item)
 
-    # 图片OCR
-    def picture_ocr(self, reply_obj, content: str, *args, **kwargs):
+    @staticmethod
+    def short_cmd_reply(reply_obj, content: str, ):
+        # 保存用户输入的短指令名称
         reply_obj.short_cmd = content
         # 保存新生成的会话信息
-        reply_obj.save_history_data()
+        reply_obj.save_user_data()
+
+    # 图片OCR
+    def picture_ocr(self, reply_obj, content: str, *args, **kwargs):
+        self.short_cmd_reply(reply_obj, content)
         return reply_obj.make_reply_text(f"好的，我已经做好了{content}的准备，请您发送图片...")
+
+    def voice_to_file(self, reply_obj, content: str, *args, **kwargs):
+        self.short_cmd_reply(reply_obj, content)
+        return reply_obj.make_reply_text(f"好的，我已经做好了{content}的准备，请您发送语音...")
 
     def cancel_short_cmd(self, reply_obj, content: str, *args, **kwargs):
         reply_obj.short_cmd = '无'
         # 保存新生成的会话信息
-        reply_obj.save_history_data()
+        reply_obj.save_user_data()
         return reply_obj.make_reply_text(f"已退出短指令模式...")
+
 
 if __name__ == '__main__':
     h = TextHandler({

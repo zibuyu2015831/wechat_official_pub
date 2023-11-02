@@ -1,4 +1,5 @@
-config.json
-aligo.json
+config/config.json
+config/aligo.json
 test.py
 /user_data
+/ocr_files

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from pathlib import Path  # 不能删，代码内部需要用到此路径
 from flask import Flask, request
 from function.logger import get_logger
 from function.handle_request import handle_get, handle_post
@@ -20,5 +21,7 @@ def run():
 
 
 if __name__ == '__main__':
-    # app.run('127.0.0.1', 8080)
+
     app.run('127.0.0.1', 8080)
+
+

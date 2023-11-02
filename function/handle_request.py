@@ -1,20 +1,28 @@
 # -*- coding: utf-8 -*-
 import os
-import time
 import json
 import hashlib
 import logging
 import xmltodict
-from .post_handler import ReplyHandler
+from pathlib import Path
+from .handle_post import ReplyHandler
 
 
 def get_config() -> dict:
-    base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    config_path = os.path.join(base_path, 'config.json')
-    if not os.path.exists(config_path):
+
+    # 新写法，同时移动了配置文件路径
+    config_path = Path.cwd() / 'config' / 'config.json'
+    if not config_path.exists():
         raise Exception("配置文件不存在！")
     with open(config_path, mode='r', encoding='utf8') as rf:
         config_dict = json.load(rf)
+
+    # base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # config_path = os.path.join(base_path, 'config.json')
+    # if not os.path.exists(config_path):
+    #     raise Exception("配置文件不存在！")
+    # with open(config_path, mode='r', encoding='utf8') as rf:
+    #     config_dict = json.load(rf)
 
     return config_dict
 
@@ -59,22 +67,33 @@ def handle_get(request, logger: logging.Logger):
 
 
 def handle_post(request, logger: logging.Logger):
-    config_dict = get_config()
+    config_dict = get_config()  # 获取配置信息
     # 先验证是否为微信服务器发送的信息
     if not authenticate(request.args, logger):
         return "not wechat info"
 
+    # 获取请求携带的参数
     xml_dict = xmltodict.parse(request.data.decode('utf-8')).get('xml', {})
-    print(xml_dict)
+
+    print(xml_dict)  # 测试时显示每次请求的信息
+
     msg_type = xml_dict.get('MsgType')  # 获取本次消息的MsgType
     logger.info(f"用户发送的消息类型是【{msg_type}】")
 
     handler = ReplyHandler(xml_dict, config_dict, logger)
 
-    if hasattr(ReplyHandler, msg_type):
+    has_reply = handler.pre_judge()
+
+    if has_reply:  # 预先判断该请求是否已经处理过了；以及是否确定内容的为关键字回复
+        reply = has_reply
+    elif hasattr(ReplyHandler, msg_type):  # 根据消息类型的不同，不同处理
         handle_method = getattr(handler, msg_type)
         reply = handle_method()
     else:
         reply = ""
 
     return reply
+
+
+if __name__ == '__main__':
+    print(Path.cwd())
