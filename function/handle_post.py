@@ -152,10 +152,6 @@ class ReplyHandler(object):
             "short_command": new_short_command,
             'user_ai_talk': new_user_ai_talk,
             "keyword_reply": keyword_reply
-            # 'ocr_data_dict': {
-            #     "ocr_text_list": self.ocr_text_list,
-            #     "text_len": len(self.ocr_text_list)
-            # }
         }
 
         # 新写法
@@ -188,13 +184,13 @@ class ReplyHandler(object):
                 response = requests.get(url, headers={
                     'Referer': 'https://www.aliyundrive.com/',
                 })
-                self.logger.info("用户历史数据下载完成")
+                self.logger.info("用户历史数据文件下载完成")
                 return response.content
             except Exception as e:
                 self.logger.error(f"用户历史数据下载出现错误，重试中", exc_info=True)
 
     def get_ali_file_info(self):
-        # 从配置信息中获取阿里云盘存放文件夹的id
+        # 从配置信息中获取阿里云盘存放用户数据的文件夹id
         dir_id = self.config_dict.get('aliyun', {}).get('user_data_dir')
         if not dir_id:
             return {}
@@ -202,7 +198,7 @@ class ReplyHandler(object):
         # 获取阿里云盘中的文件信息可能由于网络原因导致失败，重试三次
         for i in range(3):
             try:
-                self.logger.info(f"获取阿里云盘中该用户的历史数据文件")
+                self.logger.info(f"获取阿里云盘中所有用户的历史数据文件")
                 files = self.ali_obj.get_file_list(dir_id)
 
                 file_dict = {}
@@ -211,7 +207,7 @@ class ReplyHandler(object):
 
                 return file_dict
             except Exception as e:
-                self.logger.error(f"获取阿里云盘文件时出现错误，即将重试！", exc_info=True)
+                self.logger.error(f"所有用户的历史数据文件时出现错误，即将重试！", exc_info=True)
 
         return {}
 
@@ -265,7 +261,12 @@ class ReplyHandler(object):
                     text = talk['msg_list']
                     ai.text.extend(text)
 
-    def make_reply_text(self, content):
+    def make_reply_text(self, content: str):
+        """
+        接收文本，生成符合微信服务器要求的文本信息
+        :param content:
+        :return:
+        """
         time_stamp = int(time.time())
 
         resp_dict = {
@@ -274,13 +275,19 @@ class ReplyHandler(object):
                 'FromUserName': self.my_user_id,
                 'CreateTime': time_stamp,
                 'MsgType': 'text',
-                'Content': content,
+                'Content': content[0:600],  # 注意：微信的文本回复有长度限制，最多600字，此处做兜底处理。
             }
         }
         resp_xml = xmltodict.unparse(resp_dict)
         return resp_xml
 
-    def make_reply_picture(self, media_id):
+    def make_reply_picture(self, media_id: str):
+        """
+        接收图片的media_id（该值在图片上传到腾讯服务器后获取）
+        生成符合微信服务器要求的图片回复信息
+        :param media_id:
+        :return:
+        """
         time_stamp = int(time.time())
 
         resp_dict = {
