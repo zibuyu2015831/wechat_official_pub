@@ -30,15 +30,26 @@ class ReplyHandler(object):
         self.my_user_id = xml_dict.get('ToUserName')  # 获取消息的接收者，为本次回复的发送者
         self.to_user_id = xml_dict.get('FromUserName')  # 获取消息的发送者，为本次回复的接收者
         self.create_time = xml_dict.get('CreateTime')  # 获取本次消息的消息创建时间 （整型）（时间戳）
-        self.msg_type = xml_dict.get('MsgType')  # 获取本次消息的MsgType
-        self.content = xml_dict.get('Content')  # 获取本次消息的文本内容
         self.msg_id = xml_dict.get('MsgId')  # 消息id，64位整型
-
-        self.pic_url = xml_dict.get('PicUrl')  # 如果MsgType是图片，则会有一个图片临时链接，该链接保存3天
-        self.media_id = xml_dict.get('MediaId')  # 图片、音频、视频等消息会有一个MediaId，可以调用获取临时素材接口拉取数据。
+        self.msg_type = xml_dict.get('MsgType')  # 获取本次消息的MsgType
         self.msg_data_id = xml_dict.get('MsgDataId')  # 消息的数据ID（消息如果来自文章时才有）
         self.idx = xml_dict.get('Idx')  # 多图文时第几篇文章，从1开始（消息如果来自文章时才有）
-        self.format = xml_dict.get('Format')  # 语音消息的语音格式，如amr，speex等
+        # 以上七个为基础字段，任何一种类型的消息都会携带
+        # 以下为特殊字段，特定的消息类型才会携带
+        self.content = xml_dict.get('Content')  # MsgType为text时包含此字段：本次消息的文本内容
+        self.pic_url = xml_dict.get('PicUrl')  # MsgType为image时包含此字段：图片链接（由系统生成），该链接保存3天
+        self.format = xml_dict.get('Format')  # MsgType为voice时包含此字段：语音消息的语音格式，如amr，speex等
+        self.media_id = xml_dict.get('MediaId')  # MsgType为image、voice、video、shortvideo时包含此字段：可以调用获取临时素材接口拉取数据。
+        self.thumb_media_id = xml_dict.get('ThumbMediaId')  # MsgType为video、shortvideo时包含此字段：视频消息缩略图的媒体id，可以调用下载接口拉取数据。
+        # 以下为链接消息特有字段
+        self.title = xml_dict.get('Title')  # MsgType为link时包含此字段：消息标题
+        self.description = xml_dict.get('Description')  # MsgType为link时包含此字段：消息描述
+        self.url = xml_dict.get('Url')  # MsgType为link时包含此字段：消息链接
+        # 以下为地理位置信息（location）特有字段
+        self.location_x = xml_dict.get('Location_X')  # MsgType为location时包含此字段：地理位置纬度
+        self.location_y = xml_dict.get('Location_Y')  # MsgType为location时包含此字段：地理位置经度
+        self.scale = xml_dict.get('Scale')  # MsgType为location时包含此字段：地图缩放大小
+        self.label = xml_dict.get('Label')  # MsgType为location时包含此字段：地理位置信息
 
         self.logger.info(f"用户id：【{self.to_user_id}】")
         self.logger.info(f"本次消息的MsgId：【{self.msg_id}】")
@@ -83,7 +94,7 @@ class ReplyHandler(object):
         self.ali_obj = Aligo(logger=self.logger)
 
         # 从阿里云盘获取历史消息
-        self.user_data = self.get_user_data() or {}
+        self.user_data = self.get_user_data_from_alipan() or {}
 
     def delete_ali_file(self):
         for i in range(2):
@@ -94,14 +105,14 @@ class ReplyHandler(object):
             except Exception as e:
                 self.logger.error("旧的会话数据文件删除失败！", exc_info=True)
 
-    def upload_ali_file(self, file_path):
+    def upload_ali_file(self, file_path, parent_file_id: str = 'root', msg: str = "向阿里云盘上传文件"):
         for i in range(2):
             try:
-                self.logger.info("上传新的会话数据文件！")
-                self.ali_obj.upload_file(file_path, self.config_dict.get('aliyun', '').get('user_data_dir'))
+                self.ali_obj.upload_file(file_path, parent_file_id)
+                self.logger.info(msg)
                 return
             except Exception as e:
-                self.logger.error("新的会话数据文件上传失败！", exc_info=True)
+                self.logger.error("文件上传失败！", exc_info=True)
 
     def _save_user_data(self):
 
@@ -168,7 +179,10 @@ class ReplyHandler(object):
 
         with open(file_path, mode="w", encoding='utf8') as f:
             f.write(json.dumps(content))
-        self.upload_ali_file(file_path)
+        user_data_dir = self.config_dict.get('aliyun', '').get('user_data_dir')
+
+        self.logger.info("上传新的用户数据文件......")
+        self.upload_ali_file(file_path, parent_file_id=user_data_dir, msg="用户数据文件上传成功！")
 
     def save_user_data(self):
         """
@@ -211,7 +225,11 @@ class ReplyHandler(object):
 
         return {}
 
-    def get_user_data(self):
+    def get_user_data_from_alipan(self):
+        """
+        从阿里云盘中获取用户历史数据
+        :return:
+        """
         ali_file_info = self.get_ali_file_info()
 
         if self.user_file_name in ali_file_info:
@@ -235,7 +253,7 @@ class ReplyHandler(object):
         keyword_reply_dict = self.user_data.get("keyword_reply", {})  # 程序自生成的【关键字回复】
         keyword_reply_dict.update(self.config_dict.get('wechat', {}).get('keyword_reply', {}))  # 添加上配置文件中的【关键字回复】
 
-        if self.content.strip().replace(' ', '') in keyword_reply_dict:
+        if self.content and self.content.strip().replace(' ', '') in keyword_reply_dict:
             return self.make_reply_text(keyword_reply_dict.get(self.content))
 
         # 通过信息的msg_id判断该信息是否已经处理过了
@@ -314,16 +332,21 @@ class ReplyHandler(object):
         return talk_list
 
     def text(self):
+        """
+        处理接收到的文本信息，在微信的文本信息中：
+            Content	文本消息内容
+        :return:
+        """
+        # 获取短指令分隔符号
         sep_char = self.config_dict.get('wechat').get('sep_char')
-        raw_content = self.xml_dict.get('Content')  # 获取用户发送的文本内容
 
         # 文本处理者
         handler = TextHandler(self.config_dict, self.logger)
 
         try:
             # 判断是否为处理文本本身的短指令，以是否包含用户输入的分隔符来确定
-            if sep_char in raw_content:
-                func_name, content = raw_content.split(sep_char, maxsplit=1)
+            if sep_char in self.content:
+                func_name, content = self.content.split(sep_char, maxsplit=1)
 
                 # 判断是否携带参数
                 if sep_char in content:
@@ -339,11 +362,11 @@ class ReplyHandler(object):
                     self.reply_content_full = self.make_reply_text("暂无此功能")
 
             # 判断是否为处理其他信息格式的短指令
-            elif raw_content in self.config_dict.get('wechat', {}).get('short_commend'):
-                handle_function = getattr(handler, handler.function_mapping[raw_content])
-                self.reply_content_full = handle_function(self, raw_content)
+            elif self.content in self.config_dict.get('wechat', {}).get('short_commend'):
+                handle_function = getattr(handler, handler.function_mapping[self.content])
+                self.reply_content_full = handle_function(self, self.content)
 
-            else:  # 如果没有分隔符号，则是一般的AI对话
+            else:  # 如果没有分隔符号，且不是短指令，则是AI对话
 
                 # 实例化ai
                 ai = SparkGPT(self.config_dict.get('spark_info'), logger_obj=self.logger)
@@ -352,11 +375,11 @@ class ReplyHandler(object):
                 self.add_user(ai)
 
                 # 获取ai回答
-                reply_content_text = ai.ask(raw_content)
+                reply_content_text = ai.ask(self.content)
 
                 # 记录ai回答，元组类型，元素有两个：时间戳+回答
                 self.ai_talk_text['msg_time'] = int(time.time())
-                self.ai_talk_text['msg_list'] = self.make_ai_one_talk(raw_content, reply_content_text)
+                self.ai_talk_text['msg_list'] = self.make_ai_one_talk(self.content, reply_content_text)
 
                 # 生成符合微信服务器要求的回复信息
                 self.reply_content_full = self.make_reply_text(reply_content_text)
@@ -365,19 +388,26 @@ class ReplyHandler(object):
 
             return self.reply_content_full
         except Exception as e:
-            self.logger.error(f"本次通讯出现错误，用户输入的文本是：【{raw_content}】", exc_info=True)
+            self.logger.error(f"本次通讯出现错误，用户输入的文本是：【{self.content}】", exc_info=True)
             return self.make_reply_text("Something wrong had happened!")
 
     def event(self):
         return self.make_reply_text("Please wait for event development")
 
     def image(self):
-
+        """
+        处理接收到的图片信息，在微信的文本信息中：
+            PicUrl	图片链接（由系统生成）
+            MediaId	图片消息媒体id，可以调用获取临时素材接口拉取数据。
+        :return:
+        """
         # 图片处理者
         handler = ImageHandler(self.config_dict, self.logger)
+        handler.store_image(self)
 
-        # 注意user_data中的short_command，是列表格式，第一个元素是时间戳，第二个元素是指令
+        # 获取user_data中的short_command：当前短指令
         if self.user_data.get("short_command"):
+            # 注意user_data中的short_command，是列表格式，第一个元素是时间戳，第二个元素是指令
             user_short_cmd = self.user_data.get("short_command")[1]
         else:
             user_short_cmd = ''

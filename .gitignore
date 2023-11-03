@@ -3,3 +3,4 @@ config/aligo.json
 test.py
 /user_data
 /ocr_files
+/image

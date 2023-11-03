@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import time
+import uuid
 import logging
+import datetime
 import requests
 import threading
 from pathlib import Path
@@ -30,15 +32,17 @@ class ImageHandler(object):
         return mapping_dict
 
     def _store_ocr_result(self, reply_obj, text_list):
-        title = text_list[0]
+        title = text_list[0][0:10]  # 获取首行的、最多前10个字作为标题
+        today_str = datetime.date.today().strftime('%Y%m%d')
         content = '\n\n'.join(text_list)
 
+        # 生成文件标题：【20231103-子不语-ocr测试.txt】
         user_nickname_dict = self.config_dict.get('wechat', {}).get('user_nickname', {})
         if reply_obj.to_user_id in user_nickname_dict:
             nickname = user_nickname_dict.get(reply_obj.to_user_id)
-            file_name = f"OCR存储-{int(time.time())}-{nickname}-{title}.txt"
+            file_name = f"{today_str}-{nickname}-{title}.txt"
         else:
-            file_name = f"OCR存储-{int(time.time())}-{reply_obj.to_user_id}-{title}.txt"
+            file_name = f"{today_str}-{reply_obj.to_user_id}-{title}.txt"
 
         dir_file_path = Path.cwd() / 'ocr_files'
         if not dir_file_path.exists():
@@ -49,6 +53,9 @@ class ImageHandler(object):
         with open(file_path, mode='w', encoding='utf8') as f:
             f.write(content)
 
+        ocr_result_dir = self.config_dict.get('aliyun', '').get('ocr_result_dir')
+        reply_obj.upload_ali_file(file_path, parent_file_id=ocr_result_dir, msg="上传ocr处理结果文件！")
+
     def store_ocr_result(self, reply_obj, text_list):
         """
         新开一个线程：创建文件，保存ocr结果
@@ -56,6 +63,52 @@ class ImageHandler(object):
         """
         save_content_thread = threading.Thread(target=self._store_ocr_result,
                                                kwargs={'reply_obj': reply_obj, "text_list": text_list})
+        save_content_thread.start()
+
+    @staticmethod
+    def generate_short_uuid():
+        return str(uuid.uuid4())[:5]
+
+    def upload_image(self, reply_obj, file_path):
+        image_dir = self.config_dict.get('aliyun', '').get('image_dir')
+        self.logger.info("上传用户图片到阿里云盘......")
+        reply_obj.upload_ali_file(file_path, parent_file_id=image_dir, msg="图片上传成功！")
+
+    def _store_image(self, reply_obj):
+        image_url = reply_obj.pic_url
+        short_uuid = self.generate_short_uuid()  # 获取随机5位数的字符串
+        image_title = f"{reply_obj.to_user_id}-{datetime.datetime.today().strftime('%Y%m%d')}-{short_uuid}.jpg"
+
+        # 判断存储图片的文件夹是否存在
+        image_dir = Path.cwd() / "image"
+        if not image_dir.exists():
+            image_dir.mkdir()
+
+        # 图片按照用户id分类，每个用户建立一个文件夹
+        # user_dir = image_dir / reply_obj.to_user_id
+        # if not user_dir.exists():
+        #     user_dir.mkdir()
+
+        image_path = image_dir / image_title
+
+        try:
+            self.logger.info("下载并保存用户传输的图片...")
+            response = requests.get(image_url)
+            with open(image_path, mode='wb') as f:
+                f.write(response.content)
+            self.logger.info("用户图片保存成功！")
+
+            self.upload_image(reply_obj, image_path)
+        except Exception as e:
+            self.logger.error("保存用户图片失败了...", exc_info=True)
+
+    def store_image(self, reply_obj):
+        """
+        新开一个线程：创建文件，保存ocr结果
+        :return:
+        """
+        save_content_thread = threading.Thread(target=self._store_image,
+                                               kwargs={'reply_obj': reply_obj})
         save_content_thread.start()
 
     @staticmethod
@@ -71,7 +124,11 @@ class ImageHandler(object):
         return info
 
     def ocr_one_pic(self, reply_obj):
-
+        """
+        OCR一张图片，该图片由微信参数中的PicUrl获取
+        :param reply_obj:
+        :return:
+        """
         image_url = reply_obj.pic_url
         media_id = reply_obj.media_id
 
