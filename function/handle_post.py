@@ -331,6 +331,35 @@ class ReplyHandler(object):
 
         return talk_list
 
+    def weather_request(self, longitude, latitude):
+        try:
+
+            token = self.config_dict.get('caiyunAPI_info', {}).get("caiyun_token")
+            if not token:
+                self.logger.warning(f"获取不到彩云天气API的token，天气信息获取失败。")
+                return
+
+            url = f"https://api.caiyunapp.com/v2.6/{token}/{longitude},{latitude}/daily?dailysteps=1"
+            res = requests.get(url).json()
+
+            temperature_info = res['result']['daily']['temperature'][0]
+            weather_code = res['result']['daily']['skycon'][0]['value']
+
+            weather_icon = self.config_dict.get('weather_info')[weather_code][1]
+            weather = self.config_dict.get('weather_info')[weather_code][0]
+
+            # 处理温度的数据格式，只要整数：34~27℃
+            temperature_max = str(temperature_info['max']).split('.', 1)[0]
+            temperature_min = str(temperature_info['min']).split('.', 1)[0]
+
+            # print(temperature_dict, weather_code)
+            weather_tip = f"{weather_icon} {weather} {temperature_min}~{temperature_max}℃"
+        except Exception as e:
+            self.logger.warning(f"调用彩云API获取天气失败。【错误信息】---str{e}", exc_info=True)
+            weather_tip = f"🌚 呀，今天的天气信息获取失败..."
+
+        return weather_tip
+
     def text(self):
         """
         处理接收到的文本信息，在微信的文本信息中：
@@ -446,7 +475,10 @@ class ReplyHandler(object):
         return self.make_reply_text("Please wait for shortvideo development")
 
     def location(self):
-        return self.make_reply_text("Please wait for location development")
+        weather_tip = self.weather_request(self.location_y, self.location_x)
+        self.reply_content_full = self.make_reply_text(weather_tip)
+        return self.reply_content_full
+        # return self.make_reply_text("Please wait for location development")
 
     def link(self):
         return self.make_reply_text("Please wait for link development")

@@ -1,7 +1,12 @@
-import datetime
-import logging
 import os
+import sys
+import logging
+import datetime
 import coloredlogs
+from pathlib import Path
+
+module_path = Path.cwd() / 'module'
+sys.path.append(str(module_path.absolute()))  # 在这里添加项目的module路径，方便main文件导入aligo模块
 
 
 # 生成日志记录对象
