@@ -146,7 +146,7 @@ class Create(BaseAligo):
     def _put_data(self, file_path: str, part_info: CreateFileResponse, file_size: int) -> Union[BaseFile, Null]:
         """上传数据"""
         with open(file_path, 'rb') as f:
-            progress_bar = tqdm(total=file_size, unit='B', unit_scale=True, colour='#21d789')
+            # progress_bar = tqdm(total=file_size, unit='B', unit_scale=True, colour='#21d789')
             for i in range(len(part_info.part_info_list)):
                 part_info_item = part_info.part_info_list[i]
                 data = f.read(Create.__UPLOAD_CHUNK_SIZE)
@@ -165,9 +165,9 @@ class Create(BaseAligo):
                     resp = self._session.put(data=data, url=part_info_item.upload_url)
                 if resp.status_code == 403:
                     raise '这里不对劲，请反馈：https://github.com/foyoux/aligo/issues/new'
-                progress_bar.update(len(data))
+                # progress_bar.update(len(data))
 
-        progress_bar.close()
+        # progress_bar.close()
 
         # complete
         complete = self.complete_file(CompleteFileRequest(

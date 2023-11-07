@@ -1,27 +1,22 @@
 # -*- coding: utf-8 -*-
-import re
-import os
 import json
 import time
-import logging
 import threading
 import requests
 import xmltodict
 from pathlib import Path
-from .spark_gpt import SparkGPT
+from utils.spark_gpt import SparkGPT
 from .handle_text import TextHandler
 from .handle_image import ImageHandler
+from basic.my_config import config
+from basic.my_logging import MyLogging
 from module.aligo import Aligo, set_config_folder  # 自己修改后的Aligo
 
 
-class ReplyHandler(object):
+class ReplyHandler(MyLogging):
 
-    def __init__(self, xml_dict: dict, config_dict: dict, logger: logging.Logger = None):
-        # 设置日志记录对象
-        if logger:
-            self.logger = logger
-        else:
-            self.logger = logging.getLogger()
+    def __init__(self, xml_dict: dict):
+        super().__init__()
 
         # 用户post请求中的数据
         self.xml_dict = xml_dict
@@ -56,7 +51,7 @@ class ReplyHandler(object):
         self.logger.info(f"本次消息的create_time：【{self.create_time}】")
 
         # 配置信息
-        self.config_dict = config_dict
+        self.config_dict = config
 
         # 从配置文件中获取ai通话时记住的历史会话数量
         user_talk_num = self.config_dict.get('wechat', {}).get('user_talk_num')
@@ -165,17 +160,8 @@ class ReplyHandler(object):
             "keyword_reply": keyword_reply
         }
 
-        # 新写法
-        file_dir_path = Path.cwd() / 'user_data'
-        if not file_dir_path.exists():
-            file_dir_path.mkdir()
+        file_dir_path = Path.cwd() / 'data' / 'user_data'
         file_path = file_dir_path / f"{self.to_user_id}.json"
-
-        # 旧写法
-        # file_dir_path = os.path.join(self.project_path, 'user_data')
-        # if not os.path.exists(file_dir_path):
-        #     os.makedirs(file_dir_path)
-        # file_path = os.path.join(file_dir_path, f"{self.to_user_id}.json")
 
         with open(file_path, mode="w", encoding='utf8') as f:
             f.write(json.dumps(content))
@@ -262,7 +248,7 @@ class ReplyHandler(object):
             last_reply = self.user_data.get('last_msg_reply')
             return last_reply
 
-    def add_user(self, ai):
+    def add_user_history(self, ai):
         """
         为ai通讯添加历史会话信息
         :param ai:
@@ -370,7 +356,7 @@ class ReplyHandler(object):
         sep_char = self.config_dict.get('wechat').get('sep_char')
 
         # 文本处理者
-        handler = TextHandler(self.config_dict, self.logger)
+        handler = TextHandler()
 
         try:
             # 判断是否为处理文本本身的短指令，以是否包含用户输入的分隔符来确定
@@ -401,7 +387,7 @@ class ReplyHandler(object):
                 ai = SparkGPT(self.config_dict.get('spark_info'), logger_obj=self.logger)
 
                 # 添加历史会话
-                self.add_user(ai)
+                self.add_user_history(ai)
 
                 # 获取ai回答
                 reply_content_text = ai.ask(self.content)
@@ -431,7 +417,7 @@ class ReplyHandler(object):
         :return:
         """
         # 图片处理者
-        handler = ImageHandler(self.config_dict, self.logger)
+        handler = ImageHandler()
         handler.store_image(self)
 
         # 获取user_data中的short_command：当前短指令
@@ -450,16 +436,6 @@ class ReplyHandler(object):
                 self.reply_content_full = self.make_reply_text(type_error_msg)
         else:
             self.reply_content_full = self.make_reply_text(f"该图片的临时链接为：\n\n{self.pic_url}")
-
-        # 旧的逻辑判断
-        # if user_short_cmd and user_short_cmd in handler.function_mapping:
-        #
-        #     handle_function = getattr(handler, handler.function_mapping[user_short_cmd])
-        #     self.reply_content_full = handle_function(self)
-        # else:
-        #     type_error_msg = f"当前为指令模式：【{user_short_cmd}】，\n无法处理{self.msg_type}格式信息！"
-        #     self.reply_content_full = self.make_reply_text(type_error_msg)
-        # self.reply_content_full = self.make_reply_picture(self.media_id)
 
         self.save_user_data()
         return self.reply_content_full

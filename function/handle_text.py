@@ -5,14 +5,15 @@ import json
 import logging
 import base64
 from Crypto.Cipher import AES
+from basic.my_config import config
+from basic.my_logging import MyLogging
 
 
-class TextHandler(object):
+class TextHandler(MyLogging):
 
-    def __init__(self, config_dict, logger: logging.Logger):
-
-        self.config_dict = config_dict
-        self.logger = logger
+    def __init__(self):
+        super().__init__()
+        self.config_dict = config
         self.key = self.config_dict.get('wechat', {}).get('password_key')
         self.sep_char = self.config_dict.get('wechat', {}).get('sep_char')
 

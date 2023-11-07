@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
-import time
 import uuid
 import logging
 import datetime
 import requests
 import threading
 from pathlib import Path
-from .baidu_ocr import OCR
+from utils.baidu_ocr import OCR
+from basic.my_config import config
+from basic.my_logging import MyLogging
 
 
-class ImageHandler(object):
+class ImageHandler(MyLogging):
 
-    def __init__(self, config_dict, logger: logging.Logger):
-
-        self.config_dict = config_dict
-        self.logger = logger
+    def __init__(self):
+        super().__init__()
+        self.config_dict = config
 
     @property
     def function_mapping(self):
@@ -44,9 +44,8 @@ class ImageHandler(object):
         else:
             file_name = f"{today_str}-{reply_obj.to_user_id}-{title}.txt"
 
-        dir_file_path = Path.cwd() / 'ocr_files'
-        if not dir_file_path.exists():
-            dir_file_path.mkdir()
+        # 存储ocr结果的文件夹，已在MyConfig类中判断并创建
+        dir_file_path = Path.cwd() / 'data' / 'ocr_files'
 
         file_path = dir_file_path / file_name
         self.logger.info(f"新建文件【{str(file_path.name)}】，保存OCR结果")
@@ -79,10 +78,8 @@ class ImageHandler(object):
         short_uuid = self.generate_short_uuid()  # 获取随机5位数的字符串
         image_title = f"{reply_obj.to_user_id}-{datetime.datetime.today().strftime('%Y%m%d')}-{short_uuid}.jpg"
 
-        # 判断存储图片的文件夹是否存在
-        image_dir = Path.cwd() / "image"
-        if not image_dir.exists():
-            image_dir.mkdir()
+        # 存储图片的文件夹，已在MyConfig类中判断并创建
+        image_dir = Path.cwd() / 'data' / "image"
 
         # 图片按照用户id分类，每个用户建立一个文件夹
         # user_dir = image_dir / reply_obj.to_user_id
