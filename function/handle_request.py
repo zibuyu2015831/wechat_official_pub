@@ -3,6 +3,7 @@ import json
 import hashlib
 import xmltodict
 from pathlib import Path
+from flask import Request
 from .handle_post import ReplyHandler
 from basic.my_config import config
 from basic.my_logging import MyLogging
@@ -10,11 +11,11 @@ from basic.my_logging import MyLogging
 
 class RequestHandler(MyLogging):
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.config_dict = config
         super().__init__()
 
-    def authenticate(self, query_data):
+    def authenticate(self, query_data: dict) -> bool:
 
         # 从配置信息中获取公众号token
         wechat_token = self.config_dict.get('wechat').get('wechat_token')
@@ -25,7 +26,7 @@ class RequestHandler(MyLogging):
         nonce = query_data.get('nonce')
 
         if not signature or not timestamp or not nonce:
-            return ""
+            return False
 
         tmp_list = [wechat_token, timestamp, nonce]
         tmp_list.sort()
@@ -40,7 +41,7 @@ class RequestHandler(MyLogging):
             self.logger.error('经过验证，不是微信服务器信息')
             return False
 
-    def get(self, request):
+    def get(self, request: Request) -> str:
         echo_str = request.args.get('echostr')
         if not echo_str:
             self.logger.info("get请求中没有echostr，并非微信服务器请求")
@@ -51,7 +52,7 @@ class RequestHandler(MyLogging):
 
         return 'not wechat info!'
 
-    def post(self, request):
+    def post(self, request: Request) -> str:
 
         # 先验证是否为微信服务器发送的信息
         if not self.authenticate(request.args):

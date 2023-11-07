@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import uuid
-import logging
 import datetime
 import requests
 import threading

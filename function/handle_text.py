@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-import os
 import re
-import json
-import logging
+import uuid
 import base64
 from Crypto.Cipher import AES
 from basic.my_config import config
 from basic.my_logging import MyLogging
+from .handle_post import ReplyHandler
 
 
 class TextHandler(MyLogging):
@@ -17,8 +16,17 @@ class TextHandler(MyLogging):
         self.key = self.config_dict.get('wechat', {}).get('password_key')
         self.sep_char = self.config_dict.get('wechat', {}).get('sep_char')
 
+    @staticmethod
+    def generate_short_uuid(num: int = 5) -> str:
+        """
+        返回指定位数的随机字符串
+        :param num: 将生成的随机字符串的位数
+        :return:
+        """
+        return str(uuid.uuid4())[:num]
+
     @property
-    def function_mapping(self):
+    def function_mapping(self) -> dict:
         """
         调用名与函数的对应关系
         :return:
@@ -40,19 +48,19 @@ class TextHandler(MyLogging):
 
     # str不是16的倍数那就补足为16的倍数
     @staticmethod
-    def add_to_16(value):
+    def add_to_16(value) -> bytes:
         while len(value) % 16 != 0:
             value += '\0'
         return str.encode(value)  # 返回bytes
 
     # 加密方法
-    def encrypt_oracle(self, reply_obj, unencrypted_content: str, key: str = None, *args, **kwargs):
+    def encrypt_oracle(self, reply_obj: ReplyHandler, content: str, key: str = None, *args, **kwargs) -> str:
 
         try:
             if not key:
                 key = self.key
 
-            text = base64.b64encode(unencrypted_content.encode('utf-8')).decode('ascii')
+            text = base64.b64encode(content.encode('utf-8')).decode('ascii')
             # 初始化加密器
             aes = AES.new(self.add_to_16(key), AES.MODE_ECB)
             # 先进行aes加密
@@ -65,7 +73,7 @@ class TextHandler(MyLogging):
             return "加密出现错误，请重试！"
 
     # 解密方法
-    def decrypt_oracle(self, reply_obj, encrypted_content: str, key: str = None, *args, **kwargs):
+    def decrypt_oracle(self, reply_obj: ReplyHandler, content: str, key: str = None, *args, **kwargs) -> str:
 
         try:
             if not key:
@@ -74,7 +82,7 @@ class TextHandler(MyLogging):
             # 初始化加密器
             aes = AES.new(self.add_to_16(key), AES.MODE_ECB)
             # 优先逆向解密base64成bytes
-            base64_decrypted = base64.decodebytes(encrypted_content.encode(encoding='utf-8'))
+            base64_decrypted = base64.decodebytes(content.encode(encoding='utf-8'))
             # 执行解密密并转码返回str
             decrypted_text = str(aes.decrypt(base64_decrypted), encoding='utf-8')
             decrypted_text = base64.b64decode(decrypted_text.encode('utf-8')).decode('utf-8')
@@ -83,8 +91,12 @@ class TextHandler(MyLogging):
         except Exception as e:
             return "解密出现错误，请检查key后重试！！"
 
+    def text_to_voice(self, reply_obj: ReplyHandler, content: str, key: str = None, *args, **kwargs) -> str:
+        # file_name = f"{reply_obj.to_user_id}" + '-' + self.generate_short_uuid() + '.mp3'
+        pass
+
     # 保存阿里云盘链接中的文件
-    def store_ali_file(self, reply_obj, content: str, key: str = None, *args, **kwargs):
+    def store_ali_file(self, reply_obj: ReplyHandler, content: str, key: str = None, *args, **kwargs):
         """
         自动转存阿里云盘链接中的文件到自己网盘
         :param reply_obj:
@@ -103,34 +115,29 @@ class TextHandler(MyLogging):
             print(item)
 
     @staticmethod
-    def short_cmd_reply(reply_obj, content: str, ):
+    def short_cmd_reply(reply_obj: ReplyHandler, content: str):
         # 保存用户输入的短指令名称
         reply_obj.short_cmd = content
         # 保存新生成的会话信息
         reply_obj.save_user_data()
 
     # 图片OCR
-    def picture_ocr(self, reply_obj, content: str, *args, **kwargs):
+    def picture_ocr(self, reply_obj: ReplyHandler, content: str, *args, **kwargs):
         self.short_cmd_reply(reply_obj, content)
-        return reply_obj.make_reply_text(f"好的，我已经做好了{content}的准备，请您发送图片...")
+        return reply_obj.make_reply_text(f"-----已进入指令模式-----\n\n我已经做好了{content}的准备，请您发送图片...")
 
-    def voice_to_file(self, reply_obj, content: str, *args, **kwargs):
+    def voice_to_file(self, reply_obj: ReplyHandler, content: str, *args, **kwargs):
         self.short_cmd_reply(reply_obj, content)
-        return reply_obj.make_reply_text(f"好的，我已经做好了{content}的准备，请您发送语音...")
+        return reply_obj.make_reply_text(f"-----已进入指令模式-----\n\n我已经做好了{content}的准备，请您发送语音...")
 
-    def cancel_short_cmd(self, reply_obj, content: str, *args, **kwargs):
+    def cancel_short_cmd(self, reply_obj: ReplyHandler, content: str, *args, **kwargs):
         reply_obj.short_cmd = '无'
         # 保存新生成的会话信息
         reply_obj.save_user_data()
-        return reply_obj.make_reply_text(f"已退出短指令模式...")
+        return reply_obj.make_reply_text(f"-----已退出指令模式-----")
 
 
 if __name__ == '__main__':
-    h = TextHandler({
-        "aliyun": {
-            "pattern": "https://www.aliyundrive.com/s/[a-zA-Z0-9]{9,13}"
-        }
-    })
     text = """
         「G 古墓丽影 (系列3部) 4K HDR  DV...音轨 内封特效 FRDS 蓝光版」https://www.aliyundrive.com/s/Wwgu7WstPDy
         「G 哥斯拉系列.2160p.HDR.国英音轨.内封特效【系列合集」https://www.aliyundrive.com/s/LMQMfFh27Fc

@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
+import os
+from pathlib import Path
 from flask import Flask, request
 from function.handle_request import RequestHandler
+from function.handle_wechat import WechatHandler
+from basic.my_config import config
 
 app = Flask(__name__)
 

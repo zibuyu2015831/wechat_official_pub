@@ -48,13 +48,13 @@ class WechatHandler(object):
         }
 
         # 相关请求所需的access_token
-        # self.access_token = ''
+        self.access_token = ''
         # access_token的有效期：时间戳，整型
-        # self.token_expires_in = 0
+        self.token_expires_in = 0
 
         # 测试时，使用固定的token
-        self.access_token = '74_KK1J9CRnYb6IgOWcX7uaNu1CXnI8apzHSjGW1Fsm2ZZRMFvR3tREhdke_NCSI1N4x4s1KDo9nLGILoVvlxMSNk5aJmCez02_yJ0F2LJ34RIy7nMb_acoa-xxjv4PWBdAIADKP'
-        self.token_expires_in = int(time.time())
+        # self.access_token = '74_KK1J9CRnYb6IgOWcX7uaNu1CXnI8apzHSjGW1Fsm2ZZRMFvR3tREhdke_NCSI1N4x4s1KDo9nLGILoVvlxMSNk5aJmCez02_yJ0F2LJ34RIy7nMb_acoa-xxjv4PWBdAIADKP'
+        # self.token_expires_in = int(time.time())
 
         self.pre_url = 'https://api.weixin.qq.com/cgi-bin/'
         # 临时素材相关接口
@@ -205,7 +205,7 @@ class WechatHandler(object):
         return self.upload_source(file_type=file_type, file_path=file_path, source_type='soft')
 
     # 待完善，上传视频素材时，官方有附加要求
-    def upload_hard_source(self, file_type: str, file_path):
+    def upload_hard_source(self, file_type: str, file_path) -> dict:
         """
         上传永久素材。
         总数量有上限：图文消息素材、图片素材上限为100000，其他类型为1000。

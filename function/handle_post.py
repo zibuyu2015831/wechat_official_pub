@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 import json
 import time
 import threading
@@ -6,16 +7,15 @@ import requests
 import xmltodict
 from pathlib import Path
 from utils.spark_gpt import SparkGPT
-from .handle_text import TextHandler
-from .handle_image import ImageHandler
 from basic.my_config import config
 from basic.my_logging import MyLogging
 from module.aligo import Aligo, set_config_folder  # 自己修改后的Aligo
+from concurrent.futures import ThreadPoolExecutor
 
 
 class ReplyHandler(MyLogging):
 
-    def __init__(self, xml_dict: dict):
+    def __init__(self, xml_dict: dict) -> None:
         super().__init__()
 
         # 用户post请求中的数据
@@ -90,6 +90,131 @@ class ReplyHandler(MyLogging):
 
         # 从阿里云盘获取历史消息
         self.user_data = self.get_user_data_from_alipan() or {}
+
+    # 处理文本信息
+    def text(self) -> str:
+        """
+        处理接收到的文本信息，在微信的文本信息中：
+            Content	文本消息内容
+        :return:
+        """
+        # 获取短指令分隔符号
+        sep_char = self.config_dict.get('wechat').get('sep_char')
+
+        from .handle_text import TextHandler
+        # 文本处理者
+        handler = TextHandler()
+
+        try:
+            # 判断是否为处理文本本身的短指令，以是否包含用户输入的分隔符来确定
+            if sep_char in self.content:
+                func_name, content = self.content.split(sep_char, maxsplit=1)
+
+                # 判断是否携带参数
+                if sep_char in content:
+                    final_content, second_key = content.split(sep_char, maxsplit=1)
+                else:
+                    final_content = content
+                    second_key = ""
+
+                if func_name in handler.function_mapping:
+                    handle_function = getattr(handler, handler.function_mapping[func_name])
+                    self.reply_content_full = handle_function(self, final_content, second_key)
+                else:
+                    self.reply_content_full = self.make_reply_text("暂无此功能")
+
+            # 判断是否为处理其他信息格式的短指令
+            elif self.content in self.config_dict.get('wechat', {}).get('short_commend'):
+                handle_function = getattr(handler, handler.function_mapping[self.content])
+                self.reply_content_full = handle_function(self, self.content)
+
+            else:  # 如果没有分隔符号，且不是短指令，则是AI对话
+
+                # 实例化ai
+                ai = SparkGPT(self.config_dict.get('spark_info'), logger_obj=self.logger)
+
+                # 添加历史会话
+                self.add_user_history(ai)
+
+                # 获取ai回答
+                reply_content_text = ai.ask(self.content)
+
+                # 记录ai回答，元组类型，元素有两个：时间戳+回答
+                self.ai_talk_text['msg_time'] = int(time.time())
+                self.ai_talk_text['msg_list'] = self.make_ai_one_talk(self.content, reply_content_text)
+
+                # 生成符合微信服务器要求的回复信息
+                self.reply_content_full = self.make_reply_text(reply_content_text)
+                # 保存新生成的会话信息
+                self.save_user_data()
+
+            return self.reply_content_full
+        except Exception as e:
+            self.logger.error(f"本次通讯出现错误，用户输入的文本是：【{self.content}】", exc_info=True)
+            return self.make_reply_text("Something wrong had happened!")
+
+    # 处理事件信息
+    def event(self) -> str:
+        return self.make_reply_text("Please wait for event development")
+
+    # 处理图片信息
+    def image(self) -> str:
+        """
+        处理接收到的图片信息，在微信的文本信息中：
+            PicUrl	图片链接（由系统生成）
+            MediaId	图片消息媒体id，可以调用获取临时素材接口拉取数据。
+        :return:
+        """
+        from .handle_image import ImageHandler
+        # 图片处理者
+        handler = ImageHandler()
+        handler.store_image(self)
+
+        # 获取user_data中的short_command：当前短指令
+        if self.user_data.get("short_command"):
+            # 注意user_data中的short_command，是列表格式，第一个元素是时间戳，第二个元素是指令
+            user_short_cmd = self.user_data.get("short_command")[1]
+        else:
+            user_short_cmd = ''
+
+        if user_short_cmd:
+            if user_short_cmd in handler.function_mapping:
+                handle_function = getattr(handler, handler.function_mapping[user_short_cmd])
+                self.reply_content_full = handle_function(self)
+            else:
+                type_error_msg = f"当前为指令模式：【{user_short_cmd}】\n无法处理{self.msg_type}格式信息！\n\n请先输入【退出】，以退出指令模式。"
+                self.reply_content_full = self.make_reply_text(type_error_msg)
+        else:
+            self.reply_content_full = self.make_reply_text(f"该图片的临时链接为：\n\n{self.pic_url}")
+
+        self.save_user_data()
+        return self.reply_content_full
+        # return self.make_reply_text("Please wait for image development")
+
+    # 处理语音信息
+    def voice(self) -> str:
+        media_id = 'x6lBIVCeGMg_tlN-qAPFWmyoRYMfgDrZcAEXIyu7ReM1cbdvXzrEqqsrAV-95c_X'
+        return self.make_reply_voice(media_id)
+        # return self.make_reply_text("Please wait for voice development")
+
+    # 处理视频信息
+    def video(self) -> str:
+        return self.make_reply_text("Please wait for video development")
+
+    # 处理短视频信息
+    def shortvideo(self) -> str:
+        return self.make_reply_text("Please wait for shortvideo development")
+
+    # 处理位置信息
+    def location(self) -> str:
+        weather_tip = self.weather_request(self.location_y, self.location_x)
+        self.reply_content_full = self.make_reply_text(weather_tip)
+        return self.reply_content_full
+        # return self.make_reply_text("Please wait for location development")
+
+    # 处理链接信息
+    def link(self) -> str:
+        return self.make_reply_text("Please wait for link development")
 
     def delete_ali_file(self):
         for i in range(2):
@@ -232,23 +357,96 @@ class ReplyHandler(MyLogging):
                 self.logger.info(f"成功载入历史信息...")
                 return json.loads(data)
 
+    def save_ali_share_file(self, share_url: str, drive_id: str, inbox_dir) -> str:
+
+        share_id = share_url.split('/s/', maxsplit=1)[-1].strip()
+
+        try:
+            file_info = self.ali_obj.get_share_info(share_id)
+
+            self.logger.info(f"判断分享链接{share_id}是否已经失效")
+
+            if not bool(file_info):
+                self.logger.warning(f"链接{share_id}已经失效，跳过不转存")
+                return f'【{share_id}】链接已失效，跳过...'
+
+            share_token = self.ali_obj.get_share_token(share_id)
+
+            if file_info.file_count == 1:
+                self.ali_obj.share_file_save_all_to_drive(share_token, to_parent_file_id=inbox_dir,
+                                                          to_drive_id=drive_id)
+            else:
+                dir_name = file_info.share_name
+                store_dir = self.ali_obj.create_folder(name=dir_name, drive_id=drive_id, parent_file_id=inbox_dir)
+                self.ali_obj.share_file_save_all_to_drive(share_token,
+                                                          to_parent_file_id=store_dir.file_id,
+                                                          to_drive_id=drive_id)
+            return f"{file_info.share_name}"
+        except Exception as e:
+            self.logger.error(f'保存阿里云盘链接时出错了！【{share_url}】')
+            return f'【{share_id}】保存失败'
+
+    def save_ali_share_files(self, ali_share_link_list: list = None) -> str:
+        thread_num = self.config_dict.get('aliyun', {}).get('thread_num', 2)
+        drive_id = self.config_dict.get('aliyun', {}).get('source_drive_id')  #
+        inbox_dir = self.config_dict.get('aliyun', {}).get('inbox_dir')  # 阿里云盘文件夹id
+
+        # 创建线程池
+        pool = ThreadPoolExecutor(thread_num)
+        future_list = []
+
+        for ali_share_link in ali_share_link_list:
+            future = pool.submit(self.save_ali_share_file, ali_share_link, drive_id, inbox_dir)
+            future_list.append(future)
+
+        pool.shutdown(True)
+        result_msg = "\n".join([f"【{fu.result()}】保存成功" for fu in future_list])
+
+        return '检测到阿里云盘链接，启动转存\n - - - - - - - - - - - - - - - \n\n' + result_msg
+
     # 预先判断该请求是否已经处理过了
-    def pre_judge(self):
+    def pre_judge(self) -> str:
 
-        # 判断是否是关键字回复
-        keyword_reply_dict = self.user_data.get("keyword_reply", {})  # 程序自生成的【关键字回复】
-        keyword_reply_dict.update(self.config_dict.get('wechat', {}).get('keyword_reply', {}))  # 添加上配置文件中的【关键字回复】
-
-        if self.content and self.content.strip().replace(' ', '') in keyword_reply_dict:
-            return self.make_reply_text(keyword_reply_dict.get(self.content))
-
-        # 通过信息的msg_id判断该信息是否已经处理过了
+        # 1. 先通过信息的msg_id判断该信息是否已经处理过了
         last_msg_id = self.user_data.get('last_msg_id')
         if last_msg_id == self.msg_id:
             last_reply = self.user_data.get('last_msg_reply')
             return last_reply
 
-    def add_user_history(self, ai):
+        # 如果不是文本信息，直接返回
+        if not self.content:
+            return ''
+
+        # 2. 判断是否是关键字回复：回复文本
+        keyword_reply_dict = self.user_data.get("keyword_reply", {})  # 程序自生成的【关键字回复】
+        keyword_reply_dict.update(self.config_dict.get('wechat', {}).get('keyword_reply', {}))  # 添加上配置文件中的【关键字回复】
+
+        if self.content and self.content.strip().replace(' ', '') in keyword_reply_dict:
+            return self.make_reply_text(keyword_reply_dict.get(self.content.strip().replace(' ', '')))
+
+        # 3. 判断是否是试听语音：回复语音
+        voice_dict = self.config_dict.get('wechat', {}).get('voice', {})
+        if self.content and self.content.strip().replace(' ', '') in voice_dict:
+            return self.make_reply_voice(voice_dict.get(self.content.strip().replace(' ', '')))
+
+        # 4. 判断文本中是否包含阿里云盘分享链接，如果有，转存后直接返回文本
+        ali_share_link_pattern = self.config_dict.get('aliyun', {}).get('pattern')
+        if not ali_share_link_pattern:
+            return ''
+
+        # 获取匹配阿里云盘分享链接的正则
+        pattern = re.compile(ali_share_link_pattern)
+        results = pattern.findall(self.content)
+
+        # 如果用户输入的文本里没有阿里云盘分享链接，直接跳过
+        if not results:
+            return ''
+
+        result_msg = self.save_ali_share_files(results)
+
+        return self.make_reply_text(result_msg)
+
+    def add_user_history(self, ai: SparkGPT) -> None:
         """
         为ai通讯添加历史会话信息
         :param ai:
@@ -265,7 +463,7 @@ class ReplyHandler(MyLogging):
                     text = talk['msg_list']
                     ai.text.extend(text)
 
-    def make_reply_text(self, content: str):
+    def make_reply_text(self, content: str) -> str:
         """
         接收文本，生成符合微信服务器要求的文本信息
         :param content:
@@ -285,7 +483,7 @@ class ReplyHandler(MyLogging):
         resp_xml = xmltodict.unparse(resp_dict)
         return resp_xml
 
-    def make_reply_picture(self, media_id: str):
+    def make_reply_picture(self, media_id: str) -> str:
         """
         接收图片的media_id（该值在图片上传到腾讯服务器后获取）
         生成符合微信服务器要求的图片回复信息
@@ -308,8 +506,31 @@ class ReplyHandler(MyLogging):
         resp_xml = xmltodict.unparse(resp_dict)
         return resp_xml
 
+    def make_reply_voice(self, media_id: str) -> str:
+        """
+        接收图片的media_id（该值在图片上传到腾讯服务器后获取）
+        生成符合微信服务器要求的图片回复信息
+        :param media_id:
+        :return:
+        """
+        time_stamp = int(time.time())
+
+        resp_dict = {
+            'xml': {
+                'ToUserName': self.to_user_id,
+                'FromUserName': self.my_user_id,
+                'CreateTime': time_stamp,
+                'MsgType': 'voice',
+                'Voice': {
+                    'MediaId': media_id
+                },
+            }
+        }
+        resp_xml = xmltodict.unparse(resp_dict)
+        return resp_xml
+
     @staticmethod
-    def make_ai_one_talk(question, answer):
+    def make_ai_one_talk(question, answer) -> list[dict]:
         talk_list = [
             {"role": "user", "content": question},
             {"role": "assistant", "content": answer}
@@ -345,119 +566,6 @@ class ReplyHandler(MyLogging):
             weather_tip = f"🌚 呀，今天的天气信息获取失败..."
 
         return weather_tip
-
-    def text(self):
-        """
-        处理接收到的文本信息，在微信的文本信息中：
-            Content	文本消息内容
-        :return:
-        """
-        # 获取短指令分隔符号
-        sep_char = self.config_dict.get('wechat').get('sep_char')
-
-        # 文本处理者
-        handler = TextHandler()
-
-        try:
-            # 判断是否为处理文本本身的短指令，以是否包含用户输入的分隔符来确定
-            if sep_char in self.content:
-                func_name, content = self.content.split(sep_char, maxsplit=1)
-
-                # 判断是否携带参数
-                if sep_char in content:
-                    final_content, second_key = content.split(sep_char, maxsplit=1)
-                else:
-                    final_content = content
-                    second_key = ""
-
-                if func_name in handler.function_mapping:
-                    handle_function = getattr(handler, handler.function_mapping[func_name])
-                    self.reply_content_full = handle_function(self, final_content, second_key)
-                else:
-                    self.reply_content_full = self.make_reply_text("暂无此功能")
-
-            # 判断是否为处理其他信息格式的短指令
-            elif self.content in self.config_dict.get('wechat', {}).get('short_commend'):
-                handle_function = getattr(handler, handler.function_mapping[self.content])
-                self.reply_content_full = handle_function(self, self.content)
-
-            else:  # 如果没有分隔符号，且不是短指令，则是AI对话
-
-                # 实例化ai
-                ai = SparkGPT(self.config_dict.get('spark_info'), logger_obj=self.logger)
-
-                # 添加历史会话
-                self.add_user_history(ai)
-
-                # 获取ai回答
-                reply_content_text = ai.ask(self.content)
-
-                # 记录ai回答，元组类型，元素有两个：时间戳+回答
-                self.ai_talk_text['msg_time'] = int(time.time())
-                self.ai_talk_text['msg_list'] = self.make_ai_one_talk(self.content, reply_content_text)
-
-                # 生成符合微信服务器要求的回复信息
-                self.reply_content_full = self.make_reply_text(reply_content_text)
-                # 保存新生成的会话信息
-                self.save_user_data()
-
-            return self.reply_content_full
-        except Exception as e:
-            self.logger.error(f"本次通讯出现错误，用户输入的文本是：【{self.content}】", exc_info=True)
-            return self.make_reply_text("Something wrong had happened!")
-
-    def event(self):
-        return self.make_reply_text("Please wait for event development")
-
-    def image(self):
-        """
-        处理接收到的图片信息，在微信的文本信息中：
-            PicUrl	图片链接（由系统生成）
-            MediaId	图片消息媒体id，可以调用获取临时素材接口拉取数据。
-        :return:
-        """
-        # 图片处理者
-        handler = ImageHandler()
-        handler.store_image(self)
-
-        # 获取user_data中的short_command：当前短指令
-        if self.user_data.get("short_command"):
-            # 注意user_data中的short_command，是列表格式，第一个元素是时间戳，第二个元素是指令
-            user_short_cmd = self.user_data.get("short_command")[1]
-        else:
-            user_short_cmd = ''
-
-        if user_short_cmd:
-            if user_short_cmd in handler.function_mapping:
-                handle_function = getattr(handler, handler.function_mapping[user_short_cmd])
-                self.reply_content_full = handle_function(self)
-            else:
-                type_error_msg = f"当前为指令模式：【{user_short_cmd}】\n无法处理{self.msg_type}格式信息！\n\n请先输入【退出】，以退出指令模式。"
-                self.reply_content_full = self.make_reply_text(type_error_msg)
-        else:
-            self.reply_content_full = self.make_reply_text(f"该图片的临时链接为：\n\n{self.pic_url}")
-
-        self.save_user_data()
-        return self.reply_content_full
-        # return self.make_reply_text("Please wait for image development")
-
-    def voice(self):
-        return self.make_reply_text("Please wait for voice development")
-
-    def video(self):
-        return self.make_reply_text("Please wait for video development")
-
-    def shortvideo(self):
-        return self.make_reply_text("Please wait for shortvideo development")
-
-    def location(self):
-        weather_tip = self.weather_request(self.location_y, self.location_x)
-        self.reply_content_full = self.make_reply_text(weather_tip)
-        return self.reply_content_full
-        # return self.make_reply_text("Please wait for location development")
-
-    def link(self):
-        return self.make_reply_text("Please wait for link development")
 
 
 if __name__ == '__main__':

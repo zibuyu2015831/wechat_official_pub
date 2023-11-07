@@ -43,7 +43,7 @@ class DailyRotatingFileHandler(logging.handlers.TimedRotatingFileHandler):
 
 
 class MyLogging(object):
-    def __init__(self, config: dict = None):
+    def __init__(self, logger_config: dict = None):
 
         log_file_path = Path.cwd() / 'log_files'
         self.fmt = "%(asctime)s.%(msecs)04d | %(levelname)8s | %(module)s | %(message)s "
@@ -51,14 +51,14 @@ class MyLogging(object):
         if not log_file_path.exists():
             log_file_path.mkdir()
 
-        if config:
-            self.config = config
+        if logger_config:
+            self.logger_config = logger_config
         else:
-            self.config = self._get_config()
+            self.logger_config = self._get_config()
 
     @property
     def logger(self):
-        logger_config = self.config['logger_config']
+        logger_config = self.logger_config['logger_config']
         logging.config.dictConfig(logger_config)
         logger = logging.getLogger('main_logger')
 
