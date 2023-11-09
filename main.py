@@ -18,7 +18,7 @@ def run():
     elif request_method == 'post':
         return request_handler.post(request)
     else:
-        return 'hello'
+        return 'not support method!'
 
 
 if __name__ == '__main__':

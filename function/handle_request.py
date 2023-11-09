@@ -44,7 +44,7 @@ class RequestHandler(MyLogging):
     def get(self, request: Request) -> str:
         echo_str = request.args.get('echostr')
         if not echo_str:
-            self.logger.info("get请求中没有echostr，并非微信服务器请求")
+            self.logger.info("get请求中没有echostr参数，并非微信服务器请求")
             return "This get request is not for authenticated."
 
         if self.authenticate(request.args):

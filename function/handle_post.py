@@ -45,6 +45,9 @@ class ReplyHandler(MyLogging):
         self.location_y = xml_dict.get('Location_Y')  # MsgType为location时包含此字段：地理位置经度
         self.scale = xml_dict.get('Scale')  # MsgType为location时包含此字段：地图缩放大小
         self.label = xml_dict.get('Label')  # MsgType为location时包含此字段：地理位置信息
+        # 获取事件类型
+        self.event_type = xml_dict.get('Event')  # 关注：subscribe；取消关注：unsubscribe等
+        self.event_key = xml_dict.get('EventKey')  # 事件的EventKey
 
         self.logger.info(f"用户id：【{self.to_user_id}】")
         self.logger.info(f"本次消息的MsgId：【{self.msg_id}】")
@@ -75,12 +78,14 @@ class ReplyHandler(MyLogging):
             self.short_cmd_time_limit = 600
 
         self.ali_user_file_id = ''  # 阿里云盘中存储用户历史会话信息的文件id
+        self.ali_user_file_download_url = ''  # 阿里云盘中存储用户历史会话信息的文件下载直链
 
         self.reply_content_full = ''  # 本次回应的完整信息xml格式
         self.reply_content_text = ''  # 本次回应的文本信息，字符串
         self.ai_talk_text = dict()  # 本次通讯的ai会话记录，如果有的话
         self.short_cmd = ''  # 本次接收的短指令，如果有的话
         self.ocr_text_list = []  # 本次通讯的ocr结果，如果有的话
+        self.voice2text_keyword = {}  # 本次通讯的ocr结果，如果有的话
         self.user_file_name = f"{self.to_user_id}.json"  # 历史会话信息的文件名称
 
         # Aligo相关配置：后续需要优化，将配置统一为整个config.json文件
@@ -93,11 +98,8 @@ class ReplyHandler(MyLogging):
 
     # 处理文本信息
     def text(self) -> str:
-        """
-        处理接收到的文本信息，在微信的文本信息中：
-            Content	文本消息内容
-        :return:
-        """
+        """处理接收到的文本信息"""
+
         # 获取短指令分隔符号
         sep_char = self.config_dict.get('wechat').get('sep_char')
 
@@ -106,7 +108,7 @@ class ReplyHandler(MyLogging):
         handler = TextHandler()
 
         try:
-            # 判断是否为处理文本本身的短指令，以是否包含用户输入的分隔符来确定
+            # 判断是否为【短指令】调用：短指令处理文本本身，以是否包含用户输入的分隔符来确定
             if sep_char in self.content:
                 func_name, content = self.content.split(sep_char, maxsplit=1)
 
@@ -123,12 +125,12 @@ class ReplyHandler(MyLogging):
                 else:
                     self.reply_content_full = self.make_reply_text("暂无此功能")
 
-            # 判断是否为处理其他信息格式的短指令
+            # 判断是否【指令】调用：指令模式处理其他格式的信息
             elif self.content in self.config_dict.get('wechat', {}).get('short_commend'):
                 handle_function = getattr(handler, handler.function_mapping[self.content])
                 self.reply_content_full = handle_function(self, self.content)
 
-            else:  # 如果没有分隔符号，且不是短指令，则是AI对话
+            else:  # AI对话
 
                 # 实例化ai
                 ai = SparkGPT(self.config_dict.get('spark_info'), logger_obj=self.logger)
@@ -155,6 +157,10 @@ class ReplyHandler(MyLogging):
 
     # 处理事件信息
     def event(self) -> str:
+        if self.event_type == 'subscribe':
+            default_greeting = "欢迎关注，这是一个有趣的公众号哦~"
+            subscribe_greeting = self.config_dict.get('wechat', {}).get('subscribe_greeting', default_greeting)
+            return self.make_reply_text(subscribe_greeting)
         return self.make_reply_text("Please wait for event development")
 
     # 处理图片信息
@@ -168,14 +174,23 @@ class ReplyHandler(MyLogging):
         from .handle_image import ImageHandler
         # 图片处理者
         handler = ImageHandler()
-        handler.store_image(self)
+        store_thread = handler.store_image(self)
+
+        # 获取当前事件
+        now_timestamp = int(time.time())
+        # 获取用户历史数据文件中存储的指令与时间
+        short_cmd_time, user_short_cmd = self.user_data.get("short_command",
+                                                            [now_timestamp - self.short_cmd_time_limit - 111, None])
+        # 判断用户的指令时间是否过期
+        if short_cmd_time + self.short_cmd_time_limit < now_timestamp:
+            user_short_cmd = None
 
         # 获取user_data中的short_command：当前短指令
-        if self.user_data.get("short_command"):
-            # 注意user_data中的short_command，是列表格式，第一个元素是时间戳，第二个元素是指令
-            user_short_cmd = self.user_data.get("short_command")[1]
-        else:
-            user_short_cmd = ''
+        # if self.user_data.get("short_command"):
+        #     # 注意user_data中的short_command，是列表格式，第一个元素是时间戳，第二个元素是指令
+        #     short_cmd_time, user_short_cmd = self.user_data.get("short_command")
+        # else:
+        #     user_short_cmd = ''
 
         if user_short_cmd:
             if user_short_cmd in handler.function_mapping:
@@ -188,6 +203,7 @@ class ReplyHandler(MyLogging):
             self.reply_content_full = self.make_reply_text(f"该图片的临时链接为：\n\n{self.pic_url}")
 
         self.save_user_data()
+        store_thread.join()  # 等待保存图片的进程完成再返回回复
         return self.reply_content_full
         # return self.make_reply_text("Please wait for image development")
 
@@ -235,13 +251,22 @@ class ReplyHandler(MyLogging):
                 self.logger.error("文件上传失败！", exc_info=True)
 
     def _save_user_data(self):
+        """
+        当一次通讯结束之后，删除用户原来的数据文件，重新生成新的数据文件，并上传阿里云盘；
+        执行流程：
+            1. 先删除原有文件；
+            2. 如果用户有历史数据信息，检测并存储其中为过期的信息到新的历史数据文件中；
+            3. 在新的历史数据文件中，增加本次请求的信息；
+        :return:
+        """
 
-        # 保存文件前，先删除原有文件
+        # 1. 保存文件前，先删除原有文件
         self.delete_ali_file()
 
         new_user_ai_talk = []
-        new_short_command = []
+        new_short_command = [0,None]
 
+        # 如果用户有历史数据，检测、保留历史数据中未过期的数据
         if self.user_data:
             # 1. 检查user_ai_talk，保留未过期的AI对话
             user_ai_talk = self.user_data.get('user_ai_talk')
@@ -269,12 +294,15 @@ class ReplyHandler(MyLogging):
         elif self.short_cmd:
             new_short_command = [int(time.time()), self.short_cmd]
 
-        # 如果有图片ocr结果
-        keyword_reply = {}
-
+        # 获取原历史数据中的关键字回复
+        keyword_reply = self.user_data.get('keyword_reply', {})
+        # 如果有图片ocr结果，存储新的关于ocr结果的关键词回复
         if self.ocr_text_list:
             for index, paragraph in enumerate(self.ocr_text_list):
                 keyword_reply[f"获取ocr结果第{index + 1}页"] = paragraph
+
+        # 添加上文本转语音的关键字回复
+        keyword_reply.update(self.voice2text_keyword)
 
         content = {
             'user_id': self.to_user_id,
@@ -282,7 +310,7 @@ class ReplyHandler(MyLogging):
             'last_msg_reply': self.reply_content_full,
             "short_command": new_short_command,
             'user_ai_talk': new_user_ai_talk,
-            "keyword_reply": keyword_reply
+            "keyword_reply": keyword_reply,
         }
 
         file_dir_path = Path.cwd() / 'data' / 'user_data'
@@ -290,7 +318,7 @@ class ReplyHandler(MyLogging):
 
         with open(file_path, mode="w", encoding='utf8') as f:
             f.write(json.dumps(content))
-        user_data_dir = self.config_dict.get('aliyun', '').get('user_data_dir')
+        user_data_dir = self.config_dict.get('aliyun', "").get('user_data_dir')
 
         self.logger.info("上传新的用户数据文件......")
         self.upload_ali_file(file_path, parent_file_id=user_data_dir, msg="用户数据文件上传成功！")
@@ -314,9 +342,15 @@ class ReplyHandler(MyLogging):
             except Exception as e:
                 self.logger.error(f"用户历史数据下载出现错误，重试中", exc_info=True)
 
-    def get_ali_file_info(self):
+    def get_ali_file_info(self) -> dict:
+        """
+        发送Aligo请求，获取阿里云盘中，所有用户历史数据文件的文件标题与url信息
+        构建成字典并返回
+        :return:
+        """
         # 从配置信息中获取阿里云盘存放用户数据的文件夹id
         dir_id = self.config_dict.get('aliyun', {}).get('user_data_dir')
+        # 如果用户不配置历史数据存放文件夹，则跳过
         if not dir_id:
             return {}
 
@@ -336,9 +370,12 @@ class ReplyHandler(MyLogging):
 
         return {}
 
-    def get_user_data_from_alipan(self):
+    def get_user_data_from_alipan(self) -> dict:
         """
-        从阿里云盘中获取用户历史数据
+        1. 从阿里云盘中获取所有用户历史数据文件的标题与url信息；
+        2. 判断用户是否有历史数据文件（历史数据文件在阿里云盘中，以【用户微信id.json】的文件名保存）；
+        3. 如果数据拥有历史数据文件，返回该数据的json格式；
+        4. 没有则返回空
         :return:
         """
         ali_file_info = self.get_ali_file_info()
@@ -346,16 +383,18 @@ class ReplyHandler(MyLogging):
         if self.user_file_name in ali_file_info:
             self.logger.info(f"该用户拥有历史数据，开始下载历史数据")
             # 获取文件下载链接
-            download_url = ali_file_info[self.user_file_name]['download_url']
+            self.ali_user_file_download_url = ali_file_info[self.user_file_name]['download_url']
             # 获取文件id
             self.ali_user_file_id = ali_file_info[self.user_file_name]['file_id']
 
             # 下载文件
-            data = self.download_user_data(download_url)
+            data = self.download_user_data(self.ali_user_file_download_url)
 
             if data:
                 self.logger.info(f"成功载入历史信息...")
                 return json.loads(data)
+
+        return {}
 
     def save_ali_share_file(self, share_url: str, drive_id: str, inbox_dir) -> str:
 
@@ -425,7 +464,7 @@ class ReplyHandler(MyLogging):
             return self.make_reply_text(keyword_reply_dict.get(self.content.strip().replace(' ', '')))
 
         # 3. 判断是否是试听语音：回复语音
-        voice_dict = self.config_dict.get('wechat', {}).get('voice', {})
+        voice_dict = self.config_dict.get('wechat', {}).get('voice_mp3', {})
         if self.content and self.content.strip().replace(' ', '') in voice_dict:
             return self.make_reply_voice(voice_dict.get(self.content.strip().replace(' ', '')))
 

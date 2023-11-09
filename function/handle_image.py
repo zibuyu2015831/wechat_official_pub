@@ -98,14 +98,12 @@ class ImageHandler(MyLogging):
         except Exception as e:
             self.logger.error("保存用户图片失败了...", exc_info=True)
 
-    def store_image(self, reply_obj):
-        """
-        新开一个线程：创建文件，保存ocr结果
-        :return:
-        """
-        save_content_thread = threading.Thread(target=self._store_image,
-                                               kwargs={'reply_obj': reply_obj})
+    def store_image(self, reply_obj) -> threading.Thread:
+        """新开一个线程：创建文件，保存ocr结果"""
+
+        save_content_thread = threading.Thread(target=self._store_image, kwargs={'reply_obj': reply_obj})
         save_content_thread.start()
+        return save_content_thread
 
     @staticmethod
     def make_ocr_info(paragraphs):
@@ -146,6 +144,7 @@ class ImageHandler(MyLogging):
 
                 # 保存OCR结果
                 self.store_ocr_result(reply_obj, text_list)
+
                 # 由于微信限制，文本回复不得超过600字，所以将内容进行分段。
                 paragraphs = ocr_obj.split_text(text_list)
                 reply_obj.ocr_text_list = paragraphs
