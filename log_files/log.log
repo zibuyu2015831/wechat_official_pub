@@ -1115,3 +1115,679 @@
 2023-11-10 10:32:00,775.0775 |     INFO | handle_post | 成功载入历史信息...
 2023-11-10 10:32:00,792.0792 |     INFO | handle_post | 用户历史数据文件下载完成
 2023-11-10 10:32:00,796.0796 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 12:47:09,889.0889 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 12:47:47,925.0925 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 12:47:47,927.0927 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 12:47:47,930.0930 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 12:47:47,932.0932 |     INFO | handle_post | 本次消息的MsgId：【24332300359036230】
+2023-11-10 12:47:47,933.0933 |     INFO | handle_post | 本次消息的create_time：【1699591668】
+2023-11-10 12:47:47,935.0935 |     INFO | Auth | 项目启动中...
+2023-11-10 12:47:47,935.0935 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 12:47:47,936.0936 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 12:47:47,936.0936 |     INFO | Auth | Windows 操作系统
+2023-11-10 12:47:47,938.0938 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 12:47:48,565.0565 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 401 100
+2023-11-10 12:47:48,565.0565 |     INFO | Auth | 刷新 token
+2023-11-10 12:47:48,647.0647 |     INFO | Auth | POST https://api.aliyundrive.com/v2/account/token 200 1921
+2023-11-10 12:47:48,647.0647 |     INFO | Auth | 刷新 token 成功
+2023-11-10 12:47:48,648.0648 |     INFO | Auth | 保存配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 12:47:48,773.0773 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 29
+2023-11-10 12:47:49,073.0073 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 400 108
+2023-11-10 12:47:49,074.0074 |  WARNING | BaseAligo | 400 {"code":"InvalidParameter.FileId","message":"The input parameter file_id is not valid. file_id is required"}
+2023-11-10 12:47:49,075.0075 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 12:47:49,077.0077 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 12:47:49,078.0078 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 12:47:49,367.0367 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2443
+2023-11-10 12:47:50,208.0208 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1167
+2023-11-10 12:47:50,209.0209 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 12:47:50,212.0212 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 12:48:44,115.0115 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 12:48:44,118.0118 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 12:48:44,119.0119 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 12:48:44,120.0120 |     INFO | handle_post | 本次消息的MsgId：【24332302374665135】
+2023-11-10 12:48:44,121.0121 |     INFO | handle_post | 本次消息的create_time：【1699591725】
+2023-11-10 12:48:44,123.0123 |     INFO | Auth | 项目启动中...
+2023-11-10 12:48:44,123.0123 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 12:48:44,124.0124 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 12:48:44,124.0124 |     INFO | Auth | Windows 操作系统
+2023-11-10 12:48:44,126.0126 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 12:48:44,831.0831 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 3425
+2023-11-10 12:48:44,833.0833 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 12:48:45,515.0515 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 12:48:45,519.0519 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 12:48:45,685.0685 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 12:48:45,687.0687 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 12:48:45,690.0690 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 12:48:45,690.0690 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 12:48:45,854.0854 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2453
+2023-11-10 12:48:46,680.0680 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1166
+2023-11-10 12:48:46,680.0680 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 12:48:46,683.0683 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 12:49:35,510.0510 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 12:49:35,512.0512 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 12:49:35,514.0514 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 12:49:35,515.0515 |     INFO | handle_post | 本次消息的MsgId：【24332302843866277】
+2023-11-10 12:49:35,517.0517 |     INFO | handle_post | 本次消息的create_time：【1699591776】
+2023-11-10 12:49:35,518.0518 |     INFO | Auth | 项目启动中...
+2023-11-10 12:49:35,519.0519 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 12:49:35,519.0519 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 12:49:35,519.0519 |     INFO | Auth | Windows 操作系统
+2023-11-10 12:49:35,521.0521 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 12:49:36,218.0218 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 3442
+2023-11-10 12:49:36,220.0220 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 12:49:36,862.0862 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 12:49:36,866.0866 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 12:49:37,073.0073 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 12:49:37,075.0075 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 12:49:37,077.0077 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 12:49:37,078.0078 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 12:49:37,342.0342 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2439
+2023-11-10 12:49:38,268.0268 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1166
+2023-11-10 12:49:38,269.0269 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 12:49:38,272.0272 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 13:56:50,112.0112 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 13:57:07,192.0192 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 13:57:07,194.0194 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 13:57:07,197.0197 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 13:57:07,199.0199 |     INFO | handle_post | 本次消息的MsgId：【24332359841334760】
+2023-11-10 13:57:07,200.0200 |     INFO | handle_post | 本次消息的create_time：【1699595828】
+2023-11-10 13:57:07,204.0204 |     INFO | Auth | 项目启动中...
+2023-11-10 13:57:07,205.0205 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 13:57:07,205.0205 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 13:57:07,206.0206 |     INFO | Auth | Windows 操作系统
+2023-11-10 13:57:07,210.0210 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 13:57:07,992.0992 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 3460
+2023-11-10 13:57:07,995.0995 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 13:57:08,665.0665 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 13:57:08,669.0669 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 13:57:08,849.0849 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 13:57:08,850.0850 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 13:57:08,852.0852 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 13:57:08,853.0853 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 13:57:09,149.0149 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2457
+2023-11-10 13:57:09,985.0985 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1167
+2023-11-10 13:57:09,985.0985 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 13:57:09,987.0987 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 13:58:12,408.0408 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 13:58:12,411.0411 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 13:58:12,414.0414 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 13:58:12,416.0416 |     INFO | handle_post | 本次消息的MsgId：【24332363866601221】
+2023-11-10 13:58:12,418.0418 |     INFO | handle_post | 本次消息的create_time：【1699595893】
+2023-11-10 13:58:12,421.0421 |     INFO | Auth | 项目启动中...
+2023-11-10 13:58:12,422.0422 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 13:58:12,422.0422 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 13:58:12,423.0423 |     INFO | Auth | Windows 操作系统
+2023-11-10 13:58:12,426.0426 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 13:58:13,138.0138 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 3441
+2023-11-10 13:58:13,140.0140 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 13:58:13,792.0792 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 13:58:13,795.0795 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 13:58:13,983.0983 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 13:58:13,984.0984 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 13:58:13,987.0987 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 13:58:13,987.0987 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 13:58:14,157.0157 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2455
+2023-11-10 13:58:15,004.0004 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1166
+2023-11-10 13:58:15,005.0005 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 13:58:15,006.0006 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:03:42,794.0794 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:03:42,799.0799 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:03:42,801.0801 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:03:42,802.0802 |     INFO | handle_post | 本次消息的MsgId：【24332364792064031】
+2023-11-10 14:03:42,804.0804 |     INFO | handle_post | 本次消息的create_time：【1699596218】
+2023-11-10 14:03:42,806.0806 |     INFO | Auth | 项目启动中...
+2023-11-10 14:03:42,806.0806 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 14:03:42,807.0807 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:03:42,807.0807 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:03:42,809.0809 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:03:43,602.0602 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 3462
+2023-11-10 14:03:43,604.0604 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:03:44,716.0716 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:03:44,719.0719 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:03:45,038.0038 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:03:45,039.0039 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:03:45,042.0042 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:03:45,042.0042 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:03:45,442.0442 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2455
+2023-11-10 14:03:47,194.0194 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1166
+2023-11-10 14:03:47,195.0195 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:03:47,197.0197 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:04:22,432.0432 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:04:22,434.0434 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:04:22,437.0437 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:04:22,438.0438 |     INFO | handle_post | 本次消息的MsgId：【24332365093755855】
+2023-11-10 14:04:22,439.0439 |     INFO | handle_post | 本次消息的create_time：【1699596258】
+2023-11-10 14:04:22,441.0441 |     INFO | Auth | 项目启动中...
+2023-11-10 14:04:22,442.0442 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 14:04:22,442.0442 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:04:22,442.0442 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:04:22,444.0444 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:04:23,540.0540 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 3442
+2023-11-10 14:04:23,542.0542 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:04:24,836.0836 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:04:24,839.0839 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:04:25,601.0601 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:04:25,603.0603 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:04:25,606.0606 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:04:25,606.0606 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:04:25,782.0782 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2451
+2023-11-10 14:04:26,588.0588 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1165
+2023-11-10 14:04:26,589.0589 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:04:26,592.0592 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:05:35,684.0684 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:05:35,688.0688 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:05:35,693.0693 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:05:35,696.0696 |     INFO | handle_post | 本次消息的MsgId：【24332372215763891】
+2023-11-10 14:05:35,697.0697 |     INFO | handle_post | 本次消息的create_time：【1699596334】
+2023-11-10 14:05:35,700.0700 |     INFO | Auth | 项目启动中...
+2023-11-10 14:05:35,701.0701 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 14:05:35,701.0701 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:05:35,701.0701 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:05:35,704.0704 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:05:38,686.0686 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:05:38,688.0688 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:05:38,690.0690 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:05:38,692.0692 |     INFO | handle_post | 本次消息的MsgId：【24332372215763891】
+2023-11-10 14:05:38,693.0693 |     INFO | handle_post | 本次消息的create_time：【1699596334】
+2023-11-10 14:05:38,696.0696 |     INFO | Auth | 项目启动中...
+2023-11-10 14:05:38,696.0696 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 14:05:38,697.0697 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:05:38,697.0697 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:05:38,699.0699 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:05:39,979.0979 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 3455
+2023-11-10 14:05:39,981.0981 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:05:40,561.0561 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 3437
+2023-11-10 14:05:40,563.0563 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:05:41,324.0324 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:05:41,328.0328 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:05:41,658.0658 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:05:41,660.0660 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:05:41,662.0662 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:05:41,663.0663 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:05:41,845.0845 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:05:41,848.0848 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:05:42,064.0064 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2447
+2023-11-10 14:05:42,092.0092 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:05:42,093.0093 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:05:42,096.0096 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:05:42,096.0096 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:05:42,468.0468 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2447
+2023-11-10 14:05:43,446.0446 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1166
+2023-11-10 14:05:43,447.0447 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:05:43,448.0448 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:05:43,956.0956 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1167
+2023-11-10 14:05:43,957.0957 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:05:43,959.0959 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:08:10,981.0981 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:08:10,989.0989 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:08:10,990.0990 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:08:10,992.0992 |     INFO | handle_post | 本次消息的MsgId：【24332370402385082】
+2023-11-10 14:08:10,993.0993 |     INFO | handle_post | 本次消息的create_time：【1699596491】
+2023-11-10 14:08:10,995.0995 |     INFO | Auth | 项目启动中...
+2023-11-10 14:08:10,995.0995 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 14:08:10,995.0995 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:08:10,996.0996 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:08:10,998.0998 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:08:11,755.0755 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 6877
+2023-11-10 14:08:11,757.0757 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:08:12,392.0392 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:08:12,395.0395 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:08:12,449.0449 |     INFO | spark_gpt | 收到用户提问：【aligo_config_folder】。开始构建与星火大模型通讯的文本...
+2023-11-10 14:08:12,449.0449 |    DEBUG | spark_gpt | 成功构建文本：[{"role": "user", "content": "aligo_config_folder"}]
+2023-11-10 14:08:12,612.0612 |     INFO | spark_gpt | 开始循环检查文本长度，预设语言为general，文本长度限制为9000
+2023-11-10 14:08:12,613.0613 |     INFO | spark_gpt | 文本长度为：19
+2023-11-10 14:08:12,614.0614 |     INFO | spark_gpt | 文本长度满足要求
+2023-11-10 14:08:12,614.0614 |     INFO | spark_gpt | 开始尝试建立与讯飞AI的通讯...
+2023-11-10 14:08:12,614.0614 |    DEBUG | spark_gpt | 此次请求的请求头数据为：{"header": {"app_id": "2093c707", "uid": "1234"}, "parameter": {"chat": {"domain": "generalv3", "max_tokens": 1024, "temperature": 0.8, "top_k": 4}}, "payload": {"message": {"text": [{"role": "user", "content": "aligo_config_folder"}]}}}
+2023-11-10 14:08:12,882.0882 |     INFO | spark_gpt | 收到第1次回应，内容为：{'您好'}
+2023-11-10 14:08:12,932.0932 |     INFO | spark_gpt | 收到第2次回应，内容为：！关于
+2023-11-10 14:08:13,010.0010 |     INFO | spark_gpt | 收到第3次回应，内容为：您提到的`
+2023-11-10 14:08:13,116.0116 |     INFO | spark_gpt | 收到第4次回应，内容为：aligo_config
+2023-11-10 14:08:13,246.0246 |     INFO | spark_gpt | 收到第5次回应，内容为：_folder`，我
+2023-11-10 14:08:13,521.0521 |     INFO | spark_gpt | 收到第6次回应，内容为：需要更多的信息来帮助您。
+2023-11-10 14:08:13,823.0823 |     INFO | spark_gpt | 收到最终回应，内容为：请问您能告诉我这个文件夹的用途吗？
+2023-11-10 14:08:13,824.0824 |     INFO | spark_gpt | 整合所有回应，内容为：您好！关于您提到的`aligo_config_folder`，我需要更多的信息来帮助您。请问您能告诉我这个文件夹的用途吗？
+2023-11-10 14:08:13,825.0825 |    DEBUG | spark_gpt | 成功构建文本：[{"role": "user", "content": "aligo_config_folder"}, {"role": "assistant", "content": "您好！关于您提到的`aligo_config_folder`，我需要更多的信息来帮助您。请问您能告诉我这个文件夹的用途吗？"}]
+2023-11-10 14:08:14,023.0023 |     INFO | spark_gpt | 本次通讯关闭
+2023-11-10 14:08:14,157.0157 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:08:14,159.0159 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:08:14,161.0161 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:08:14,161.0161 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:08:14,371.0371 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2436
+2023-11-10 14:08:15,234.0234 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1171
+2023-11-10 14:08:15,235.0235 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:08:15,236.0236 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:11:17,253.0253 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:11:17,255.0255 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:11:17,257.0257 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:11:17,258.0258 |     INFO | handle_post | 本次消息的MsgId：【24332376655653658】
+2023-11-10 14:11:17,259.0259 |     INFO | handle_post | 本次消息的create_time：【1699596678】
+2023-11-10 14:11:17,261.0261 |     INFO | Auth | 项目启动中...
+2023-11-10 14:11:17,262.0262 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 14:11:17,262.0262 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:11:17,262.0262 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:11:17,264.0264 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:11:18,017.0017 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 6859
+2023-11-10 14:11:18,019.0019 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:11:18,663.0663 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:11:18,666.0666 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:11:18,851.0851 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:11:18,853.0853 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:11:18,856.0856 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:11:18,857.0857 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:11:19,147.0147 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2441
+2023-11-10 14:11:19,892.0892 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1165
+2023-11-10 14:11:19,893.0893 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:11:19,894.0894 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:11:51,668.0668 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:11:51,670.0670 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:11:51,671.0671 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:11:51,672.0672 |     INFO | handle_post | 本次消息的MsgId：【24332375784376361】
+2023-11-10 14:11:51,674.0674 |     INFO | handle_post | 本次消息的create_time：【1699596712】
+2023-11-10 14:11:51,675.0675 |     INFO | Auth | 项目启动中...
+2023-11-10 14:11:51,676.0676 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 14:11:51,676.0676 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:11:51,676.0676 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:11:51,678.0678 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:11:52,338.0338 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 6891
+2023-11-10 14:11:52,340.0340 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:11:52,969.0969 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:11:52,973.0973 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:11:53,179.0179 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:11:53,181.0181 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:11:53,184.0184 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:11:53,184.0184 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:11:53,452.0452 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2455
+2023-11-10 14:11:54,267.0267 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1167
+2023-11-10 14:11:54,268.0268 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:11:54,270.0270 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:12:45,451.0451 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:12:45,454.0454 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:12:45,455.0455 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:12:45,457.0457 |     INFO | handle_post | 本次消息的MsgId：【24332374783790002】
+2023-11-10 14:12:45,458.0458 |     INFO | handle_post | 本次消息的create_time：【1699596766】
+2023-11-10 14:12:45,459.0459 |     INFO | Auth | 项目启动中...
+2023-11-10 14:12:45,460.0460 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 14:12:45,460.0460 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:12:45,461.0461 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:12:45,462.0462 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:12:46,170.0170 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 6843
+2023-11-10 14:12:46,172.0172 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:12:46,807.0807 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:12:46,810.0810 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:12:47,010.0010 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:12:47,012.0012 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:12:47,015.0015 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:12:47,015.0015 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:12:47,298.0298 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2435
+2023-11-10 14:12:48,086.0086 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1166
+2023-11-10 14:12:48,087.0087 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:12:48,089.0089 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:13:21,652.0652 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:13:21,655.0655 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:13:21,657.0657 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:13:21,658.0658 |     INFO | handle_post | 本次消息的MsgId：【24332375474759582】
+2023-11-10 14:13:21,659.0659 |     INFO | handle_post | 本次消息的create_time：【1699596802】
+2023-11-10 14:13:21,661.0661 |     INFO | Auth | 项目启动中...
+2023-11-10 14:13:21,661.0661 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 14:13:21,661.0661 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:13:21,662.0662 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:13:21,664.0664 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:13:22,345.0345 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 6914
+2023-11-10 14:13:22,347.0347 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:13:22,936.0936 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:13:22,940.0940 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:13:23,137.0137 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:13:23,139.0139 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:13:23,142.0142 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:13:23,142.0142 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:13:23,322.0322 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2447
+2023-11-10 14:13:24,139.0139 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1166
+2023-11-10 14:13:24,139.0139 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:13:24,141.0141 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:15:18,037.0037 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:15:18,039.0039 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:15:18,040.0040 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:15:18,042.0042 |     INFO | handle_post | 本次消息的MsgId：【24332377033107283】
+2023-11-10 14:15:18,043.0043 |     INFO | handle_post | 本次消息的create_time：【1699596919】
+2023-11-10 14:15:18,045.0045 |     INFO | Auth | 项目启动中...
+2023-11-10 14:15:18,045.0045 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 14:15:18,045.0045 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:15:18,046.0046 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:15:18,047.0047 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:15:18,764.0764 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 6876
+2023-11-10 14:15:18,766.0766 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:15:19,423.0423 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:15:19,426.0426 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:15:19,601.0601 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:15:19,603.0603 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:15:19,605.0605 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:15:19,606.0606 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:15:19,804.0804 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2447
+2023-11-10 14:15:20,650.0650 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1167
+2023-11-10 14:15:20,650.0650 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:15:20,652.0652 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:18:08,286.0286 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:18:08,288.0288 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:18:08,290.0290 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:18:08,292.0292 |     INFO | handle_post | 本次消息的MsgId：【24332378313916642】
+2023-11-10 14:18:08,293.0293 |     INFO | handle_post | 本次消息的create_time：【1699597084】
+2023-11-10 14:18:08,295.0295 |     INFO | Auth | 项目启动中...
+2023-11-10 14:18:08,295.0295 |     INFO | Auth | 加载配置文件 C:\Users\zibuyu\.aligo\aligo.json
+2023-11-10 14:18:08,295.0295 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:18:08,296.0296 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:18:08,298.0298 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:18:09,033.0033 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 6877
+2023-11-10 14:18:09,036.0036 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:18:09,658.0658 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:18:09,662.0662 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:18:09,846.0846 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:18:09,848.0848 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:18:09,850.0850 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:18:09,851.0851 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:18:10,094.0094 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2449
+2023-11-10 14:18:12,038.0038 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1167
+2023-11-10 14:18:12,039.0039 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:18:12,041.0041 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:23:03,831.0831 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:23:03,833.0833 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:23:03,834.0834 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:23:03,836.0836 |     INFO | handle_post | 本次消息的MsgId：【24332382634544883】
+2023-11-10 14:23:03,837.0837 |     INFO | handle_post | 本次消息的create_time：【1699597374】
+2023-11-10 14:23:03,839.0839 |     INFO | Auth | 项目启动中...
+2023-11-10 14:23:03,839.0839 |     INFO | Auth | 加载配置文件 D:\06_program_code\wechat_dev\config\aligo.json
+2023-11-10 14:23:03,840.0840 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:23:03,840.0840 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:23:03,842.0842 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:23:04,445.0445 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 401 100
+2023-11-10 14:23:04,445.0445 |     INFO | Auth | 刷新 token
+2023-11-10 14:23:04,529.0529 |     INFO | Auth | POST https://api.aliyundrive.com/v2/account/token 200 1921
+2023-11-10 14:23:04,530.0530 |     INFO | Auth | 刷新 token 成功
+2023-11-10 14:23:04,530.0530 |     INFO | Auth | 保存配置文件 D:\06_program_code\wechat_dev\config\aligo.json
+2023-11-10 14:23:04,717.0717 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 6897
+2023-11-10 14:23:04,719.0719 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:23:04,826.0826 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:23:04,828.0828 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:23:04,830.0830 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:23:04,831.0831 |     INFO | handle_post | 本次消息的MsgId：【24332382617962397】
+2023-11-10 14:23:04,833.0833 |     INFO | handle_post | 本次消息的create_time：【1699597385】
+2023-11-10 14:23:04,835.0835 |     INFO | Auth | 项目启动中...
+2023-11-10 14:23:04,835.0835 |     INFO | Auth | 加载配置文件 D:\06_program_code\wechat_dev\config\aligo.json
+2023-11-10 14:23:04,835.0835 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:23:04,836.0836 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:23:04,838.0838 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:23:05,410.0410 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:23:05,413.0413 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:23:05,517.0517 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 6879
+2023-11-10 14:23:05,520.0520 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:23:05,824.0824 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:23:05,827.0827 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:23:05,830.0830 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:23:05,830.0830 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:23:06,012.0012 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2451
+2023-11-10 14:23:06,217.0217 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:23:06,221.0221 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:23:06,467.0467 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:23:06,469.0469 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:23:06,472.0472 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:23:06,472.0472 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:23:06,697.0697 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2445
+2023-11-10 14:23:06,869.0869 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1167
+2023-11-10 14:23:06,870.0870 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:23:06,872.0872 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:23:07,498.0498 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1166
+2023-11-10 14:23:07,499.0499 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:23:07,501.0501 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:29:08,188.0188 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:29:25,067.0067 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:29:25,069.0069 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:29:25,071.0071 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:29:25,072.0072 |     INFO | handle_post | 本次消息的MsgId：【24332386717183276】
+2023-11-10 14:29:25,074.0074 |     INFO | handle_post | 本次消息的create_time：【1699597761】
+2023-11-10 14:29:25,076.0076 |     INFO | Auth | 项目启动中...
+2023-11-10 14:29:25,077.0077 |     INFO | Auth | 加载配置文件 D:\06_program_code\wechat_dev\config\aligo.json
+2023-11-10 14:29:25,077.0077 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:29:25,078.0078 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:29:25,079.0079 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:29:25,882.0882 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 10279
+2023-11-10 14:29:26,005.0005 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 400 108
+2023-11-10 14:29:26,006.0006 |  WARNING | BaseAligo | 400 {"code":"InvalidParameter.FileId","message":"The input parameter file_id is not valid. file_id is required"}
+2023-11-10 14:29:26,007.0007 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:29:26,010.0010 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:29:26,010.0010 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:29:26,217.0217 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2443
+2023-11-10 14:29:27,072.0072 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1167
+2023-11-10 14:29:27,073.0073 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:29:27,075.0075 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:29:35,180.0180 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:29:35,182.0182 |     INFO | handle_request | 用户发送的消息类型是【image】
+2023-11-10 14:29:35,183.0183 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:29:35,185.0185 |     INFO | handle_post | 本次消息的MsgId：【24332389429625296】
+2023-11-10 14:29:35,186.0186 |     INFO | handle_post | 本次消息的create_time：【1699597770】
+2023-11-10 14:29:35,188.0188 |     INFO | Auth | 项目启动中...
+2023-11-10 14:29:35,188.0188 |     INFO | Auth | 加载配置文件 D:\06_program_code\wechat_dev\config\aligo.json
+2023-11-10 14:29:35,189.0189 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:29:35,190.0190 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:29:35,192.0192 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:29:35,861.0861 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 13776
+2023-11-10 14:29:35,863.0863 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:29:36,461.0461 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:29:36,465.0465 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:29:36,476.0476 |     INFO | handle_image | 开始ocr图片，该图片链接为：【http://mmbiz.qpic.cn/sz_mmbiz_jpg/sHyuPJoa65bHoUt2nSy096vricWvOdNiaHj2uSq5ARE8TrOGx1wE5GxMsIfZ3Th3lW6o25PbNoibcjkr3TuXXPv9w/0】
+2023-11-10 14:29:36,476.0476 |     INFO | handle_image | 下载并保存用户传输的图片...
+2023-11-10 14:29:36,479.0479 |     INFO | handle_image | 该图片的media_id为：【2XnxcHcbDtYOayLZkxRGiioJ_I2IymhF_JbmI1MBoxmmnLDfk_LCKURSJnuWvlmZ】
+2023-11-10 14:29:37,201.0201 |     INFO | handle_image | 用户图片保存成功！
+2023-11-10 14:29:37,202.0202 |     INFO | handle_image | 上传用户图片到阿里云盘......
+2023-11-10 14:29:37,203.0203 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\image\ojk036kPB99gY-Ehw0rS8qVs4PgM-20231110-8d670.jpg
+2023-11-10 14:29:37,426.0426 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2469
+2023-11-10 14:29:38,461.0461 |     INFO | handle_image | 成功完成图片OCR
+2023-11-10 14:29:38,464.0464 |     INFO | handle_image | 新建文件【20231110-子不语-23:24.txt】，保存OCR结果
+2023-11-10 14:29:38,466.0466 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\ocr_files\20231110-子不语-23:24.txt
+2023-11-10 14:29:38,601.0601 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1226
+2023-11-10 14:29:38,602.0602 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\image\ojk036kPB99gY-Ehw0rS8qVs4PgM-20231110-8d670.jpg
+2023-11-10 14:29:38,603.0603 |     INFO | handle_post | 图片上传成功！
+2023-11-10 14:29:39,146.0146 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 403 199
+2023-11-10 14:29:39,146.0146 |  WARNING | BaseAligo | 403 {"code":"FileNameDisable","message":"file name disable","requestId":"0a00800616995977806695241e58ed","resultCode":"FileNameDisable","display_message":"请修改名称，不能包含字符 /*?:<>\"|"}
+2023-11-10 14:29:39,148.0148 |    ERROR | handle_post | 文件上传失败！
+Traceback (most recent call last):
+  File "D:\06_program_code\wechat_dev\function\handle_post.py", line 258, in upload_ali_file
+    self.ali_obj.upload_file(file_path, parent_file_id)
+  File "D:\06_program_code\wechat_dev\aligo\core\Create.py", line 260, in upload_file
+    if part_info.exist:
+AttributeError: 'Null' object has no attribute 'exist'
+2023-11-10 14:29:39,150.0150 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\ocr_files\20231110-子不语-23:24.txt
+2023-11-10 14:29:39,209.0209 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 403 199
+2023-11-10 14:29:39,210.0210 |  WARNING | BaseAligo | 403 {"code":"FileNameDisable","message":"file name disable","requestId":"0a00800616995977807355247e58ed","resultCode":"FileNameDisable","display_message":"请修改名称，不能包含字符 /*?:<>\"|"}
+2023-11-10 14:29:39,212.0212 |    ERROR | handle_post | 文件上传失败！
+Traceback (most recent call last):
+  File "D:\06_program_code\wechat_dev\function\handle_post.py", line 258, in upload_ali_file
+    self.ali_obj.upload_file(file_path, parent_file_id)
+  File "D:\06_program_code\wechat_dev\aligo\core\Create.py", line 260, in upload_file
+    if part_info.exist:
+AttributeError: 'Null' object has no attribute 'exist'
+2023-11-10 14:29:39,220.0220 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:29:39,222.0222 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:29:39,224.0224 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:29:39,224.0224 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:29:39,376.0376 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2451
+2023-11-10 14:29:39,616.0616 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1168
+2023-11-10 14:29:39,617.0617 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:29:39,619.0619 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:42:19,276.0276 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:42:19,278.0278 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:42:19,279.0279 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:42:19,280.0280 |     INFO | handle_post | 本次消息的MsgId：【24332400222796883】
+2023-11-10 14:42:19,282.0282 |     INFO | handle_post | 本次消息的create_time：【1699598535】
+2023-11-10 14:42:19,284.0284 |     INFO | Auth | 项目启动中...
+2023-11-10 14:42:19,284.0284 |     INFO | Auth | 加载配置文件 D:\06_program_code\wechat_dev\config\aligo.json
+2023-11-10 14:42:19,285.0285 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:42:19,285.0285 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:42:19,287.0287 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:42:20,020.0020 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 13705
+2023-11-10 14:42:20,023.0023 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:42:20,690.0690 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:42:20,694.0694 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:42:20,878.0878 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:42:20,880.0880 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:42:20,883.0883 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:42:20,884.0884 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:42:21,134.0134 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2441
+2023-11-10 14:42:21,965.0965 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1167
+2023-11-10 14:42:21,966.0966 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:42:21,968.0968 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:42:28,262.0262 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:42:28,264.0264 |     INFO | handle_request | 用户发送的消息类型是【image】
+2023-11-10 14:42:28,266.0266 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:42:28,267.0267 |     INFO | handle_post | 本次消息的MsgId：【24332400122238216】
+2023-11-10 14:42:28,268.0268 |     INFO | handle_post | 本次消息的create_time：【1699598548】
+2023-11-10 14:42:28,271.0271 |     INFO | Auth | 项目启动中...
+2023-11-10 14:42:28,271.0271 |     INFO | Auth | 加载配置文件 D:\06_program_code\wechat_dev\config\aligo.json
+2023-11-10 14:42:28,272.0272 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:42:28,272.0272 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:42:28,274.0274 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:42:28,900.0900 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 13704
+2023-11-10 14:42:28,903.0903 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:42:29,519.0519 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:42:29,522.0522 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:42:29,532.0532 |     INFO | handle_image | 开始ocr图片，该图片链接为：【http://mmbiz.qpic.cn/sz_mmbiz_jpg/sHyuPJoa65bHoUt2nSy096vricWvOdNiaHj2uSq5ARE8TrOGx1wE5GxMsIfZ3Th3lW6o25PbNoibcjkr3TuXXPv9w/0】
+2023-11-10 14:42:29,532.0532 |     INFO | handle_image | 下载并保存用户传输的图片...
+2023-11-10 14:42:29,534.0534 |     INFO | handle_image | 该图片的media_id为：【2XnxcHcbDtYOayLZkxRGiqJS2m0Ptgmf1dWVUQvj9jdlP3L4CeDJUGOIfXgOts7T】
+2023-11-10 14:42:29,860.0860 |     INFO | handle_image | 用户图片保存成功！
+2023-11-10 14:42:29,861.0861 |     INFO | handle_image | 上传用户图片到阿里云盘......
+2023-11-10 14:42:29,862.0862 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\image\ojk036kPB99gY-Ehw0rS8qVs4PgM-20231110-fdf70.jpg
+2023-11-10 14:42:29,958.0958 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 409 191
+2023-11-10 14:42:30,168.0168 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 412
+2023-11-10 14:42:30,169.0169 |     INFO | Create | 文件秒传成功 D:\06_program_code\wechat_dev\data\image\ojk036kPB99gY-Ehw0rS8qVs4PgM-20231110-fdf70.jpg
+2023-11-10 14:42:30,170.0170 |     INFO | handle_post | 图片上传成功！
+2023-11-10 14:42:31,209.0209 |     INFO | handle_image | 成功完成图片OCR
+2023-11-10 14:42:31,212.0212 |     INFO | handle_image | 新建文件【20231110-子不语-2324.txt】，保存OCR结果
+2023-11-10 14:42:31,213.0213 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\ocr_files\20231110-子不语-2324.txt
+2023-11-10 14:42:31,344.0344 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:42:31,346.0346 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:42:31,348.0348 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:42:31,349.0349 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:42:31,518.0518 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2449
+2023-11-10 14:42:31,887.0887 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2433
+2023-11-10 14:42:32,415.0415 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1168
+2023-11-10 14:42:32,415.0415 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:42:32,417.0417 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:42:32,737.0737 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1156
+2023-11-10 14:42:32,738.0738 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\ocr_files\20231110-子不语-2324.txt
+2023-11-10 14:42:32,740.0740 |     INFO | handle_post | 上传ocr处理结果文件！
+2023-11-10 14:42:48,412.0412 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:42:48,414.0414 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:42:48,416.0416 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:42:48,417.0417 |     INFO | handle_post | 本次消息的MsgId：【24332400452670277】
+2023-11-10 14:42:48,419.0419 |     INFO | handle_post | 本次消息的create_time：【1699598564】
+2023-11-10 14:42:48,421.0421 |     INFO | Auth | 项目启动中...
+2023-11-10 14:42:48,421.0421 |     INFO | Auth | 加载配置文件 D:\06_program_code\wechat_dev\config\aligo.json
+2023-11-10 14:42:48,421.0421 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:42:48,422.0422 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:42:48,423.0423 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:42:49,206.0206 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 13735
+2023-11-10 14:42:49,208.0208 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:42:49,843.0843 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:42:49,847.0847 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:52:05,941.0941 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:52:25,018.0018 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:52:25,021.0021 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:52:25,022.0022 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:52:25,024.0024 |     INFO | handle_post | 本次消息的MsgId：【24332410984711764】
+2023-11-10 14:52:25,025.0025 |     INFO | handle_post | 本次消息的create_time：【1699599145】
+2023-11-10 14:52:25,027.0027 |     INFO | Auth | 项目启动中...
+2023-11-10 14:52:25,027.0027 |     INFO | Auth | 加载配置文件 D:\06_program_code\wechat_dev\config\aligo.json
+2023-11-10 14:52:25,028.0028 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:52:25,028.0028 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:52:25,030.0030 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:52:25,718.0718 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 6885
+2023-11-10 14:52:25,772.0772 |     INFO | handle_text | 提交文本转语音任务
+2023-11-10 14:52:26,058.0058 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 400 108
+2023-11-10 14:52:26,059.0059 |  WARNING | BaseAligo | 400 {"code":"InvalidParameter.FileId","message":"The input parameter file_id is not valid. file_id is required"}
+2023-11-10 14:52:26,060.0060 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:52:26,063.0063 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:52:26,063.0063 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:52:26,233.0233 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2443
+2023-11-10 14:52:27,133.0133 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1166
+2023-11-10 14:52:27,134.0134 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:52:27,136.0136 |     INFO | handle_post | 用户数据文件上传成功！
+2023-11-10 14:52:38,974.0974 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:52:38,975.0975 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:52:38,977.0977 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:52:38,978.0978 |     INFO | handle_post | 本次消息的MsgId：【24332409026058584】
+2023-11-10 14:52:38,980.0980 |     INFO | handle_post | 本次消息的create_time：【1699599160】
+2023-11-10 14:52:38,982.0982 |     INFO | Auth | 项目启动中...
+2023-11-10 14:52:38,983.0983 |     INFO | Auth | 加载配置文件 D:\06_program_code\wechat_dev\config\aligo.json
+2023-11-10 14:52:38,983.0983 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:52:38,983.0983 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:52:38,986.0986 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:52:39,687.0687 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 10337
+2023-11-10 14:52:39,690.0690 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:52:40,287.0287 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:52:40,291.0291 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:52:48,352.0352 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:52:48,354.0354 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:52:48,355.0355 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:52:48,357.0357 |     INFO | handle_post | 本次消息的MsgId：【24332408014203033】
+2023-11-10 14:52:48,358.0358 |     INFO | handle_post | 本次消息的create_time：【1699599169】
+2023-11-10 14:52:48,361.0361 |     INFO | Auth | 项目启动中...
+2023-11-10 14:52:48,362.0362 |     INFO | Auth | 加载配置文件 D:\06_program_code\wechat_dev\config\aligo.json
+2023-11-10 14:52:48,362.0362 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:52:48,362.0362 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:52:48,364.0364 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:52:49,005.0005 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 10329
+2023-11-10 14:52:49,008.0008 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:52:49,589.0589 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:52:49,593.0593 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:53:06,644.0644 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:53:06,646.0646 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:53:06,647.0647 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:53:06,650.0650 |     INFO | handle_post | 本次消息的MsgId：【24332408103492367】
+2023-11-10 14:53:06,651.0651 |     INFO | handle_post | 本次消息的create_time：【1699599187】
+2023-11-10 14:53:06,653.0653 |     INFO | Auth | 项目启动中...
+2023-11-10 14:53:06,654.0654 |     INFO | Auth | 加载配置文件 D:\06_program_code\wechat_dev\config\aligo.json
+2023-11-10 14:53:06,654.0654 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:53:06,655.0655 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:53:06,656.0656 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:53:07,361.0361 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 10277
+2023-11-10 14:53:07,363.0363 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:53:07,950.0950 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:53:07,953.0953 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:53:18,460.0460 |     INFO | handle_request | 经过验证，为微信服务器信息
+2023-11-10 14:53:18,462.0462 |     INFO | handle_request | 用户发送的消息类型是【text】
+2023-11-10 14:53:18,464.0464 |     INFO | handle_post | 用户id：【ojk036kPB99gY-Ehw0rS8qVs4PgM】
+2023-11-10 14:53:18,466.0466 |     INFO | handle_post | 本次消息的MsgId：【24332408762549551】
+2023-11-10 14:53:18,466.0466 |     INFO | handle_post | 本次消息的create_time：【1699599199】
+2023-11-10 14:53:18,469.0469 |     INFO | Auth | 项目启动中...
+2023-11-10 14:53:18,469.0469 |     INFO | Auth | 加载配置文件 D:\06_program_code\wechat_dev\config\aligo.json
+2023-11-10 14:53:18,470.0470 |     INFO | Auth | 日志等级 DEBUG
+2023-11-10 14:53:18,470.0470 |     INFO | Auth | Windows 操作系统
+2023-11-10 14:53:18,472.0472 |     INFO | handle_post | 获取阿里云盘中所有用户的历史数据文件
+2023-11-10 14:53:19,212.0212 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v3/file/list?jsonmask=next_marker%2Citems%28name%2Cfile_id%2Cdrive_id%2Ctype%2Csize%2Ccreated_at%2Cupdated_at%2Ccategory%2Cfile_extension%2Cparent_file_id%2Cmime_type%2Cstarred%2Cthumbnail%2Curl%2Cstreams_info%2Ccontent_hash%2Cuser_tags%2Cuser_meta%2Ctrashed%2Cvideo_media_metadata%2Cvideo_preview_metadata%2Csync_meta%2Csync_device_flag%2Csync_flag%2Cpunish_flag 200 10287
+2023-11-10 14:53:19,215.0215 |     INFO | handle_post | 该用户拥有历史数据，开始下载历史数据
+2023-11-10 14:53:19,844.0844 |     INFO | handle_post | 用户历史数据文件下载完成
+2023-11-10 14:53:19,847.0847 |     INFO | handle_post | 成功载入历史信息...
+2023-11-10 14:53:19,849.0849 |     INFO | spark_gpt | 收到用户提问：【你是谁？】。开始构建与星火大模型通讯的文本...
+2023-11-10 14:53:19,850.0850 |    DEBUG | spark_gpt | 成功构建文本：[{"role": "user", "content": "你是谁？"}]
+2023-11-10 14:53:19,976.0976 |     INFO | spark_gpt | 开始循环检查文本长度，预设语言为general，文本长度限制为9000
+2023-11-10 14:53:19,977.0977 |     INFO | spark_gpt | 文本长度为：4
+2023-11-10 14:53:19,978.0978 |     INFO | spark_gpt | 文本长度满足要求
+2023-11-10 14:53:19,978.0978 |     INFO | spark_gpt | 开始尝试建立与讯飞AI的通讯...
+2023-11-10 14:53:19,978.0978 |    DEBUG | spark_gpt | 此次请求的请求头数据为：{"header": {"app_id": "2093c707", "uid": "1234"}, "parameter": {"chat": {"domain": "generalv3", "max_tokens": 1024, "temperature": 0.8, "top_k": 4}}, "payload": {"message": {"text": [{"role": "user", "content": "\u4f60\u662f\u8c01\uff1f"}]}}}
+2023-11-10 14:53:20,468.0468 |     INFO | spark_gpt | 收到第1次回应，内容为：{'您好'}
+2023-11-10 14:53:20,538.0538 |     INFO | spark_gpt | 收到第2次回应，内容为：！作为
+2023-11-10 14:53:20,665.0665 |     INFO | spark_gpt | 收到第3次回应，内容为：公众号【思维
+2023-11-10 14:53:20,799.0799 |     INFO | spark_gpt | 收到第4次回应，内容为：兵工厂】的
+2023-11-10 14:53:20,967.0967 |     INFO | spark_gpt | 收到第5次回应，内容为：助理，我在这里为您解答
+2023-11-10 14:53:21,356.0356 |     INFO | spark_gpt | 收到第6次回应，内容为：问题和聊天。
+2023-11-10 14:53:21,609.0609 |     INFO | spark_gpt | 收到最终回应，内容为：有什么问题需要帮助吗？😊
+2023-11-10 14:53:21,610.0610 |     INFO | spark_gpt | 整合所有回应，内容为：您好！作为公众号【思维兵工厂】的助理，我在这里为您解答问题和聊天。有什么问题需要帮助吗？😊
+2023-11-10 14:53:21,610.0610 |    DEBUG | spark_gpt | 成功构建文本：[{"role": "user", "content": "你是谁？"}, {"role": "assistant", "content": "您好！作为公众号【思维兵工厂】的助理，我在这里为您解答问题和聊天。有什么问题需要帮助吗？😊"}]
+2023-11-10 14:53:21,809.0809 |     INFO | spark_gpt | 本次通讯关闭
+2023-11-10 14:53:21,946.0946 |     INFO | Auth | POST https://api.aliyundrive.com/v2/recyclebin/trash 204 0
+2023-11-10 14:53:21,947.0947 |     INFO | handle_post | 删除旧的会话数据文件！
+2023-11-10 14:53:21,950.0950 |     INFO | handle_post | 上传新的用户数据文件......
+2023-11-10 14:53:21,950.0950 |     INFO | Create | 开始上传文件 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:53:22,445.0445 |     INFO | Auth | POST https://api.aliyundrive.com/adrive/v2/file/createWithFolders 201 2455
+2023-11-10 14:53:23,255.0255 |     INFO | Auth | POST https://api.aliyundrive.com/v2/file/complete 200 1168
+2023-11-10 14:53:23,256.0256 |     INFO | Create | 文件上传完成 D:\06_program_code\wechat_dev\data\user_data\ojk036kPB99gY-Ehw0rS8qVs4PgM.json
+2023-11-10 14:53:23,258.0258 |     INFO | handle_post | 用户数据文件上传成功！

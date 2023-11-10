@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import re
 import json
 import time
@@ -10,7 +11,7 @@ from pathlib import Path
 from utils.spark_gpt import SparkGPT
 from basic.my_config import config
 from basic.my_logging import MyLogging
-from module.aligo import Aligo, set_config_folder  # 自己修改后的Aligo
+from aligo import Aligo, set_config_folder  # 自己修改后的Aligo
 from concurrent.futures import ThreadPoolExecutor
 
 
@@ -89,7 +90,7 @@ class ReplyHandler(MyLogging):
         self.voice2text_keyword = {}  # 本次通讯的ocr结果，如果有的话
         self.user_file_name = f"{self.to_user_id}.json"  # 历史会话信息的文件名称
 
-        # Aligo相关配置：后续需要优化，将配置统一为整个config.json文件
+        # Aligo相关配置：后续考虑优化：将配置统一为整个config.json文件
         aligo_config_path = Path.cwd() / 'config'
         set_config_folder(str(aligo_config_path.absolute()))
         self.ali_obj = Aligo(logger=self.logger)
@@ -149,7 +150,7 @@ class ReplyHandler(MyLogging):
                 # 生成符合微信服务器要求的回复信息
                 self.reply_content_full = self.make_reply_text(reply_content_text)
                 # 保存新生成的会话信息
-                self.save_user_data()
+                self._save_user_data()
 
             return self.reply_content_full
         except Exception as e:
@@ -177,7 +178,7 @@ class ReplyHandler(MyLogging):
         handler = ImageHandler()
         store_thread = handler.store_image(self)
 
-        # 获取当前事件
+        # 获取当前时间
         now_timestamp = int(time.time())
         # 获取用户历史数据文件中存储的指令与时间
         short_cmd_time, user_short_cmd = self.user_data.get("short_command", [0, None])
@@ -202,7 +203,7 @@ class ReplyHandler(MyLogging):
         else:
             self.reply_content_full = self.make_reply_text(f"该图片的临时链接为：\n\n{self.pic_url}")
 
-        self.save_user_data()
+        self._save_user_data()
         # store_thread.join()  # 等待保存图片的进程完成再返回回复
         return self.reply_content_full
         # return self.make_reply_text("Please wait for image development")
@@ -327,13 +328,14 @@ class ReplyHandler(MyLogging):
         self.logger.info("上传新的用户数据文件......")
         self.upload_ali_file(file_path, parent_file_id=user_data_dir, msg="用户数据文件上传成功！")
 
-    def save_user_data(self):
+    def save_user_data(self) -> threading.Thread:
         """
         新开一个线程去保存历史会话信息
         :return:
         """
         save_content_thread = threading.Thread(target=self._save_user_data)
         save_content_thread.start()
+        return save_content_thread
 
     def download_user_data(self, url):
         for i in range(3):

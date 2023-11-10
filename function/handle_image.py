@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 import uuid
 import datetime
 import requests
@@ -34,6 +35,7 @@ class ImageHandler(MyLogging):
         """存储用户OCR的结果"""
 
         title = text_list[0][0:10]  # 获取首行的、最多前10个字作为标题
+        title = self.remove_invalid_chars(title)
         today_str = datetime.date.today().strftime('%Y%m%d')
         content = '\n\n'.join(text_list)
 
@@ -65,6 +67,11 @@ class ImageHandler(MyLogging):
     @staticmethod
     def generate_short_uuid():
         return str(uuid.uuid4())[:5]
+
+    @staticmethod
+    def remove_invalid_chars(s):
+        '''阿里云盘命名要求：不得包含以下字符:/*?:<>\"|"'''
+        return re.sub(r'[/*?:<>\\"|]', '', s)
 
     def upload_image(self, reply_obj, file_path):
         image_dir = self.config_dict.get('aliyun', '').get('image_dir')

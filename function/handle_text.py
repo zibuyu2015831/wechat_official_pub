@@ -31,6 +31,7 @@ class TextHandler(MyLogging):
             '解密': 'decrypt_oracle',
 
             '文本转语音': 'text_to_voice',
+            '文字转语音': 'text_to_voice',
             '配音': 'text_to_voice',
 
             # 以下为指令功能
@@ -140,8 +141,7 @@ class TextHandler(MyLogging):
         time.sleep(0.1)  # 让子线程运行一会，但不必等待结果
         reply_obj.voice2text_keyword[random_str] = "程序执行中，请稍后获取......"
 
-        reply_obj.save_user_data()
-        # 在文本转语音中，需要向历史数据写入获取结果的关键字回复规则，此过程由云函数执行，这里就不用调用save_user_data
+        reply_obj._save_user_data()
 
         return reply_obj.make_reply_text(f"已提交【文本转语音】任务\n\n请稍等1分钟后，回复【{random_str}】获取结果")
 
@@ -169,7 +169,7 @@ class TextHandler(MyLogging):
         # 保存用户输入的短指令名称
         reply_obj.short_cmd = content
         # 保存新生成的会话信息
-        reply_obj.save_user_data()
+        reply_obj._save_user_data()
 
     # 图片OCR
     def picture_ocr(self, reply_obj: ReplyHandler, content: str, *args, **kwargs):
@@ -179,7 +179,7 @@ class TextHandler(MyLogging):
     def cancel_short_cmd(self, reply_obj: ReplyHandler, content: str, *args, **kwargs):
         reply_obj.short_cmd = '无'
         # 保存新生成的会话信息
-        reply_obj.save_user_data()
+        reply_obj._save_user_data()
         return reply_obj.make_reply_text(f"-----已退出指令模式-----")
 
 
