@@ -31,6 +31,8 @@ class ImageHandler(MyLogging):
         return mapping_dict
 
     def _store_ocr_result(self, reply_obj, text_list):
+        """存储用户OCR的结果"""
+
         title = text_list[0][0:10]  # 获取首行的、最多前10个字作为标题
         today_str = datetime.date.today().strftime('%Y%m%d')
         content = '\n\n'.join(text_list)
@@ -55,10 +57,7 @@ class ImageHandler(MyLogging):
         reply_obj.upload_ali_file(file_path, parent_file_id=ocr_result_dir, msg="上传ocr处理结果文件！")
 
     def store_ocr_result(self, reply_obj, text_list):
-        """
-        新开一个线程：创建文件，保存ocr结果
-        :return:
-        """
+        """ 新开一个线程：创建文件，保存ocr结果 """
         save_content_thread = threading.Thread(target=self._store_ocr_result,
                                                kwargs={'reply_obj': reply_obj, "text_list": text_list})
         save_content_thread.start()
@@ -73,17 +72,13 @@ class ImageHandler(MyLogging):
         reply_obj.upload_ali_file(file_path, parent_file_id=image_dir, msg="图片上传成功！")
 
     def _store_image(self, reply_obj):
+        """存储用户发送的图片"""
         image_url = reply_obj.pic_url
         short_uuid = self.generate_short_uuid()  # 获取随机5位数的字符串
         image_title = f"{reply_obj.to_user_id}-{datetime.datetime.today().strftime('%Y%m%d')}-{short_uuid}.jpg"
 
         # 存储图片的文件夹，已在MyConfig类中判断并创建
         image_dir = Path.cwd() / 'data' / "image"
-
-        # 图片按照用户id分类，每个用户建立一个文件夹
-        # user_dir = image_dir / reply_obj.to_user_id
-        # if not user_dir.exists():
-        #     user_dir.mkdir()
 
         image_path = image_dir / image_title
 
@@ -158,18 +153,3 @@ class ImageHandler(MyLogging):
 
         # 没有成功完成ocr，也需要返回内容
         return reply_obj.make_reply_text('ocr过程出现错误，请联系管理员')
-
-    def store_img_to_aliyun(self, reply_obj):
-        image_url = reply_obj.pic_url
-        media_id = reply_obj.media_id
-
-        for i in range(3):
-            try:
-                self.logger.info(f"开始下载图片，该图片链接为：【{image_url}】")
-
-                # response = requests.get(image_url)
-                self.logger.info(f"图片下载完成，开始将图片上传到阿里云盘")
-                self.logger.info(f"该图片的media_id为：【{media_id}】")
-                return reply_obj.make_reply_text("已将图片保存至阿里云盘")
-            except Exception as e:
-                pass

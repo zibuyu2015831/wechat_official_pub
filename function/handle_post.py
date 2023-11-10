@@ -2,6 +2,7 @@
 import re
 import json
 import time
+import datetime
 import threading
 import requests
 import xmltodict
@@ -61,7 +62,7 @@ class ReplyHandler(MyLogging):
         if isinstance(user_talk_num, int):  # 如果配置文件中没有设置，默认记住5条AI会话记录
             self.user_talk_num = user_talk_num
         else:
-            self.user_talk_num = 5
+            self.user_talk_num = 3
 
         # 从配置文件中获取ai通话时历史会话的时间限制
         user_time_limit = self.config_dict.get('wechat', {}).get('user_time_limit')
@@ -179,8 +180,7 @@ class ReplyHandler(MyLogging):
         # 获取当前事件
         now_timestamp = int(time.time())
         # 获取用户历史数据文件中存储的指令与时间
-        short_cmd_time, user_short_cmd = self.user_data.get("short_command",
-                                                            [now_timestamp - self.short_cmd_time_limit - 111, None])
+        short_cmd_time, user_short_cmd = self.user_data.get("short_command", [0, None])
         # 判断用户的指令时间是否过期
         if short_cmd_time + self.short_cmd_time_limit < now_timestamp:
             user_short_cmd = None
@@ -203,36 +203,40 @@ class ReplyHandler(MyLogging):
             self.reply_content_full = self.make_reply_text(f"该图片的临时链接为：\n\n{self.pic_url}")
 
         self.save_user_data()
-        store_thread.join()  # 等待保存图片的进程完成再返回回复
+        # store_thread.join()  # 等待保存图片的进程完成再返回回复
         return self.reply_content_full
         # return self.make_reply_text("Please wait for image development")
 
+    def file(self):
+        """处理文件信息"""
+        return self.make_reply_text("Please wait for file development")
+
     # 处理语音信息
     def voice(self) -> str:
-        media_id = 'x6lBIVCeGMg_tlN-qAPFWmyoRYMfgDrZcAEXIyu7ReM1cbdvXzrEqqsrAV-95c_X'
-        return self.make_reply_voice(media_id)
-        # return self.make_reply_text("Please wait for voice development")
+        # media_id = 'x6lBIVCeGMg_tlN-qAPFWmyoRYMfgDrZcAEXIyu7ReM1cbdvXzrEqqsrAV-95c_X'
+        # return self.make_reply_voice(media_id)
+        return self.make_reply_text("Please wait for voice development")
 
-    # 处理视频信息
     def video(self) -> str:
+        """处理视频信息"""
         return self.make_reply_text("Please wait for video development")
 
-    # 处理短视频信息
     def shortvideo(self) -> str:
+        """处理短视频信息"""
         return self.make_reply_text("Please wait for shortvideo development")
 
-    # 处理位置信息
     def location(self) -> str:
+        """处理位置信息"""
         weather_tip = self.weather_request(self.location_y, self.location_x)
         self.reply_content_full = self.make_reply_text(weather_tip)
         return self.reply_content_full
         # return self.make_reply_text("Please wait for location development")
 
-    # 处理链接信息
     def link(self) -> str:
+        """处理链接信息"""
         return self.make_reply_text("Please wait for link development")
 
-    def delete_ali_file(self):
+    def delete_ali_file(self) -> None:
         for i in range(2):
             try:
                 self.ali_obj.move_file_to_trash(self.ali_user_file_id)
@@ -264,7 +268,7 @@ class ReplyHandler(MyLogging):
         self.delete_ali_file()
 
         new_user_ai_talk = []
-        new_short_command = [0,None]
+        new_short_command = [0, None]
 
         # 如果用户有历史数据，检测、保留历史数据中未过期的数据
         if self.user_data:
@@ -577,32 +581,54 @@ class ReplyHandler(MyLogging):
 
         return talk_list
 
-    def weather_request(self, longitude, latitude):
+    def weather_request(self, longitude, latitude) -> str:
         try:
-
+            # 获取彩云天气的token与小时数设置
             token = self.config_dict.get('caiyunAPI_info', {}).get("caiyun_token")
+            hour_num = self.config_dict.get('caiyunAPI_info', {}).get("hour_num")
+
+            if not isinstance(hour_num, int) or not hour_num:
+                hour_num = 3
+
             if not token:
-                self.logger.warning(f"获取不到彩云天气API的token，天气信息获取失败。")
-                return
+                self.logger.error(f"获取不到彩云天气API的token，天气信息获取失败。")
+                return f"🌚 呀，管理员忘记配置天气查询了..."
 
-            url = f"https://api.caiyunapp.com/v2.6/{token}/{longitude},{latitude}/daily?dailysteps=1"
-            res = requests.get(url).json()
+            url = f"https://api.caiyunapp.com/v2.6/{token}/{longitude},{latitude}/hourly?hourlysteps={hour_num}"
+            weather_data = requests.get(url).json()
 
-            temperature_info = res['result']['daily']['temperature'][0]
-            weather_code = res['result']['daily']['skycon'][0]['value']
+            # 整体天气提醒
+            forecast_keypoint = weather_data['result']['forecast_keypoint']
 
-            weather_icon = self.config_dict.get('weather_info')[weather_code][1]
-            weather = self.config_dict.get('weather_info')[weather_code][0]
+            skycon = weather_data['result']['hourly']['skycon']  # 天气现象
+            temperature = weather_data['result']['hourly']['temperature']  # 温度
+            apparent_temperature = weather_data['result']['hourly']['apparent_temperature']  # 体感温度
+            precipitation = weather_data['result']['hourly']['precipitation']  # 降水概率
 
-            # 处理温度的数据格式，只要整数：34~27℃
-            temperature_max = str(temperature_info['max']).split('.', 1)[0]
-            temperature_min = str(temperature_info['min']).split('.', 1)[0]
+            hour_data = zip(skycon, temperature, apparent_temperature, precipitation)
 
-            # print(temperature_dict, weather_code)
-            weather_tip = f"{weather_icon} {weather} {temperature_min}~{temperature_max}℃"
+            hour_tips = []
+            for item in hour_data:
+                datetime_tip = datetime.datetime.fromisoformat(item[0]['datetime']).strftime("%Y-%m-%d_%H:00")
+                skycon = item[0]['value']
+
+                weather_icon = self.config_dict.get('weather_info')[skycon][1]
+                weather_info = self.config_dict.get('weather_info')[skycon][0]
+                skycon_tip = f"{weather_icon} {weather_info}"
+                temperature_tip = item[1]['value']
+                apparent_temperature_tip = item[2]['value']
+                precipitation_tip = item[3]['value']
+
+                hour_tip = f"#{datetime_tip}\n天气情况：{skycon_tip}\n此时温度：{temperature_tip}\n体感温度：{apparent_temperature_tip}\n降水概率：{precipitation_tip * 100}%"
+
+                hour_tips.append(hour_tip)
+            hour_tips_str = "\n\n".join(hour_tips)
+
+            weather_tip = f" - - - - - 【天气预测】 - - - - - \n\n{forecast_keypoint.center(25, ' ')}\n\n - - - - 【每小时预测】 - - - - \n\n{hour_tips_str}"
+
         except Exception as e:
-            self.logger.warning(f"调用彩云API获取天气失败。【错误信息】---str{e}", exc_info=True)
-            weather_tip = f"🌚 呀，今天的天气信息获取失败..."
+            self.logger.error(f"调用彩云API获取天气失败。【错误信息】---str{e}", exc_info=True)
+            weather_tip = f"🌚 呀，天气信息获取失败..."
 
         return weather_tip
 

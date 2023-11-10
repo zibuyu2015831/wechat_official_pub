@@ -19,6 +19,31 @@ class TextHandler(MyLogging):
         self.key = self.config_dict.get('wechat', {}).get('password_key')
         self.sep_char = self.config_dict.get('wechat', {}).get('sep_char')
 
+    @property
+    def function_mapping(self) -> dict:
+        """
+        调用名与函数的对应关系
+        :return:
+        """
+        mapping_dict = {
+            # 以下为短指令功能
+            '加密': 'encrypt_oracle',
+            '解密': 'decrypt_oracle',
+
+            '文本转语音': 'text_to_voice',
+            '配音': 'text_to_voice',
+
+            # 以下为指令功能
+            'ocr': 'picture_ocr',
+            '图片转文本': 'picture_ocr',
+            '图片转文字': 'picture_ocr',
+
+            # 退出指令功能
+            '退出': 'cancel_short_cmd',
+            '取消': 'cancel_short_cmd',
+        }
+        return mapping_dict
+
     @staticmethod
     def generate_short_uuid(num: int = 5) -> str:
         """
@@ -27,28 +52,6 @@ class TextHandler(MyLogging):
         :return:
         """
         return str(uuid.uuid4())[:num]
-
-    @property
-    def function_mapping(self) -> dict:
-        """
-        调用名与函数的对应关系
-        :return:
-        """
-        mapping_dict = {
-            '加密': 'encrypt_oracle',
-            '解密': 'decrypt_oracle',
-
-            'ocr': 'picture_ocr',
-            '图片转文本': 'picture_ocr',
-            '图片转文字': 'picture_ocr',
-
-            '退出': 'cancel_short_cmd',
-            '取消': 'cancel_short_cmd',
-
-            '文本转语音': 'text_to_voice',
-            '配音': 'text_to_voice',
-        }
-        return mapping_dict
 
     # str不是16的倍数那就补足为16的倍数
     @staticmethod
@@ -122,7 +125,7 @@ class TextHandler(MyLogging):
             return '文本转语音功能未配置！'
 
         data = {
-            "lanzou_cookie":self.config_dict.get('lanzou_cookies'),
+            "lanzou_cookie": self.config_dict.get('lanzou_cookies'),
             'text': content,
             'voice_choice': voice_choice,
             'file_name': file_name,

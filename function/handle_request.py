@@ -76,7 +76,7 @@ class RequestHandler(MyLogging):
             handle_method = getattr(handler, msg_type)
             reply = handle_method()
         else:
-            reply = ""
+            reply = handler.make_reply_text("暂不支持该类型的数据通讯")
 
         return reply
 

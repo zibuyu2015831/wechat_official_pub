@@ -1,0 +1,335 @@
+{
+  "wechat": {
+    "app_id": "xxxxxx",
+    "app_secret": "xxxxxx",
+    "greeting": "welcome to my world!",
+    "wechat_token": "xxxxxx",
+    "password_key": "xxxxxx@1re%",
+    "_comment1": "用于文本加密解密的默认key",
+    "sep_char": "---",
+    "_comment2": "短指令的分隔符号",
+    "subscribe_greeting": "欢迎你的到来，这是一个有趣的公众号哦~",
+    "_comment3": "用户关注公众号时，回复的文本",
+    "keyword_reply": {
+      "测试关键字回复": "关键字测试成功"
+    },
+    "_comment4": "公众号原来的关键词回复，注意不能有空格",
+    "voice_mp3": {
+      "试听-晓晓": "x6lBIVCeGMg_tlN-qAPFWvIkxPkuSXcIVQ8kPwxiURM6QLRAX8V04v7JptzvScMF",
+      "试听-小伊": "x6lBIVCeGMg_tlN-qAPFWpJzRcfliPr8O3Km-mPFy-FQ2beUHsL8IuriXoerIEel",
+      "试听-云健": "x6lBIVCeGMg_tlN-qAPFWkI91kH2U_BXVG1nKokuJ41oUBUxDPxe3pr_KXTQazuZ",
+      "试听-小希": "x6lBIVCeGMg_tlN-qAPFWirU2d5wQG8UmsnSuKxu5yUBPEXxdWJxT1_ZJStEeK51",
+      "试听-云夏": "x6lBIVCeGMg_tlN-qAPFWgQ30lGgTYbWDPcx-vIuNFwDTbmbc1WSxMZiLuIzfk0K",
+      "试听-云阳": "x6lBIVCeGMg_tlN-qAPFWnuVmttVUeMXeh5iaLOWsFiUplChBnKMxURPq-xIuwof",
+      "试听-小贝": "x6lBIVCeGMg_tlN-qAPFWgyH9HFmxycxXMxMLPiDarIfgdYS8pzSYIF7_rfazABZ",
+      "试听-惠艾": "x6lBIVCeGMg_tlN-qAPFWrqamOYW_SqgHExxRxaiJ05qj-3MU8fqQFvyl1iK3qW7",
+      "试听-惠安": "x6lBIVCeGMg_tlN-qAPFWoKSYLLY1rDuM1VGfHxwpBOEhWIpejRtZFyB2NOX10iy",
+      "试听-王伦": "x6lBIVCeGMg_tlN-qAPFWgHLpF1pl_0OiZA9IsqqOdX3MBs5-pl7Ox0-VgcIcP64",
+      "试听-云晨": "x6lBIVCeGMg_tlN-qAPFWo-M4WMRBig0bKHlPnfiG7jCW690b2BdSxSd07V3A7ZG",
+      "试听-云余": "x6lBIVCeGMg_tlN-qAPFWp9Y_qYtoqOEgex6TqwsF_NIFJet9jBErkJf1ne7cm6v",
+      "试听-云和": "x6lBIVCeGMg_tlN-qAPFWqGPUfwnIg7DqRucdmS4Q_5qtnReAJGGU6sgUoDr4hGB"
+    },
+    "_comment5": "试听语音。需提前将script目录下的voice上传为永久素材拿到media_id后，替换这里的media_id",
+    "voice_list": {
+      "晓晓": "zh-CN-XiaoxiaoNeural",
+      "小伊": "zh-CN-XiaoyiNeural",
+      "云健": "zh-CN-YunjianNeural",
+      "小希": "zh-CN-YunxiNeural",
+      "云夏": "zh-CN-YunxiaNeural",
+      "云阳": "zh-CN-YunyangNeural",
+      "小贝": "zh-CN-liaoning-XiaobeiNeural",
+      "小妮": "zh-CN-shaanxi-XiaoniNeural",
+      "惠艾": "zh-HK-HiuGaaiNeural",
+      "惠安": "zh-HK-HiuMaanNeural",
+      "王伦": "zh-HK-WanLungNeural",
+      "云晨": "zh-TW-HsiaoChenNeural",
+      "云余": "zh-TW-HsiaoYuNeural",
+      "云和": "zh-TW-YunJheNeural"
+    },
+    "_comment6": "音色代号与昵称的匹配关系",
+    "make_voice_url": "https://microsoft-tts-master-nuotgdrccm.cn-hangzhou.fcapp.run",
+    "_comment7": "生成语音功能设置为另一个云函数。这里记录该函数的调用地址",
+    "user_nickname": {
+      "ojk036kPB99gY-Ehw0rS8qVs4PgM": "子不语"
+    },
+     "_comment8": "微信用户的OpenID与昵称的对应关系，无亦可；有则在文件生成时，以昵称代替OpenID",
+    "text_limit": 520,
+    "_comment9": "回复文本的字数限制，微信官方限制是600，超过则不显示",
+    "user_talk_num": 3,
+    "_comment10": "设置记住的AI会话数量，默认记住最新三轮对话",
+    "user_time_limit": 1800,
+    "_comment11": "设置所记忆的历史会话的时间限制，单位秒。超过此时间限制的会话不会记住。默认记住30分钟内的会话",
+    "short_commend": [
+      "ocr",
+      "图片转文本",
+      "图片转文字",
+      "文本转语音",
+      "配音",
+
+      "退出",
+      "取消"
+    ],
+    "_comment12": "一些多媒体处理的短指令",
+    "short_cmd_limit_time": 600,
+    "_comment13": "短指令时间限制，单位秒"
+  },
+  "lanzou_cookies": "xxxxxx",
+  "baidu_ocr": {
+    "api_key": "xxxxxx",
+    "secret_key": "xxxxxx"
+  },
+  "caiyunAPI_info": {
+    "caiyun_token": "xxxxxx",
+    "hour_num": 5,
+    "_comment": "天气预测的小时数，整型。默认获取三小时内的天气信息"
+  },
+  "aliyun": {
+    "source_drive_id": "xxxxxx",
+    "_comment1": "资源盘id",
+    "backend_drive_id": "xxxxxx",
+    "_comment2": "备份盘id",
+    "user_data_dir": "653fb7d20a3e646dbdb04ea1a7a5a8c265ccf8af",
+    "_comment3": "阿里云盘文件夹id，用于存储用户信息。（备份盘中的 【重要】思维兵工厂资料 -> 会话资料存储）",
+    "image_dir": "6542637b7fa954f34e3a468396a5d6f3e246f71e",
+    "_comment4": "阿里云盘文件夹id，用于存储用户用户上传的图片。（备份盘中的 【重要】思维兵工厂资料 -> 图片收集）",
+    "ocr_result_dir": "6543c470f7e108185c0a4f2489a203a8ff962d06",
+    "_comment5": "阿里云盘文件夹id，用于存储用户ocr结果。（备份盘中的 【重要】思维兵工厂资料 -> OCR结果收集）",
+    "inbox_dir": "651e779dd4df1d864d6a4e71a2e207cf0a5d5152",
+    "_comment6": "阿里云盘文件夹id，用于存储他人分享的文件。（资源盘中的 【000-中转站】",
+    "tts_dir": "654ae99f414377c8af9d4869acca18a8faa970c8",
+    "_comment7": "阿里云盘文件夹id，用于存储文本转语音功能生成的音频文件。（资源盘中的 【002-思维兵工厂【重要】 -> 存储-文本转语音】",
+    "pattern": "https://www.aliyundrive.com/s/[a-zA-Z0-9]{9,13}",
+    "_comment8": "用于匹配阿里云链接的正则表达式",
+    "thread_num": 2,
+    "_comment9": "保存阿里云盘分享文件时，线程池的线程数量"
+  },
+  "spark_info": {
+    "open": "true",
+    "app_id": "xxxxxx",
+    "api_secret": "xxxxxx",
+    "api_key": "xxxxxx",
+    "domain": "generalv3",
+    "Spark_url": "ws://spark-openapi.cn-huabei-1.xf-yun.com/v1/assistants/re3vbt2w92kc_v1",
+    "prompt": "",
+    "prompt_special": "",
+    "temperature": 0.8,
+    "top_k": 4,
+    "max_tokens": 1024,
+    "error_code_dict": {
+      "10000": "错误代码【10000】---升级为ws出现错误",
+      "10001": "错误代码【10001】---通过ws读取用户的消息出错",
+      "10002": "错误代码【10002】---通过ws向用户发送消息出错",
+      "10003": "错误代码【10003】---用户的消息格式有错误",
+      "10004": "错误代码【10004】---用户数据的schema错误",
+      "10005": "错误代码【10005】---用户参数值有错误",
+      "10006": "错误代码【10006】---用户并发错误。当前用户已连接，同一用户不能多处同时连接。",
+      "10007": "错误代码【10007】---用户流量受限。服务正在处理用户当前的问题，需等待处理完成后再发送新的请求。",
+      "10008": "错误代码【10008】---服务容量不足，请联系工作人员",
+      "10009": "错误代码【10009】---和引擎建立连接失败",
+      "10010": "错误代码【10010】---接收引擎数据的错误",
+      "10011": "错误代码【10011】---发送数据给引擎出错",
+      "10012": "错误代码【10012】---引擎内部错误",
+      "10013": "错误代码【10013】---输入内容审核不通过，涉嫌违规。",
+      "10014": "错误代码【10014】---输出内容审核不通过，涉及敏感信息",
+      "10015": "错误代码【10015】---app_id在黑名单中",
+      "10016": "错误代码【10016】---app_id授权类的错误。比如，未开通此功能，未开通对应版本，token不足，并发超过授权 等等",
+      "10017": "错误代码【10017】---清除历史失败",
+      "10019": "错误代码【10019】---本次会话内容有涉及违规信息的倾向",
+      "10110": "错误代码【10110】---服务忙，请稍后再试",
+      "10163": "错误代码【10163】---请求引擎的参数异常，引擎的schema检查不通过",
+      "10222": "错误代码【10222】---引擎网络异常",
+      "10907": "错误代码【10907】---token数量超过上限。对话历史+问题的字数太多，需要精简输入",
+      "11200": "错误代码【11200】---授权错误。该app_id没有相关功能的授权 或者 业务量超过限制",
+      "11201": "错误代码【11201】---授权错误。日流控超限。超过当日最大访问量的限制",
+      "11202": "错误代码【11202】---授权错误。秒级流控超限。秒级并发超过授权路数限制",
+      "11203": "错误代码【11203】---授权错误。并发流控超限。并发路数超过授权路数限制"
+    }
+  },
+  "weather_info": {
+    "CLEAR_DAY": [
+      "晴（白天）",
+      "☀"
+    ],
+    "CLEAR_NIGHT": [
+      "晴（夜间）",
+      "🌙"
+    ],
+    "PARTLY_CLOUDY_DAY": [
+      "多云（白天）",
+      "⛅"
+    ],
+    "PARTLY_CLOUDY_NIGHT": [
+      "多云（夜间）",
+      "⛅"
+    ],
+    "CLOUDY": [
+      "阴",
+      "☁"
+    ],
+    "LIGHT_HAZE": [
+      "轻度雾霾",
+      "🌫"
+    ],
+    "MODERATE_HAZE": [
+      "中度雾霾",
+      "🌫"
+    ],
+    "HEAVY_HAZE": [
+      "重度雾霾",
+      "🌫"
+    ],
+    "LIGHT_RAIN": [
+      "小雨",
+      "🌂"
+    ],
+    "MODERATE_RAIN": [
+      "中雨",
+      "☔"
+    ],
+    "HEAVY_RAIN": [
+      "大雨",
+      "🌨"
+    ],
+    "STORM_RAIN": [
+      "暴雨",
+      "\uD83D\uDCA6"
+    ],
+    "FOG": [
+      "雾",
+      "🌫"
+    ],
+    "LIGHT_SNOW": [
+      "小雪",
+      "❄"
+    ],
+    "MODERATE_SNOW": [
+      "中雪",
+      "⛄"
+    ],
+    "HEAVY_SNOW": [
+      "大雪",
+      "☃"
+    ],
+    "STORM_SNOW": [
+      "暴雪",
+      "☃"
+    ],
+    "DUST": [
+      "浮尘",
+      "🌪"
+    ],
+    "SAND": [
+      "沙尘",
+      "🌪"
+    ],
+    "WIND": [
+      "大风",
+      "🌪"
+    ]
+  },
+  "emotion_icon": [
+    "\\(^o^)/~O(∩_∩)O",
+    "(๑´ㅂ`๑)",
+    "ヾ(✿ﾟ▽ﾟ)ノ",
+    "ヾ(≧≦*)ヾ(*≧∪≦)",
+    "(*´・ｖ・)",
+    "(≧≦)(*≧▽≦)",
+    "(｡◕ˇ∀ˇ◕)",
+    "( *︾▽︾)ヾ(≧ ▽ ≦)ゝ",
+    "(●''●)",
+    "(*ｖ) *(ˊˋ*)*",
+    "(*^▽^*)（*＾-＾*）",
+    "｡◕ᴗ◕｡",
+    "ƪ(˘⌣˘)ʃ",
+    "(～￣▽￣)～",
+    "(*￣︶￣) (ノ￣▽￣)",
+    "(☆▽☆)^o^",
+    "♪(^∇^*)",
+    "φ(゜▽゜*) <(￣︶￣)↗",
+    "(σ`)σ (*)=3",
+    "ヾ(•ω•`。)",
+    "(◕ᴗ◕✿)",
+    "(´▽`)ﾉ",
+    "(≖ᴗ≖)✧",
+    "✧⁺⸜(๑˙▾˙๑)⸝⁺✧",
+    "⁽⁽ (๑˃̶͈̀ ᗨ ˂̶͈́) ⁾⁾",
+    "✧⁺⸜(●˙▾˙●)⸝⁺✧",
+    "(*｀) ヽ()()",
+    "(*^▽^*)",
+    "(*^_^*)(`)",
+    "()＼(⌒⌒*)/",
+    "♡ (ू˃o˂ ू)⁼³₌₃",
+    "(●＾o＾●)(★＞U＜★)",
+    "(*^_^*) ()",
+    "()",
+    "ヾ(◍°∇°◍)ﾉﾞ",
+    "(*￣▽￣*)ブ",
+    "(★^O^★)(★★)",
+    "(≧≦) (▽`)○",
+    "o(*￣▽￣*)o( ω )y",
+    "ヾ(▽)ノ ()",
+    "٩(๑❛ᴗ❛๑)۶",
+    "(￣▽￣)~*",
+    "( ω ) []~(￣▽￣)~*",
+    "\\^o^/()",
+    "(❁´◡`❁)*✲ﾟ*",
+    "（＾＾●）(●｀●)",
+    "ㄟ(≧◇≦)ㄏ o((>ω< ))o",
+    "ヾ(●´∀｀●)",
+    "o(*￣▽￣*)o",
+    "ヾ(๑╹◡╹)ﾉ",
+    "(｡•̀ᴗ-)✧",
+    "( •͈ᴗ⁃͈)ᓂ- - -♡﻿",
+    "( ＾皿＾)っ Hiahia…",
+    "ヾ(@^▽^@)ノ(`)*",
+    "(づ｡◕ᴗᴗ◕｡)づ",
+    "ヾ(◍°∇°◍)ﾉ",
+    "(◍˃̶ᗜ˂̶◍)✩",
+    "(oﾟ▽ﾟ)o",
+    "✧*｡ (ˊᗜˋ*) ✧*",
+    "(≧∀≦)ゞ",
+    "- ̗̀(๑ᵔ⌔ᵔ๑)εïз",
+    "(｀▽*)╭(′▽`)╭(′▽`)╯",
+    "(▽*) φ(゜▽゜*)",
+    "⸂⸂⸜(രᴗര )⸝⸃⸃",
+    "(▽｀)( *^-^)",
+    "ヾ(°°) ヾ()\"",
+    "(￣y▽￣)╭ Ohohoho.....",
+    "(*^__^*) Y(^o^)Y",
+    "(灬°ω°灬)",
+    "(￣︶￣〃) o(*^▽^*)┛o",
+    "o(*≧▽≦)ツ┏━┓",
+    "(-_^) o(*￣▽￣*)ブ",
+    "(☆^O^☆)(ｖ＾＿＾)ｖ",
+    "(*´ﾟ∀ﾟ｀)ﾉ",
+    "（▽）(o▽｀o)",
+    "ヽ(✿ﾟ▽ﾟ)ノ",
+    "(●ˇˇ●)",
+    "(๑¯∀¯๑)",
+    "╰(*°▽°*)╯",
+    "(^^*) (≧≦)ゞ",
+    "( • ̀ω•́ )✧",
+    "(￣３￣)a",
+    "ヾ(^Д^*)/ヾ(o｀o)",
+    "o(*^＠^*)o O(∩_∩)O",
+    "ฅ( ̳• ◡ • ̳)ฅ",
+    "੭ ᐕ)੭*⁾⁾",
+    "(><) ()\"\"\"",
+    "(︶`)★,:*:\\(￣▽￣)/:*°★*",
+    "｡ﾟ+.ღ(ゝ◡ ⚈᷀᷁ღ)",
+    "(￣▽￣) ~*(￣▽￣)／",
+    "ヾ(=･ω･=)o",
+    "(●ツ●)",
+    "༼ つ ◕‿◕ ༽つ",
+    "()`(*>﹏<*)′",
+    "(｀・ω・´)",
+    "(^///^)(p≧w≦q)",
+    "( ^∀^)/欢迎\\( ^∀^)",
+    "◔.̮◔✧",
+    "︿(￣︶￣)︿",
+    "~(￣▽￣)~*",
+    "(o゜▽゜)o☆ ()",
+    "( ω ) *^____^*",
+    "(/≧▽≦)/ ( $ _ $ )"
+  ]
+}

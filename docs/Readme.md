@@ -72,13 +72,17 @@ AI会话功能是调用讯飞星火大模型实现的。
 
 如果是使用通用API，则需要在配置文件中填写prompt，且修改程序，使得优化历史会话信息的存储。
 
+## 天气预报
+
+发送位置信息，可获取该地址小时级别的天气预报。
+
 ## 获取图片链接
 
 直接向公众号发送图片，可获取该图片的微信临时链接。
 
 微信官方：临时链接的有效期是3天。
 
-## 关于text_handler.py中的TextHandler类
+## TextHandler类
 
 ### 1. function_mapping
 
@@ -86,7 +90,98 @@ AI会话功能是调用讯飞星火大模型实现的。
 
 关于文本处理的方法，至少接收两个位置参数，第一个参数为处理的文本，第二个参数（key）为附带参数。
 
-## 用于会话记录
+## 第三方请求数据格式
+
+### 【彩云科技】获取小时级别天气信息
+
+```python
+weather_data = {
+        'status': 'ok',
+        'api_version': 'v2.6',
+        'api_status': 'alpha',
+        'lang': 'zh_CN',
+        'unit': 'metric',
+        'tzshift': 28800,
+        'timezone': 'Asia/Shanghai',
+        'server_time': 1699577296,
+        'location': [39.2072, 101.6656],  # 内蒙古阿拉善
+        'result': {
+            'hourly':
+                {
+                    'status': 'ok',
+                    'description': '未来24小时晴',
+                    'precipitation': [  # 降水的概率与数据
+                        {'datetime': '2023-11-10T08:00+08:00', 'value': 0.0, 'probability': 0},
+                        {'datetime': '2023-11-10T09:00+08:00', 'value': 0.0, 'probability': 0},
+                        {'datetime': '2023-11-10T10:00+08:00', 'value': 0.0, 'probability': 0}
+                    ],
+                    'temperature': [  # 温度
+                        {'datetime': '2023-11-10T08:00+08:00', 'value': -7.0},
+                        {'datetime': '2023-11-10T09:00+08:00', 'value': -1.77},
+                        {'datetime': '2023-11-10T10:00+08:00', 'value': -1.33}
+                    ],
+                    'apparent_temperature':  # 体感温度
+                        [
+                            {'datetime': '2023-11-10T08:00+08:00', 'value': -10.3},
+                            {'datetime': '2023-11-10T09:00+08:00', 'value': -6.5},
+                            {'datetime': '2023-11-10T10:00+08:00', 'value': -6.1}],
+                    'wind': [  # 地表 10 米风向与 风速
+                        {'datetime': '2023-11-10T08:00+08:00', 'speed': 3.6, 'direction': 1.0},
+                        {'datetime': '2023-11-10T09:00+08:00', 'speed': 12.58, 'direction': 139.93},
+                        {'datetime': '2023-11-10T10:00+08:00', 'speed': 12.86, 'direction': 139.66}
+                    ],
+                    'humidity':  # 相对湿度
+                        [
+                            {'datetime': '2023-11-10T08:00+08:00', 'value': 0.47},
+                            {'datetime': '2023-11-10T09:00+08:00', 'value': 0.33},
+                            {'datetime': '2023-11-10T10:00+08:00', 'value': 0.31}
+                        ],
+                    'cloudrate': [  # 云量(0.0-1.0)
+                        {'datetime': '2023-11-10T08:00+08:00', 'value': 0.17},
+                        {'datetime': '2023-11-10T09:00+08:00', 'value': 0.0},
+                        {'datetime': '2023-11-10T10:00+08:00', 'value': 0.0}],
+                    'skycon':  # 天气现象
+                        [
+                            {'datetime': '2023-11-10T08:00+08:00', 'value': 'CLEAR_DAY'},
+                            {'datetime': '2023-11-10T09:00+08:00', 'value': 'CLEAR_DAY'},
+                            {'datetime': '2023-11-10T10:00+08:00', 'value': 'CLEAR_DAY'}],
+                    'pressure':  # 地面气压
+                        [
+                            {'datetime': '2023-11-10T08:00+08:00', 'value': 84982.358},
+                            {'datetime': '2023-11-10T09:00+08:00', 'value': 85062.358},
+                            {'datetime': '2023-11-10T10:00+08:00', 'value': 85113.118}
+                        ],
+                    'visibility': [  # 地表水平能见度
+                        {'datetime': '2023-11-10T08:00+08:00', 'value': 24.87},
+                        {'datetime': '2023-11-10T09:00+08:00', 'value': 24.87},
+                        {'datetime': '2023-11-10T10:00+08:00', 'value': 24.87}],
+                    'dswrf': [  # 向下短波辐射通量(W/M2)
+                        {'datetime': '2023-11-10T08:00+08:00', 'value': 0.0},
+                        {'datetime': '2023-11-10T09:00+08:00', 'value': 52.732},
+                        {'datetime': '2023-11-10T10:00+08:00', 'value': 120.161}
+                    ],
+                    'air_quality':
+                        {
+                            'aqi': [  # 国标 AQI
+                                {'datetime': '2023-11-10T08:00+08:00', 'value': {'chn': 0, 'usa': 3}},
+                                {'datetime': '2023-11-10T09:00+08:00', 'value': {'chn': 0, 'usa': 3}},
+                                {'datetime': '2023-11-10T10:00+08:00', 'value': {'chn': 0, 'usa': 3}}
+                            ],
+                            'pm25': [  # PM25 浓度(μg/m3)
+                                {'datetime': '2023-11-10T08:00+08:00', 'value': 0},
+                                {'datetime': '2023-11-10T09:00+08:00', 'value': 0},
+                                {'datetime': '2023-11-10T10:00+08:00', 'value': 0}
+                            ]
+                        }
+                },
+            'primary': 0, 'forecast_keypoint': '未来24小时晴'
+        }
+    }
+```
+
+
+
+## 会话记录
 
 示例：
 ```json
