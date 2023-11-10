@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
 import hashlib
 import xmltodict
 from pathlib import Path
@@ -50,13 +49,13 @@ class RequestHandler(MyLogging):
         if self.authenticate(request.args):
             return echo_str
 
-        return 'not wechat info!'
+        return 'authenticate failed!'
 
     def post(self, request: Request) -> str:
 
         # 先验证是否为微信服务器发送的信息
         if not self.authenticate(request.args):
-            return "not wechat info"
+            return "not wechat post request"
 
         # 获取请求携带的参数
         xml_dict = xmltodict.parse(request.data.decode('utf-8')).get('xml', {})

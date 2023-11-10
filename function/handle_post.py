@@ -432,8 +432,9 @@ class ReplyHandler(MyLogging):
             return f'【{share_id}】保存失败'
 
     def save_ali_share_files(self, ali_share_link_list: list = None) -> str:
+        """转存阿里云盘链接"""
         thread_num = self.config_dict.get('aliyun', {}).get('thread_num', 2)
-        drive_id = self.config_dict.get('aliyun', {}).get('source_drive_id')  #
+        drive_id = self.config_dict.get('aliyun', {}).get('source_drive_id')
         inbox_dir = self.config_dict.get('aliyun', {}).get('inbox_dir')  # 阿里云盘文件夹id
 
         # 创建线程池
