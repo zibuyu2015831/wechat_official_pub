@@ -147,7 +147,7 @@ class MyLogging(object):
                         "level": "DEBUG",
                         "class": "my_logging.DailyRotatingFileHandler",
                         # "class": "logging.handlers.TimedRotatingFileHandler",
-                        "filename": "log_files/log.log",
+                        "filename": f"{str(Path.cwd())}/log_files/log.log",
                         "when": "D",
                         "interval": 1,
                         "backupCount": 10,
@@ -170,3 +170,9 @@ class MyLogging(object):
         }
 
         return config_dict
+
+
+if __name__ == '__main__':
+    handler = MyLogging()
+    a = handler.logger
+    a.info(23121)

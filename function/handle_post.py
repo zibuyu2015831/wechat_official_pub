@@ -622,7 +622,7 @@ class ReplyHandler(MyLogging):
                 apparent_temperature_tip = item[2]['value']
                 precipitation_tip = item[3]['value']
 
-                hour_tip = f"#{datetime_tip}\n天气情况：{skycon_tip}\n此时温度：{temperature_tip}\n体感温度：{apparent_temperature_tip}\n降水概率：{precipitation_tip * 100}%"
+                hour_tip = f"#{datetime_tip}\n天气情况：{skycon_tip}\n此时温度：{temperature_tip}\n体感温度：{apparent_temperature_tip}\n降水概率：{round(precipitation_tip * 100, 2)}%"
 
                 hour_tips.append(hour_tip)
             hour_tips_str = "\n\n".join(hour_tips)
