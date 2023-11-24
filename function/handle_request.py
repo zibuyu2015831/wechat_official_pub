@@ -14,6 +14,7 @@ class RequestHandler(MyConfig):
         super().__init__()
 
     def authenticate(self, query_data: dict) -> bool:
+        """根据请求数据，验证是否为微信服务器发送的消息"""
 
         # 从配置信息中获取公众号token
         wechat_token = self.config.get('wechat').get('wechat_token')
@@ -33,13 +34,15 @@ class RequestHandler(MyConfig):
         hashcode = hashlib.sha1(tmp_str.encode('utf8')).hexdigest()
 
         if hashcode == signature:
-            self.logger.info('经过验证，为微信服务器信息')
+            self.logger.info('经过验证，确定为微信服务器信息')
             return True
         else:
-            self.logger.error('经过验证，不是微信服务器信息')
+            self.logger.error('经过验证，该请求不是微信服务器信息')
             return False
 
     def get(self, request: Request) -> str:
+        """处理get请求"""
+
         echo_str = request.args.get('echostr')
         if not echo_str:
             self.logger.info("get请求中没有echostr参数，并非微信服务器请求")
@@ -51,6 +54,7 @@ class RequestHandler(MyConfig):
         return 'authenticate failed!'
 
     def post(self, request: Request) -> str:
+        """处理post请求"""
 
         # 先验证是否为微信服务器发送的信息
         if not self.authenticate(request.args):
@@ -66,17 +70,22 @@ class RequestHandler(MyConfig):
 
         handler = ReplyHandler(xml_dict)
 
-        has_reply = handler.pre_judge()
+        try:
+            has_reply = handler.pre_judge()
 
-        if has_reply:  # 预先判断该请求是否已经处理过了；以及是否确定内容的为关键字回复
-            reply = has_reply
-        elif hasattr(ReplyHandler, msg_type):  # 根据消息类型的不同，不同处理
-            handle_method = getattr(handler, msg_type)
-            reply = handle_method()
-        else:
-            reply = handler.make_reply_text("暂不支持该类型的数据通讯")
+            if has_reply:  # 预先判断该请求是否已经处理过了；以及是否确定内容的为关键字回复
+                reply = has_reply
+            elif hasattr(ReplyHandler, msg_type):  # 根据消息类型的不同，不同处理
+                handle_method = getattr(handler, msg_type)
+                reply = handle_method()
+            else:
+                reply = handler.make_reply_text("暂不支持该类型的数据通讯")
 
-        return reply
+            return reply
+
+        except Exception:
+            self.logger.error("出现未知错误", exc_info=True)
+            return handler.make_reply_text("服务器内部错误，请联系管理员！")
 
 
 if __name__ == '__main__':

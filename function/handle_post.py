@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
 import re
 import json
 import time
@@ -8,10 +7,11 @@ import threading
 import requests
 import xmltodict
 from pathlib import Path
-from utils.spark_gpt import SparkGPT
-from .config import MyConfig
-from module.aligo import Aligo, set_config_folder  # 自己修改后的Aligo
 from concurrent.futures import ThreadPoolExecutor
+
+from .config import MyConfig
+from utils.spark_gpt import SparkGPT
+from module.aligo import Aligo, set_config_folder  # 自己修改后的Aligo
 
 
 class ReplyHandler(MyConfig):
@@ -20,60 +20,57 @@ class ReplyHandler(MyConfig):
         super().__init__()
 
         # 用户post请求中的数据
-        self.xml_dict = xml_dict
+        self.xml_dict: dict = xml_dict
 
         # 逐一获取微信POST请求中携带的参数
-        self.my_user_id = xml_dict.get('ToUserName')  # 获取消息的接收者，为本次回复的发送者
-        self.to_user_id = xml_dict.get('FromUserName')  # 获取消息的发送者，为本次回复的接收者
-        self.create_time = xml_dict.get('CreateTime')  # 获取本次消息的消息创建时间 （整型）（时间戳）
-        self.msg_id = xml_dict.get('MsgId')  # 消息id，64位整型
-        self.msg_type = xml_dict.get('MsgType')  # 获取本次消息的MsgType
-        self.msg_data_id = xml_dict.get('MsgDataId')  # 消息的数据ID（消息如果来自文章时才有）
-        self.idx = xml_dict.get('Idx')  # 多图文时第几篇文章，从1开始（消息如果来自文章时才有）
+        self.my_user_id: str = xml_dict.get('ToUserName')  # 获取消息的接收者，为本次回复的发送者
+        self.to_user_id: str = xml_dict.get('FromUserName')  # 获取消息的发送者，为本次回复的接收者
+        self.create_time: str = xml_dict.get('CreateTime')  # 获取本次消息的消息创建时间 （整型）（时间戳）
+        self.msg_id: str = xml_dict.get('MsgId')  # 消息id，64位整型
+        self.msg_type: str = xml_dict.get('MsgType')  # 获取本次消息的MsgType
+        self.msg_data_id: str = xml_dict.get('MsgDataId')  # 消息的数据ID（消息如果来自文章时才有）
+        self.idx: str = xml_dict.get('Idx')  # 多图文时第几篇文章，从1开始（消息如果来自文章时才有）
         # 以上七个为基础字段，任何一种类型的消息都会携带
         # 以下为特殊字段，特定的消息类型才会携带
-        self.content = xml_dict.get('Content')  # MsgType为text时包含此字段：本次消息的文本内容
-        self.pic_url = xml_dict.get('PicUrl')  # MsgType为image时包含此字段：图片链接（由系统生成），该链接保存3天
-        self.format = xml_dict.get('Format')  # MsgType为voice时包含此字段：语音消息的语音格式，如amr，speex等
-        self.media_id = xml_dict.get('MediaId')  # MsgType为image、voice、video、shortvideo时包含此字段：可以调用获取临时素材接口拉取数据。
-        self.thumb_media_id = xml_dict.get('ThumbMediaId')  # MsgType为video、shortvideo时包含此字段：视频消息缩略图的媒体id，可以调用下载接口拉取数据。
+        self.content: str = xml_dict.get('Content')  # MsgType为text时包含此字段：本次消息的文本内容
+        self.pic_url: str = xml_dict.get('PicUrl')  # MsgType为image时包含此字段：图片链接（由系统生成），该链接保存3天
+        self.format: str = xml_dict.get('Format')  # MsgType为voice时包含此字段：语音消息的语音格式，如amr，speex等
+        self.media_id: str = xml_dict.get('MediaId')  # MsgType为image、voice、video、shortvideo时包含此字段：可以调用获取临时素材接口拉取数据。
+        self.thumb_media_id: str = xml_dict.get('ThumbMediaId')  # MsgType为video、shortvideo时包含此字段：视频消息缩略图的媒体id。
         # 以下为链接消息特有字段
-        self.title = xml_dict.get('Title')  # MsgType为link时包含此字段：消息标题
-        self.description = xml_dict.get('Description')  # MsgType为link时包含此字段：消息描述
-        self.url = xml_dict.get('Url')  # MsgType为link时包含此字段：消息链接
+        self.title: str = xml_dict.get('Title')  # MsgType为link时包含此字段：消息标题
+        self.description: str = xml_dict.get('Description')  # MsgType为link时包含此字段：消息描述
+        self.url: str = xml_dict.get('Url')  # MsgType为link时包含此字段：消息链接
         # 以下为地理位置信息（location）特有字段
-        self.location_x = xml_dict.get('Location_X')  # MsgType为location时包含此字段：地理位置纬度
-        self.location_y = xml_dict.get('Location_Y')  # MsgType为location时包含此字段：地理位置经度
-        self.scale = xml_dict.get('Scale')  # MsgType为location时包含此字段：地图缩放大小
-        self.label = xml_dict.get('Label')  # MsgType为location时包含此字段：地理位置信息
+        self.location_x: str = xml_dict.get('Location_X')  # MsgType为location时包含此字段：地理位置纬度
+        self.location_y: str = xml_dict.get('Location_Y')  # MsgType为location时包含此字段：地理位置经度
+        self.scale: str = xml_dict.get('Scale')  # MsgType为location时包含此字段：地图缩放大小
+        self.label: str = xml_dict.get('Label')  # MsgType为location时包含此字段：地理位置信息
         # 获取事件类型
-        self.event_type = xml_dict.get('Event')  # 关注：subscribe；取消关注：unsubscribe等
-        self.event_key = xml_dict.get('EventKey')  # 事件的EventKey
+        self.event_type: str = xml_dict.get('Event')  # 关注：subscribe；取消关注：unsubscribe等
+        self.event_key: str = xml_dict.get('EventKey')  # 事件的EventKey
 
         self.logger.info(f"用户id：【{self.to_user_id}】")
         self.logger.info(f"本次消息的MsgId：【{self.msg_id}】")
         self.logger.info(f"本次消息的create_time：【{self.create_time}】")
 
         # 从配置文件中获取ai通话时记住的历史会话数量
-        user_talk_num = self.config.get('wechat', {}).get('user_talk_num')
-        if isinstance(user_talk_num, int):  # 如果配置文件中没有设置，默认记住5条AI会话记录
-            self.user_talk_num = user_talk_num
-        else:
-            self.user_talk_num = 3
+        try:
+            self.user_talk_num: int = int(self.config.get('wechat', {}).get('user_talk_num'))
+        except Exception:
+            self.user_talk_num: int = 3  # 默认记住5条AI会话记录
 
         # 从配置文件中获取ai通话时历史会话的时间限制
-        user_time_limit = self.config.get('wechat', {}).get('user_time_limit')
-        if isinstance(user_time_limit, int):  # 如果配置文件中没有设置，默认记住30分钟内的AI会话记录
-            self.user_time_limit = user_time_limit
-        else:
-            self.user_time_limit = 1800
+        try:
+            self.user_time_limit: int = int(self.config.get('wechat', {}).get('user_time_limit'))
+        except Exception:
+            self.user_time_limit: int = 1800  # 默认短指令有效时间为30分钟
 
         # 从配置文件中获取短指令的时间限制
-        short_cmd_time_limit = self.config.get('wechat', {}).get('short_cmd_limit_time')
-        if isinstance(short_cmd_time_limit, int):  # 如果配置文件中没有设置，默认短指令有效时间为10分钟
-            self.short_cmd_time_limit = short_cmd_time_limit
-        else:
-            self.short_cmd_time_limit = 600
+        try:
+            self.short_cmd_time_limit: int = int(self.config.get('wechat', {}).get('short_cmd_limit_time'))
+        except Exception:
+            self.short_cmd_time_limit: int = 600  # 默认短指令有效时间为10分钟
 
         self.ali_user_file_id = ''  # 阿里云盘中存储用户历史会话信息的文件id
         self.ali_user_file_download_url = ''  # 阿里云盘中存储用户历史会话信息的文件下载直链
@@ -86,23 +83,22 @@ class ReplyHandler(MyConfig):
         self.voice2text_keyword = {}  # 本次通讯的ocr结果，如果有的话
         self.user_file_name = f"{self.to_user_id}.json"  # 历史会话信息的文件名称
 
-        # Aligo相关配置：后续考虑优化：将配置统一为整个config.json文件
         aligo_config_path = Path.cwd() / 'config'
         set_config_folder(str(aligo_config_path.absolute()))
-        self.ali_obj = Aligo(name='wechat', logger=self.logger)
+        self.ali_obj = Aligo(name='wechat', logger=self.logger)  # 根据name参数寻找对应的配置文件
 
-        # 从阿里云盘获取历史消息
-        self.user_data = self.get_user_data_from_alipan() or {}
+        # 用户历史数据
+        self.user_data = {}
 
     # 处理文本信息
     def text(self) -> str:
         """处理接收到的文本信息"""
 
         # 获取短指令分隔符号
-        sep_char = self.config.get('wechat').get('sep_char')
+        sep_char = self.config.get('wechat', {}).get('sep_char', "---")
 
-        from .handle_text import TextHandler
         # 文本处理者
+        from .handle_text import TextHandler
         handler = TextHandler()
 
         try:
@@ -149,7 +145,7 @@ class ReplyHandler(MyConfig):
                 self._save_user_data()
 
             return self.reply_content_full
-        except Exception as e:
+        except Exception:
             self.logger.error(f"本次通讯出现错误，用户输入的文本是：【{self.content}】", exc_info=True)
             return self.make_reply_text("Something wrong had happened!")
 
@@ -429,11 +425,12 @@ class ReplyHandler(MyConfig):
 
     def save_ali_share_files(self, ali_share_link_list: list = None) -> str:
         """转存阿里云盘链接"""
+
         thread_num = self.config.get('aliyun', {}).get('thread_num', 2)
         drive_id = self.config.get('aliyun', {}).get('source_drive_id')
         inbox_dir = self.config.get('aliyun', {}).get('inbox_dir')  # 阿里云盘文件夹id
 
-        # 创建线程池
+        # 创建线程池，多个链接同时保存
         pool = ThreadPoolExecutor(thread_num)
         future_list = []
 
@@ -442,12 +439,53 @@ class ReplyHandler(MyConfig):
             future_list.append(future)
 
         pool.shutdown(True)
-        result_msg = "\n".join([f"【{fu.result()}】保存成功" for fu in future_list])
+        result_msg = "\n\n".join([f"【{fu.result()}】保存成功" for fu in future_list])
 
         return '检测到阿里云盘链接，启动转存\n - - - - - - - - - - - - - - - \n\n' + result_msg
 
-    # 预先判断该请求是否已经处理过了
     def pre_judge(self) -> str:
+        """ 预先判断消息 """
+
+        # 如果不是文本信息，直接交给pre_judge_other方法
+        if not self.content:
+            return self.pre_judge_other()
+
+        # 1. 去除用户消息中可能携带的空白
+        content = self.content.strip().replace(' ', '').replace('\n', '')
+
+        # 2. 判断是否是关键字回复：回复文本
+        keyword_reply_dict = self.config.get('wechat', {}).get('keyword_reply', {})  # 配置文件中的【关键字回复】
+
+        if content in keyword_reply_dict:
+            return self.make_reply_text(keyword_reply_dict.get(content))
+
+        # 3. 判断是否是试听语音的关键字：回复语音
+        voice_dict = self.config.get('wechat', {}).get('voice_mp3', {})
+        if content in voice_dict:
+            return self.make_reply_voice(voice_dict.get(content))
+
+        # 4. 判断文本中是否包含阿里云盘分享链接，如果有，转存后直接返回文本
+        ali_share_link_pattern = self.config.get('aliyun', {}).get('pattern')  # 获取匹配阿里云盘分享URL的正则表达式
+
+        # 如果配置文件中没有匹配阿里云盘URL的正则表达式，跳过，进行下一步判断
+        if not ali_share_link_pattern:
+            return self.pre_judge_other()
+
+        pattern = re.compile(ali_share_link_pattern)
+        results = pattern.findall(content)
+
+        # 如果用户输入的文本里没有阿里云盘分享链接，跳过，进行下一步判断
+        if not results:
+            return self.pre_judge_other()
+
+        result_msg = self.save_ali_share_files(results)
+
+        return self.make_reply_text(result_msg)
+
+    def pre_judge_other(self) -> str:
+        """ 预先判断该请求是否已经处理过了 """
+        # 先获取用户历史数据
+        self.get_user_data_from_alipan()
 
         # 1. 先通过信息的msg_id判断该信息是否已经处理过了
         last_msg_id = self.user_data.get('last_msg_id')
@@ -455,38 +493,17 @@ class ReplyHandler(MyConfig):
             last_reply = self.user_data.get('last_msg_reply')
             return last_reply
 
-        # 如果不是文本信息，直接返回
+        # 接下来判断文本，如果不是文本信息，直接返回
         if not self.content:
             return ''
 
+        # 去除用户消息中可能携带的空白
+        content = self.content.strip().replace(' ', '').replace('\n', '')
+
         # 2. 判断是否是关键字回复：回复文本
         keyword_reply_dict = self.user_data.get("keyword_reply", {})  # 程序自生成的【关键字回复】
-        keyword_reply_dict.update(self.config.get('wechat', {}).get('keyword_reply', {}))  # 添加上配置文件中的【关键字回复】
-
-        if self.content and self.content.strip().replace(' ', '') in keyword_reply_dict:
-            return self.make_reply_text(keyword_reply_dict.get(self.content.strip().replace(' ', '')))
-
-        # 3. 判断是否是试听语音：回复语音
-        voice_dict = self.config.get('wechat', {}).get('voice_mp3', {})
-        if self.content and self.content.strip().replace(' ', '') in voice_dict:
-            return self.make_reply_voice(voice_dict.get(self.content.strip().replace(' ', '')))
-
-        # 4. 判断文本中是否包含阿里云盘分享链接，如果有，转存后直接返回文本
-        ali_share_link_pattern = self.config.get('aliyun', {}).get('pattern')
-        if not ali_share_link_pattern:
-            return ''
-
-        # 获取匹配阿里云盘分享链接的正则
-        pattern = re.compile(ali_share_link_pattern)
-        results = pattern.findall(self.content)
-
-        # 如果用户输入的文本里没有阿里云盘分享链接，直接跳过
-        if not results:
-            return ''
-
-        result_msg = self.save_ali_share_files(results)
-
-        return self.make_reply_text(result_msg)
+        if content in keyword_reply_dict:
+            return self.make_reply_text(keyword_reply_dict.get(content))
 
     def add_user_history(self, ai: SparkGPT) -> None:
         """
@@ -626,8 +643,8 @@ class ReplyHandler(MyConfig):
             weather_tip = f" - - - - - 【天气预测】 - - - - - \n\n{forecast_keypoint.center(25, ' ')}\n\n - - - - 【每小时预测】 - - - - \n\n{hour_tips_str}"
 
         except Exception as e:
-            self.logger.error(f"调用彩云API获取天气失败。【错误信息】---str{e}", exc_info=True)
-            weather_tip = f"🌚 呀，天气信息获取失败..."
+            self.logger.error(f"调用彩云API获取天气失败！", exc_info=True)
+            weather_tip = f"🌚 呀，你的运气也是没谁了，根据你的位置信息获取天气失败了..."
 
         return weather_tip
 
