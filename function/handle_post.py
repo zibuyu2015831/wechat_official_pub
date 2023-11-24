@@ -9,13 +9,12 @@ import requests
 import xmltodict
 from pathlib import Path
 from utils.spark_gpt import SparkGPT
-from basic.my_config import config
-from basic.my_logging import MyLogging
-from aligo import Aligo, set_config_folder  # 自己修改后的Aligo
+from .config import MyConfig
+from module.aligo import Aligo, set_config_folder  # 自己修改后的Aligo
 from concurrent.futures import ThreadPoolExecutor
 
 
-class ReplyHandler(MyLogging):
+class ReplyHandler(MyConfig):
 
     def __init__(self, xml_dict: dict) -> None:
         super().__init__()
@@ -55,25 +54,22 @@ class ReplyHandler(MyLogging):
         self.logger.info(f"本次消息的MsgId：【{self.msg_id}】")
         self.logger.info(f"本次消息的create_time：【{self.create_time}】")
 
-        # 配置信息
-        self.config_dict = config
-
         # 从配置文件中获取ai通话时记住的历史会话数量
-        user_talk_num = self.config_dict.get('wechat', {}).get('user_talk_num')
+        user_talk_num = self.config.get('wechat', {}).get('user_talk_num')
         if isinstance(user_talk_num, int):  # 如果配置文件中没有设置，默认记住5条AI会话记录
             self.user_talk_num = user_talk_num
         else:
             self.user_talk_num = 3
 
         # 从配置文件中获取ai通话时历史会话的时间限制
-        user_time_limit = self.config_dict.get('wechat', {}).get('user_time_limit')
+        user_time_limit = self.config.get('wechat', {}).get('user_time_limit')
         if isinstance(user_time_limit, int):  # 如果配置文件中没有设置，默认记住30分钟内的AI会话记录
             self.user_time_limit = user_time_limit
         else:
             self.user_time_limit = 1800
 
         # 从配置文件中获取短指令的时间限制
-        short_cmd_time_limit = self.config_dict.get('wechat', {}).get('short_cmd_limit_time')
+        short_cmd_time_limit = self.config.get('wechat', {}).get('short_cmd_limit_time')
         if isinstance(short_cmd_time_limit, int):  # 如果配置文件中没有设置，默认短指令有效时间为10分钟
             self.short_cmd_time_limit = short_cmd_time_limit
         else:
@@ -93,7 +89,7 @@ class ReplyHandler(MyLogging):
         # Aligo相关配置：后续考虑优化：将配置统一为整个config.json文件
         aligo_config_path = Path.cwd() / 'config'
         set_config_folder(str(aligo_config_path.absolute()))
-        self.ali_obj = Aligo(logger=self.logger)
+        self.ali_obj = Aligo(name='wechat', logger=self.logger)
 
         # 从阿里云盘获取历史消息
         self.user_data = self.get_user_data_from_alipan() or {}
@@ -103,7 +99,7 @@ class ReplyHandler(MyLogging):
         """处理接收到的文本信息"""
 
         # 获取短指令分隔符号
-        sep_char = self.config_dict.get('wechat').get('sep_char')
+        sep_char = self.config.get('wechat').get('sep_char')
 
         from .handle_text import TextHandler
         # 文本处理者
@@ -128,14 +124,14 @@ class ReplyHandler(MyLogging):
                     self.reply_content_full = self.make_reply_text("暂无此功能")
 
             # 判断是否【指令】调用：指令模式处理其他格式的信息
-            elif self.content in self.config_dict.get('wechat', {}).get('short_commend'):
+            elif self.content in self.config.get('wechat', {}).get('short_commend'):
                 handle_function = getattr(handler, handler.function_mapping[self.content])
                 self.reply_content_full = handle_function(self, self.content)
 
             else:  # AI对话
 
                 # 实例化ai
-                ai = SparkGPT(self.config_dict.get('spark_info'), logger_obj=self.logger)
+                ai = SparkGPT(self.config.get('spark_info'), logger_obj=self.logger)
 
                 # 添加历史会话
                 self.add_user_history(ai)
@@ -161,7 +157,7 @@ class ReplyHandler(MyLogging):
     def event(self) -> str:
         if self.event_type == 'subscribe':
             default_greeting = "欢迎关注，这是一个有趣的公众号哦~"
-            subscribe_greeting = self.config_dict.get('wechat', {}).get('subscribe_greeting', default_greeting)
+            subscribe_greeting = self.config.get('wechat', {}).get('subscribe_greeting', default_greeting)
             return self.make_reply_text(subscribe_greeting)
         return self.make_reply_text("Please wait for event development")
 
@@ -323,7 +319,7 @@ class ReplyHandler(MyLogging):
 
         with open(file_path, mode="w", encoding='utf8') as f:
             f.write(json.dumps(content))
-        user_data_dir = self.config_dict.get('aliyun', "").get('user_data_dir')
+        user_data_dir = self.config.get('aliyun', "").get('user_data_dir')
 
         self.logger.info("上传新的用户数据文件......")
         self.upload_ali_file(file_path, parent_file_id=user_data_dir, msg="用户数据文件上传成功！")
@@ -355,7 +351,7 @@ class ReplyHandler(MyLogging):
         :return:
         """
         # 从配置信息中获取阿里云盘存放用户数据的文件夹id
-        dir_id = self.config_dict.get('aliyun', {}).get('user_data_dir')
+        dir_id = self.config.get('aliyun', {}).get('user_data_dir')
         # 如果用户不配置历史数据存放文件夹，则跳过
         if not dir_id:
             return {}
@@ -433,9 +429,9 @@ class ReplyHandler(MyLogging):
 
     def save_ali_share_files(self, ali_share_link_list: list = None) -> str:
         """转存阿里云盘链接"""
-        thread_num = self.config_dict.get('aliyun', {}).get('thread_num', 2)
-        drive_id = self.config_dict.get('aliyun', {}).get('source_drive_id')
-        inbox_dir = self.config_dict.get('aliyun', {}).get('inbox_dir')  # 阿里云盘文件夹id
+        thread_num = self.config.get('aliyun', {}).get('thread_num', 2)
+        drive_id = self.config.get('aliyun', {}).get('source_drive_id')
+        inbox_dir = self.config.get('aliyun', {}).get('inbox_dir')  # 阿里云盘文件夹id
 
         # 创建线程池
         pool = ThreadPoolExecutor(thread_num)
@@ -465,18 +461,18 @@ class ReplyHandler(MyLogging):
 
         # 2. 判断是否是关键字回复：回复文本
         keyword_reply_dict = self.user_data.get("keyword_reply", {})  # 程序自生成的【关键字回复】
-        keyword_reply_dict.update(self.config_dict.get('wechat', {}).get('keyword_reply', {}))  # 添加上配置文件中的【关键字回复】
+        keyword_reply_dict.update(self.config.get('wechat', {}).get('keyword_reply', {}))  # 添加上配置文件中的【关键字回复】
 
         if self.content and self.content.strip().replace(' ', '') in keyword_reply_dict:
             return self.make_reply_text(keyword_reply_dict.get(self.content.strip().replace(' ', '')))
 
         # 3. 判断是否是试听语音：回复语音
-        voice_dict = self.config_dict.get('wechat', {}).get('voice_mp3', {})
+        voice_dict = self.config.get('wechat', {}).get('voice_mp3', {})
         if self.content and self.content.strip().replace(' ', '') in voice_dict:
             return self.make_reply_voice(voice_dict.get(self.content.strip().replace(' ', '')))
 
         # 4. 判断文本中是否包含阿里云盘分享链接，如果有，转存后直接返回文本
-        ali_share_link_pattern = self.config_dict.get('aliyun', {}).get('pattern')
+        ali_share_link_pattern = self.config.get('aliyun', {}).get('pattern')
         if not ali_share_link_pattern:
             return ''
 
@@ -587,8 +583,8 @@ class ReplyHandler(MyLogging):
     def weather_request(self, longitude, latitude) -> str:
         try:
             # 获取彩云天气的token与小时数设置
-            token = self.config_dict.get('caiyunAPI_info', {}).get("caiyun_token")
-            hour_num = self.config_dict.get('caiyunAPI_info', {}).get("hour_num")
+            token = self.config.get('caiyunAPI_info', {}).get("caiyun_token")
+            hour_num = self.config.get('caiyunAPI_info', {}).get("hour_num")
 
             if not isinstance(hour_num, int) or not hour_num:
                 hour_num = 3
@@ -615,8 +611,8 @@ class ReplyHandler(MyLogging):
                 datetime_tip = datetime.datetime.fromisoformat(item[0]['datetime']).strftime("%Y-%m-%d_%H:00")
                 skycon = item[0]['value']
 
-                weather_icon = self.config_dict.get('weather_info')[skycon][1]
-                weather_info = self.config_dict.get('weather_info')[skycon][0]
+                weather_icon = self.config.get('weather_info')[skycon][1]
+                weather_info = self.config.get('weather_info')[skycon][0]
                 skycon_tip = f"{weather_icon} {weather_info}"
                 temperature_tip = item[1]['value']
                 apparent_temperature_tip = item[2]['value']

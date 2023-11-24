@@ -6,18 +6,17 @@ import base64
 import requests
 import threading
 from Crypto.Cipher import AES
-from basic.my_config import config
-from basic.my_logging import MyLogging
+from .config import MyConfig
 from .handle_post import ReplyHandler
 
 
-class TextHandler(MyLogging):
+class TextHandler(MyConfig):
 
     def __init__(self):
         super().__init__()
-        self.config_dict = config
-        self.key = self.config_dict.get('wechat', {}).get('password_key')
-        self.sep_char = self.config_dict.get('wechat', {}).get('sep_char')
+
+        self.key = self.config.get('wechat', {}).get('password_key')
+        self.sep_char = self.config.get('wechat', {}).get('sep_char')
 
     @property
     def function_mapping(self) -> dict:
@@ -108,7 +107,7 @@ class TextHandler(MyLogging):
             self.logger.error("文本转语音任务提交失败！", exc_info=True)
 
     def text_to_voice(self, reply_obj: ReplyHandler, content: str, key: str = None, *args, **kwargs) -> str:
-        voice_list = self.config_dict.get('wechat', {}).get('voice_list', {})
+        voice_list = self.config.get('wechat', {}).get('voice_list', {})
         voice_choice = voice_list.get(key)
 
         if not voice_choice:
@@ -120,13 +119,13 @@ class TextHandler(MyLogging):
         # 保存的文件名，为了防止重名，也添加上字符串
         file_name = f"{reply_obj.to_user_id}" + '-' + random_str
 
-        make_voice_url = self.config_dict.get('wechat', {}).get('make_voice_url', '')
+        make_voice_url = self.config.get('wechat', {}).get('make_voice_url', '')
 
         if not make_voice_url:
             return '文本转语音功能未配置！'
 
         data = {
-            "lanzou_cookie": self.config_dict.get('lanzou_cookies'),
+            "lanzou_cookie": self.config.get('lanzou_cookies'),
             'text': content,
             'voice_choice': voice_choice,
             'file_name': file_name,
@@ -157,7 +156,7 @@ class TextHandler(MyLogging):
         :return:
         """
         ali_obj = kwargs.get('ali_obj')
-        re_pattern = re.compile(self.config_dict.get('aliyun', {}).get('pattern'))
+        re_pattern = re.compile(self.config.get('aliyun', {}).get('pattern'))
         # re_pattern = re.compile(r'https://www\.aliyundrive\.com/s/[a-zA-Z0-9]{9,13}')
 
         results = re_pattern.findall(content)

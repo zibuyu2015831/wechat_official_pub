@@ -1,0 +1,14 @@
+"""..."""
+from module.aligo.core.Config import V2_TEMPLATE_TEST
+from module.aligo.request import TemplateRequest
+from module.aligo.response import TemplateResponse
+from .BaseAligo import BaseAligo
+
+
+class Template(BaseAligo):
+    """..."""
+
+    def _core_template(self, body: TemplateRequest) -> TemplateResponse:
+        """模板"""
+        response = self.post(V2_TEMPLATE_TEST, body=body)
+        return self._result(response, TemplateResponse, status_code=202)

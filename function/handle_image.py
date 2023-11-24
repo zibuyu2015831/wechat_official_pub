@@ -6,15 +6,13 @@ import requests
 import threading
 from pathlib import Path
 from utils.baidu_ocr import OCR
-from basic.my_config import config
-from basic.my_logging import MyLogging
+from .config import MyConfig
 
 
-class ImageHandler(MyLogging):
+class ImageHandler(MyConfig):
 
     def __init__(self):
         super().__init__()
-        self.config_dict = config
 
     @property
     def function_mapping(self):
@@ -40,7 +38,7 @@ class ImageHandler(MyLogging):
         content = '\n\n'.join(text_list)
 
         # 生成文件标题：【20231103-子不语-ocr测试.txt】
-        user_nickname_dict = self.config_dict.get('wechat', {}).get('user_nickname', {})
+        user_nickname_dict = self.config.get('wechat', {}).get('user_nickname', {})
         if reply_obj.to_user_id in user_nickname_dict:
             nickname = user_nickname_dict.get(reply_obj.to_user_id)
             file_name = f"{today_str}-{nickname}-{title}.txt"
@@ -55,7 +53,7 @@ class ImageHandler(MyLogging):
         with open(file_path, mode='w', encoding='utf8') as f:
             f.write(content)
 
-        ocr_result_dir = self.config_dict.get('aliyun', '').get('ocr_result_dir')
+        ocr_result_dir = self.config.get('aliyun', '').get('ocr_result_dir')
         reply_obj.upload_ali_file(file_path, parent_file_id=ocr_result_dir, msg="上传ocr处理结果文件！")
 
     def store_ocr_result(self, reply_obj, text_list):
@@ -74,7 +72,7 @@ class ImageHandler(MyLogging):
         return re.sub(r'[/*?:<>\\"|]', '', s)
 
     def upload_image(self, reply_obj, file_path):
-        image_dir = self.config_dict.get('aliyun', '').get('image_dir')
+        image_dir = self.config.get('aliyun', '').get('image_dir')
         self.logger.info("上传用户图片到阿里云盘......")
         reply_obj.upload_ali_file(file_path, parent_file_id=image_dir, msg="图片上传成功！")
 
@@ -133,7 +131,7 @@ class ImageHandler(MyLogging):
                 self.logger.info(f"开始ocr图片，该图片链接为：【{image_url}】")
                 self.logger.info(f"该图片的media_id为：【{media_id}】")
 
-                ocr_obj = OCR(self.config_dict, logger=self.logger)
+                ocr_obj = OCR(self.config, logger=self.logger)
                 text_dict = ocr_obj.accurate_basic_by_url(image_url)  # 如果ocr成功，返回的是包含文本的字典；失败则返回原json
 
                 text_list = text_dict.get('text')

@@ -4,20 +4,19 @@ import xmltodict
 from pathlib import Path
 from flask import Request
 from .handle_post import ReplyHandler
-from basic.my_config import config
-from basic.my_logging import MyLogging
+from .config import MyConfig
 
 
-class RequestHandler(MyLogging):
+class RequestHandler(MyConfig):
 
     def __init__(self) -> None:
-        self.config_dict = config
+
         super().__init__()
 
     def authenticate(self, query_data: dict) -> bool:
 
         # 从配置信息中获取公众号token
-        wechat_token = self.config_dict.get('wechat').get('wechat_token')
+        wechat_token = self.config.get('wechat').get('wechat_token')
 
         # 获取微信传递的参数
         signature = query_data.get('signature')
