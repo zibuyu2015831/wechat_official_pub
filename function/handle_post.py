@@ -363,8 +363,8 @@ class ReplyHandler(MyConfig):
                     file_dict[file.name] = {'file_id': file.file_id, "download_url": file.download_url}
 
                 return file_dict
-            except Exception as e:
-                self.logger.error(f"所有用户的历史数据文件时出现错误，即将重试！", exc_info=True)
+            except Exception:
+                self.logger.error(f"获取用户的历史数据文件时出现错误，即将重试！", exc_info=True)
 
         return {}
 
