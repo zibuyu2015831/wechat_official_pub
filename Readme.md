@@ -282,15 +282,57 @@ AI会话功能具有上下文信息，默认是最近8次交互的信息。
 
 
 
-## 06. 部署配置
+## 06. 部署流程
+
+### 6.0 克隆项目代码
+
+将代码克隆到本地
+
+```bash
+git clone git@gitee.com:zibuyu2015831/wechat_official_pub.git
+```
+
+### 6.1 填写配置文件
 
 在 `config/`  目录下，有一个 `demo_config.json`文件，
 
-里面标记为xxx的项目，是需要自己填写的项目；其他的保持默认不修改；
+里面标记为xxx的项目，是需要自己填写的项目；其他可以保持默认；
 
 修改 `demo_config.json`文件后，需要将其重命名为  `config.json`；
 
 ![image-20241210144107002](assets/Readme/image-20241210144107002.png)
+
+### 6.2 部署项目
+
+#### 原生部署
+
+如果使用服务器部署进行原生部署。
+
+由于项目使用 PostgreSQL 数据库，使用到了`psycopg2`这个第三方库；
+
+它依赖于 PostgreSQL 的 C 库 (libpq)。
+
+其在Ubantu系统的安装命令：
+
+```bash
+sudo apt-get install libpq-dev
+```
+
+其次是根据 `requirements.txt` 安装所需依赖：
+
+```bash
+pip install -r requirements.txt
+```
+
+另外，可能需要将Flask原带的 werkzeug 替换为 uWSGI 或者 gunicorn ；以实现更好的并发处理能力。
+
+#### 云函数部署
+
+本项目推荐使用腾讯云的函数服务进行部署，成本最低；
+
+项目提供了 Dockerfile 文件，可根据该文件构建docker镜像，基于镜像部署；
+
+### 6.3 设置管理员
 
 项目启动后，可以使用管理员命令，将自己设置为管理员，需要携带配置文件中的 `wechat_token`；
 
@@ -302,9 +344,9 @@ AI会话功能具有上下文信息，默认是最近8次交互的信息。
 
 ![image-20241210144228082](assets/Readme/image-20241210144228082.png)
 
-## 06. 开发笔记
+## 07. 开发笔记
 
-### 6.1 请求流程图
+### 7.1 请求流程图
 
 ![image-20241204004235427](assets/Readme/image-20241204004235427.png)
 
@@ -324,101 +366,9 @@ AI会话功能具有上下文信息，默认是最近8次交互的信息。
 
 
 
-### 6.2 备忘与计划
+### 7.2 备忘与计划
 
-- 需要定期删除文本转语音生成的音频文件；减少对象存储消耗；
-- 处理音频文件（因为转文本）
-
-
-
-### 6.3 数据格式
-
-#### 彩云科技
-
-```python
-weather_data = {
-        'status': 'ok',
-        'api_version': 'v2.6',
-        'api_status': 'alpha',
-        'lang': 'zh_CN',
-        'unit': 'metric',
-        'tzshift': 28800,
-        'timezone': 'Asia/Shanghai',
-        'server_time': 1699577296,
-        'location': [39.2072, 101.6656],  # 内蒙古阿拉善
-        'result': {
-            'hourly':
-                {
-                    'status': 'ok',
-                    'description': '未来24小时晴',
-                    'precipitation': [  # 降水的概率与数据
-                        {'datetime': '2023-11-10T08:00+08:00', 'value': 0.0, 'probability': 0},
-                        {'datetime': '2023-11-10T09:00+08:00', 'value': 0.0, 'probability': 0},
-                        {'datetime': '2023-11-10T10:00+08:00', 'value': 0.0, 'probability': 0}
-                    ],
-                    'temperature': [  # 温度
-                        {'datetime': '2023-11-10T08:00+08:00', 'value': -7.0},
-                        {'datetime': '2023-11-10T09:00+08:00', 'value': -1.77},
-                        {'datetime': '2023-11-10T10:00+08:00', 'value': -1.33}
-                    ],
-                    'apparent_temperature':  # 体感温度
-                        [
-                            {'datetime': '2023-11-10T08:00+08:00', 'value': -10.3},
-                            {'datetime': '2023-11-10T09:00+08:00', 'value': -6.5},
-                            {'datetime': '2023-11-10T10:00+08:00', 'value': -6.1}],
-                    'wind': [  # 地表 10 米风向与 风速
-                        {'datetime': '2023-11-10T08:00+08:00', 'speed': 3.6, 'direction': 1.0},
-                        {'datetime': '2023-11-10T09:00+08:00', 'speed': 12.58, 'direction': 139.93},
-                        {'datetime': '2023-11-10T10:00+08:00', 'speed': 12.86, 'direction': 139.66}
-                    ],
-                    'humidity':  # 相对湿度
-                        [
-                            {'datetime': '2023-11-10T08:00+08:00', 'value': 0.47},
-                            {'datetime': '2023-11-10T09:00+08:00', 'value': 0.33},
-                            {'datetime': '2023-11-10T10:00+08:00', 'value': 0.31}
-                        ],
-                    'cloudrate': [  # 云量(0.0-1.0)
-                        {'datetime': '2023-11-10T08:00+08:00', 'value': 0.17},
-                        {'datetime': '2023-11-10T09:00+08:00', 'value': 0.0},
-                        {'datetime': '2023-11-10T10:00+08:00', 'value': 0.0}],
-                    'skycon':  # 天气现象
-                        [
-                            {'datetime': '2023-11-10T08:00+08:00', 'value': 'CLEAR_DAY'},
-                            {'datetime': '2023-11-10T09:00+08:00', 'value': 'CLEAR_DAY'},
-                            {'datetime': '2023-11-10T10:00+08:00', 'value': 'CLEAR_DAY'}],
-                    'pressure':  # 地面气压
-                        [
-                            {'datetime': '2023-11-10T08:00+08:00', 'value': 84982.358},
-                            {'datetime': '2023-11-10T09:00+08:00', 'value': 85062.358},
-                            {'datetime': '2023-11-10T10:00+08:00', 'value': 85113.118}
-                        ],
-                    'visibility': [  # 地表水平能见度
-                        {'datetime': '2023-11-10T08:00+08:00', 'value': 24.87},
-                        {'datetime': '2023-11-10T09:00+08:00', 'value': 24.87},
-                        {'datetime': '2023-11-10T10:00+08:00', 'value': 24.87}],
-                    'dswrf': [  # 向下短波辐射通量(W/M2)
-                        {'datetime': '2023-11-10T08:00+08:00', 'value': 0.0},
-                        {'datetime': '2023-11-10T09:00+08:00', 'value': 52.732},
-                        {'datetime': '2023-11-10T10:00+08:00', 'value': 120.161}
-                    ],
-                    'air_quality':
-                        {
-                            'aqi': [  # 国标 AQI
-                                {'datetime': '2023-11-10T08:00+08:00', 'value': {'chn': 0, 'usa': 3}},
-                                {'datetime': '2023-11-10T09:00+08:00', 'value': {'chn': 0, 'usa': 3}},
-                                {'datetime': '2023-11-10T10:00+08:00', 'value': {'chn': 0, 'usa': 3}}
-                            ],
-                            'pm25': [  # PM25 浓度(μg/m3)
-                                {'datetime': '2023-11-10T08:00+08:00', 'value': 0},
-                                {'datetime': '2023-11-10T09:00+08:00', 'value': 0},
-                                {'datetime': '2023-11-10T10:00+08:00', 'value': 0}
-                            ]
-                        }
-                },
-            'primary': 0, 'forecast_keypoint': '未来24小时晴'
-        }
-    }
-```
-
+- 结合AI，实现自动发推文；
+- 结合Obsidian，发布英语学习材料到用户笔记端；
 
 
