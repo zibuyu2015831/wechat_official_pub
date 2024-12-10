@@ -1,0 +1,2218 @@
+{
+    "af-ZA": [
+        {
+            "voice_name": "Adri",
+            "gender": "Female",
+            "name": "af-ZA-AdriNeural",
+            "language": "af-ZA"
+        },
+        {
+            "voice_name": "Willem",
+            "gender": "Male",
+            "name": "af-ZA-WillemNeural",
+            "language": "af-ZA"
+        }
+    ],
+    "am-ET": [
+        {
+            "voice_name": "Ameha",
+            "gender": "Male",
+            "name": "am-ET-AmehaNeural",
+            "language": "am-ET"
+        },
+        {
+            "voice_name": "Mekdes",
+            "gender": "Female",
+            "name": "am-ET-MekdesNeural",
+            "language": "am-ET"
+        }
+    ],
+    "ar-AE": [
+        {
+            "voice_name": "Fatima",
+            "gender": "Female",
+            "name": "ar-AE-FatimaNeural",
+            "language": "ar-AE"
+        },
+        {
+            "voice_name": "Hamdan",
+            "gender": "Male",
+            "name": "ar-AE-HamdanNeural",
+            "language": "ar-AE"
+        }
+    ],
+    "ar-BH": [
+        {
+            "voice_name": "Ali",
+            "gender": "Male",
+            "name": "ar-BH-AliNeural",
+            "language": "ar-BH"
+        },
+        {
+            "voice_name": "Laila",
+            "gender": "Female",
+            "name": "ar-BH-LailaNeural",
+            "language": "ar-BH"
+        }
+    ],
+    "ar-DZ": [
+        {
+            "voice_name": "Amina",
+            "gender": "Female",
+            "name": "ar-DZ-AminaNeural",
+            "language": "ar-DZ"
+        },
+        {
+            "voice_name": "Ismael",
+            "gender": "Male",
+            "name": "ar-DZ-IsmaelNeural",
+            "language": "ar-DZ"
+        }
+    ],
+    "ar-EG": [
+        {
+            "voice_name": "Salma",
+            "gender": "Female",
+            "name": "ar-EG-SalmaNeural",
+            "language": "ar-EG"
+        },
+        {
+            "voice_name": "Shakir",
+            "gender": "Male",
+            "name": "ar-EG-ShakirNeural",
+            "language": "ar-EG"
+        }
+    ],
+    "ar-IQ": [
+        {
+            "voice_name": "Bassel",
+            "gender": "Male",
+            "name": "ar-IQ-BasselNeural",
+            "language": "ar-IQ"
+        },
+        {
+            "voice_name": "Rana",
+            "gender": "Female",
+            "name": "ar-IQ-RanaNeural",
+            "language": "ar-IQ"
+        }
+    ],
+    "ar-JO": [
+        {
+            "voice_name": "Sana",
+            "gender": "Female",
+            "name": "ar-JO-SanaNeural",
+            "language": "ar-JO"
+        },
+        {
+            "voice_name": "Taim",
+            "gender": "Male",
+            "name": "ar-JO-TaimNeural",
+            "language": "ar-JO"
+        }
+    ],
+    "ar-KW": [
+        {
+            "voice_name": "Fahed",
+            "gender": "Male",
+            "name": "ar-KW-FahedNeural",
+            "language": "ar-KW"
+        },
+        {
+            "voice_name": "Noura",
+            "gender": "Female",
+            "name": "ar-KW-NouraNeural",
+            "language": "ar-KW"
+        }
+    ],
+    "ar-LB": [
+        {
+            "voice_name": "Layla",
+            "gender": "Female",
+            "name": "ar-LB-LaylaNeural",
+            "language": "ar-LB"
+        },
+        {
+            "voice_name": "Rami",
+            "gender": "Male",
+            "name": "ar-LB-RamiNeural",
+            "language": "ar-LB"
+        }
+    ],
+    "ar-LY": [
+        {
+            "voice_name": "Iman",
+            "gender": "Female",
+            "name": "ar-LY-ImanNeural",
+            "language": "ar-LY"
+        },
+        {
+            "voice_name": "Omar",
+            "gender": "Male",
+            "name": "ar-LY-OmarNeural",
+            "language": "ar-LY"
+        }
+    ],
+    "ar-MA": [
+        {
+            "voice_name": "Jamal",
+            "gender": "Male",
+            "name": "ar-MA-JamalNeural",
+            "language": "ar-MA"
+        },
+        {
+            "voice_name": "Mouna",
+            "gender": "Female",
+            "name": "ar-MA-MounaNeural",
+            "language": "ar-MA"
+        }
+    ],
+    "ar-OM": [
+        {
+            "voice_name": "Abdullah",
+            "gender": "Male",
+            "name": "ar-OM-AbdullahNeural",
+            "language": "ar-OM"
+        },
+        {
+            "voice_name": "Aysha",
+            "gender": "Female",
+            "name": "ar-OM-AyshaNeural",
+            "language": "ar-OM"
+        }
+    ],
+    "ar-QA": [
+        {
+            "voice_name": "Amal",
+            "gender": "Female",
+            "name": "ar-QA-AmalNeural",
+            "language": "ar-QA"
+        },
+        {
+            "voice_name": "Moaz",
+            "gender": "Male",
+            "name": "ar-QA-MoazNeural",
+            "language": "ar-QA"
+        }
+    ],
+    "ar-SA": [
+        {
+            "voice_name": "Hamed",
+            "gender": "Male",
+            "name": "ar-SA-HamedNeural",
+            "language": "ar-SA"
+        },
+        {
+            "voice_name": "Zariyah",
+            "gender": "Female",
+            "name": "ar-SA-ZariyahNeural",
+            "language": "ar-SA"
+        }
+    ],
+    "ar-SY": [
+        {
+            "voice_name": "Amany",
+            "gender": "Female",
+            "name": "ar-SY-AmanyNeural",
+            "language": "ar-SY"
+        },
+        {
+            "voice_name": "Laith",
+            "gender": "Male",
+            "name": "ar-SY-LaithNeural",
+            "language": "ar-SY"
+        }
+    ],
+    "ar-TN": [
+        {
+            "voice_name": "Hedi",
+            "gender": "Male",
+            "name": "ar-TN-HediNeural",
+            "language": "ar-TN"
+        },
+        {
+            "voice_name": "Reem",
+            "gender": "Female",
+            "name": "ar-TN-ReemNeural",
+            "language": "ar-TN"
+        }
+    ],
+    "ar-YE": [
+        {
+            "voice_name": "Maryam",
+            "gender": "Female",
+            "name": "ar-YE-MaryamNeural",
+            "language": "ar-YE"
+        },
+        {
+            "voice_name": "Saleh",
+            "gender": "Male",
+            "name": "ar-YE-SalehNeural",
+            "language": "ar-YE"
+        }
+    ],
+    "az-AZ": [
+        {
+            "voice_name": "Babek",
+            "gender": "Male",
+            "name": "az-AZ-BabekNeural",
+            "language": "az-AZ"
+        },
+        {
+            "voice_name": "Banu",
+            "gender": "Female",
+            "name": "az-AZ-BanuNeural",
+            "language": "az-AZ"
+        }
+    ],
+    "bg-BG": [
+        {
+            "voice_name": "Borislav",
+            "gender": "Male",
+            "name": "bg-BG-BorislavNeural",
+            "language": "bg-BG"
+        },
+        {
+            "voice_name": "Kalina",
+            "gender": "Female",
+            "name": "bg-BG-KalinaNeural",
+            "language": "bg-BG"
+        }
+    ],
+    "bn-BD": [
+        {
+            "voice_name": "Nabanita",
+            "gender": "Female",
+            "name": "bn-BD-NabanitaNeural",
+            "language": "bn-BD"
+        },
+        {
+            "voice_name": "Pradeep",
+            "gender": "Male",
+            "name": "bn-BD-PradeepNeural",
+            "language": "bn-BD"
+        }
+    ],
+    "bn-IN": [
+        {
+            "voice_name": "Bashkar",
+            "gender": "Male",
+            "name": "bn-IN-BashkarNeural",
+            "language": "bn-IN"
+        },
+        {
+            "voice_name": "Tanishaa",
+            "gender": "Female",
+            "name": "bn-IN-TanishaaNeural",
+            "language": "bn-IN"
+        }
+    ],
+    "bs-BA": [
+        {
+            "voice_name": "Goran",
+            "gender": "Male",
+            "name": "bs-BA-GoranNeural",
+            "language": "bs-BA"
+        },
+        {
+            "voice_name": "Vesna",
+            "gender": "Female",
+            "name": "bs-BA-VesnaNeural",
+            "language": "bs-BA"
+        }
+    ],
+    "ca-ES": [
+        {
+            "voice_name": "Enric",
+            "gender": "Male",
+            "name": "ca-ES-EnricNeural",
+            "language": "ca-ES"
+        },
+        {
+            "voice_name": "Joana",
+            "gender": "Female",
+            "name": "ca-ES-JoanaNeural",
+            "language": "ca-ES"
+        }
+    ],
+    "cs-CZ": [
+        {
+            "voice_name": "Antonin",
+            "gender": "Male",
+            "name": "cs-CZ-AntoninNeural",
+            "language": "cs-CZ"
+        },
+        {
+            "voice_name": "Vlasta",
+            "gender": "Female",
+            "name": "cs-CZ-VlastaNeural",
+            "language": "cs-CZ"
+        }
+    ],
+    "cy-GB": [
+        {
+            "voice_name": "Aled",
+            "gender": "Male",
+            "name": "cy-GB-AledNeural",
+            "language": "cy-GB"
+        },
+        {
+            "voice_name": "Nia",
+            "gender": "Female",
+            "name": "cy-GB-NiaNeural",
+            "language": "cy-GB"
+        }
+    ],
+    "da-DK": [
+        {
+            "voice_name": "Christel",
+            "gender": "Female",
+            "name": "da-DK-ChristelNeural",
+            "language": "da-DK"
+        },
+        {
+            "voice_name": "Jeppe",
+            "gender": "Male",
+            "name": "da-DK-JeppeNeural",
+            "language": "da-DK"
+        }
+    ],
+    "de-AT": [
+        {
+            "voice_name": "Ingrid",
+            "gender": "Female",
+            "name": "de-AT-IngridNeural",
+            "language": "de-AT"
+        },
+        {
+            "voice_name": "Jonas",
+            "gender": "Male",
+            "name": "de-AT-JonasNeural",
+            "language": "de-AT"
+        }
+    ],
+    "de-CH": [
+        {
+            "voice_name": "Jan",
+            "gender": "Male",
+            "name": "de-CH-JanNeural",
+            "language": "de-CH"
+        },
+        {
+            "voice_name": "Leni",
+            "gender": "Female",
+            "name": "de-CH-LeniNeural",
+            "language": "de-CH"
+        }
+    ],
+    "de-DE": [
+        {
+            "voice_name": "Amala",
+            "gender": "Female",
+            "name": "de-DE-AmalaNeural",
+            "language": "de-DE"
+        },
+        {
+            "voice_name": "Conrad",
+            "gender": "Male",
+            "name": "de-DE-ConradNeural",
+            "language": "de-DE"
+        },
+        {
+            "voice_name": "FlorianMultilingual",
+            "gender": "Male",
+            "name": "de-DE-FlorianMultilingualNeural",
+            "language": "de-DE"
+        },
+        {
+            "voice_name": "Katja",
+            "gender": "Female",
+            "name": "de-DE-KatjaNeural",
+            "language": "de-DE"
+        },
+        {
+            "voice_name": "Killian",
+            "gender": "Male",
+            "name": "de-DE-KillianNeural",
+            "language": "de-DE"
+        },
+        {
+            "voice_name": "SeraphinaMultilingual",
+            "gender": "Female",
+            "name": "de-DE-SeraphinaMultilingualNeural",
+            "language": "de-DE"
+        }
+    ],
+    "el-GR": [
+        {
+            "voice_name": "Athina",
+            "gender": "Female",
+            "name": "el-GR-AthinaNeural",
+            "language": "el-GR"
+        },
+        {
+            "voice_name": "Nestoras",
+            "gender": "Male",
+            "name": "el-GR-NestorasNeural",
+            "language": "el-GR"
+        }
+    ],
+    "en-AU": [
+        {
+            "voice_name": "Natasha",
+            "gender": "Female",
+            "name": "en-AU-NatashaNeural",
+            "language": "en-AU"
+        },
+        {
+            "voice_name": "William",
+            "gender": "Male",
+            "name": "en-AU-WilliamNeural",
+            "language": "en-AU"
+        }
+    ],
+    "en-CA": [
+        {
+            "voice_name": "Clara",
+            "gender": "Female",
+            "name": "en-CA-ClaraNeural",
+            "language": "en-CA"
+        },
+        {
+            "voice_name": "Liam",
+            "gender": "Male",
+            "name": "en-CA-LiamNeural",
+            "language": "en-CA"
+        }
+    ],
+    "en-GB": [
+        {
+            "voice_name": "Libby",
+            "gender": "Female",
+            "name": "en-GB-LibbyNeural",
+            "language": "en-GB"
+        },
+        {
+            "voice_name": "Maisie",
+            "gender": "Female",
+            "name": "en-GB-MaisieNeural",
+            "language": "en-GB"
+        },
+        {
+            "voice_name": "Ryan",
+            "gender": "Male",
+            "name": "en-GB-RyanNeural",
+            "language": "en-GB"
+        },
+        {
+            "voice_name": "Sonia",
+            "gender": "Female",
+            "name": "en-GB-SoniaNeural",
+            "language": "en-GB"
+        },
+        {
+            "voice_name": "Thomas",
+            "gender": "Male",
+            "name": "en-GB-ThomasNeural",
+            "language": "en-GB"
+        }
+    ],
+    "en-HK": [
+        {
+            "voice_name": "Sam",
+            "gender": "Male",
+            "name": "en-HK-SamNeural",
+            "language": "en-HK"
+        },
+        {
+            "voice_name": "Yan",
+            "gender": "Female",
+            "name": "en-HK-YanNeural",
+            "language": "en-HK"
+        }
+    ],
+    "en-IE": [
+        {
+            "voice_name": "Connor",
+            "gender": "Male",
+            "name": "en-IE-ConnorNeural",
+            "language": "en-IE"
+        },
+        {
+            "voice_name": "Emily",
+            "gender": "Female",
+            "name": "en-IE-EmilyNeural",
+            "language": "en-IE"
+        }
+    ],
+    "en-IN": [
+        {
+            "voice_name": "NeerjaExpressive",
+            "gender": "Female",
+            "name": "en-IN-NeerjaExpressiveNeural",
+            "language": "en-IN"
+        },
+        {
+            "voice_name": "Neerja",
+            "gender": "Female",
+            "name": "en-IN-NeerjaNeural",
+            "language": "en-IN"
+        },
+        {
+            "voice_name": "Prabhat",
+            "gender": "Male",
+            "name": "en-IN-PrabhatNeural",
+            "language": "en-IN"
+        }
+    ],
+    "en-KE": [
+        {
+            "voice_name": "Asilia",
+            "gender": "Female",
+            "name": "en-KE-AsiliaNeural",
+            "language": "en-KE"
+        },
+        {
+            "voice_name": "Chilemba",
+            "gender": "Male",
+            "name": "en-KE-ChilembaNeural",
+            "language": "en-KE"
+        }
+    ],
+    "en-NG": [
+        {
+            "voice_name": "Abeo",
+            "gender": "Male",
+            "name": "en-NG-AbeoNeural",
+            "language": "en-NG"
+        },
+        {
+            "voice_name": "Ezinne",
+            "gender": "Female",
+            "name": "en-NG-EzinneNeural",
+            "language": "en-NG"
+        }
+    ],
+    "en-NZ": [
+        {
+            "voice_name": "Mitchell",
+            "gender": "Male",
+            "name": "en-NZ-MitchellNeural",
+            "language": "en-NZ"
+        },
+        {
+            "voice_name": "Molly",
+            "gender": "Female",
+            "name": "en-NZ-MollyNeural",
+            "language": "en-NZ"
+        }
+    ],
+    "en-PH": [
+        {
+            "voice_name": "James",
+            "gender": "Male",
+            "name": "en-PH-JamesNeural",
+            "language": "en-PH"
+        },
+        {
+            "voice_name": "Rosa",
+            "gender": "Female",
+            "name": "en-PH-RosaNeural",
+            "language": "en-PH"
+        }
+    ],
+    "en-SG": [
+        {
+            "voice_name": "Luna",
+            "gender": "Female",
+            "name": "en-SG-LunaNeural",
+            "language": "en-SG"
+        },
+        {
+            "voice_name": "Wayne",
+            "gender": "Male",
+            "name": "en-SG-WayneNeural",
+            "language": "en-SG"
+        }
+    ],
+    "en-TZ": [
+        {
+            "voice_name": "Elimu",
+            "gender": "Male",
+            "name": "en-TZ-ElimuNeural",
+            "language": "en-TZ"
+        },
+        {
+            "voice_name": "Imani",
+            "gender": "Female",
+            "name": "en-TZ-ImaniNeural",
+            "language": "en-TZ"
+        }
+    ],
+    "en-US": [
+        {
+            "voice_name": "Ana",
+            "gender": "Female",
+            "name": "en-US-AnaNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "AndrewMultilingual",
+            "gender": "Male",
+            "name": "en-US-AndrewMultilingualNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "Andrew",
+            "gender": "Male",
+            "name": "en-US-AndrewNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "Aria",
+            "gender": "Female",
+            "name": "en-US-AriaNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "AvaMultilingual",
+            "gender": "Female",
+            "name": "en-US-AvaMultilingualNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "Ava",
+            "gender": "Female",
+            "name": "en-US-AvaNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "BrianMultilingual",
+            "gender": "Male",
+            "name": "en-US-BrianMultilingualNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "Brian",
+            "gender": "Male",
+            "name": "en-US-BrianNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "Christopher",
+            "gender": "Male",
+            "name": "en-US-ChristopherNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "EmmaMultilingual",
+            "gender": "Female",
+            "name": "en-US-EmmaMultilingualNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "Emma",
+            "gender": "Female",
+            "name": "en-US-EmmaNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "Eric",
+            "gender": "Male",
+            "name": "en-US-EricNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "Guy",
+            "gender": "Male",
+            "name": "en-US-GuyNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "Jenny",
+            "gender": "Female",
+            "name": "en-US-JennyNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "Michelle",
+            "gender": "Female",
+            "name": "en-US-MichelleNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "Roger",
+            "gender": "Male",
+            "name": "en-US-RogerNeural",
+            "language": "en-US"
+        },
+        {
+            "voice_name": "Steffan",
+            "gender": "Male",
+            "name": "en-US-SteffanNeural",
+            "language": "en-US"
+        }
+    ],
+    "en-ZA": [
+        {
+            "voice_name": "Leah",
+            "gender": "Female",
+            "name": "en-ZA-LeahNeural",
+            "language": "en-ZA"
+        },
+        {
+            "voice_name": "Luke",
+            "gender": "Male",
+            "name": "en-ZA-LukeNeural",
+            "language": "en-ZA"
+        }
+    ],
+    "es-AR": [
+        {
+            "voice_name": "Elena",
+            "gender": "Female",
+            "name": "es-AR-ElenaNeural",
+            "language": "es-AR"
+        },
+        {
+            "voice_name": "Tomas",
+            "gender": "Male",
+            "name": "es-AR-TomasNeural",
+            "language": "es-AR"
+        }
+    ],
+    "es-BO": [
+        {
+            "voice_name": "Marcelo",
+            "gender": "Male",
+            "name": "es-BO-MarceloNeural",
+            "language": "es-BO"
+        },
+        {
+            "voice_name": "Sofia",
+            "gender": "Female",
+            "name": "es-BO-SofiaNeural",
+            "language": "es-BO"
+        }
+    ],
+    "es-CL": [
+        {
+            "voice_name": "Catalina",
+            "gender": "Female",
+            "name": "es-CL-CatalinaNeural",
+            "language": "es-CL"
+        },
+        {
+            "voice_name": "Lorenzo",
+            "gender": "Male",
+            "name": "es-CL-LorenzoNeural",
+            "language": "es-CL"
+        }
+    ],
+    "es-CO": [
+        {
+            "voice_name": "Gonzalo",
+            "gender": "Male",
+            "name": "es-CO-GonzaloNeural",
+            "language": "es-CO"
+        },
+        {
+            "voice_name": "Salome",
+            "gender": "Female",
+            "name": "es-CO-SalomeNeural",
+            "language": "es-CO"
+        }
+    ],
+    "es-CR": [
+        {
+            "voice_name": "Juan",
+            "gender": "Male",
+            "name": "es-CR-JuanNeural",
+            "language": "es-CR"
+        },
+        {
+            "voice_name": "Maria",
+            "gender": "Female",
+            "name": "es-CR-MariaNeural",
+            "language": "es-CR"
+        }
+    ],
+    "es-CU": [
+        {
+            "voice_name": "Belkys",
+            "gender": "Female",
+            "name": "es-CU-BelkysNeural",
+            "language": "es-CU"
+        },
+        {
+            "voice_name": "Manuel",
+            "gender": "Male",
+            "name": "es-CU-ManuelNeural",
+            "language": "es-CU"
+        }
+    ],
+    "es-DO": [
+        {
+            "voice_name": "Emilio",
+            "gender": "Male",
+            "name": "es-DO-EmilioNeural",
+            "language": "es-DO"
+        },
+        {
+            "voice_name": "Ramona",
+            "gender": "Female",
+            "name": "es-DO-RamonaNeural",
+            "language": "es-DO"
+        }
+    ],
+    "es-EC": [
+        {
+            "voice_name": "Andrea",
+            "gender": "Female",
+            "name": "es-EC-AndreaNeural",
+            "language": "es-EC"
+        },
+        {
+            "voice_name": "Luis",
+            "gender": "Male",
+            "name": "es-EC-LuisNeural",
+            "language": "es-EC"
+        }
+    ],
+    "es-ES": [
+        {
+            "voice_name": "Alvaro",
+            "gender": "Male",
+            "name": "es-ES-AlvaroNeural",
+            "language": "es-ES"
+        },
+        {
+            "voice_name": "Elvira",
+            "gender": "Female",
+            "name": "es-ES-ElviraNeural",
+            "language": "es-ES"
+        },
+        {
+            "voice_name": "Ximena",
+            "gender": "Female",
+            "name": "es-ES-XimenaNeural",
+            "language": "es-ES"
+        }
+    ],
+    "es-GQ": [
+        {
+            "voice_name": "Javier",
+            "gender": "Male",
+            "name": "es-GQ-JavierNeural",
+            "language": "es-GQ"
+        },
+        {
+            "voice_name": "Teresa",
+            "gender": "Female",
+            "name": "es-GQ-TeresaNeural",
+            "language": "es-GQ"
+        }
+    ],
+    "es-GT": [
+        {
+            "voice_name": "Andres",
+            "gender": "Male",
+            "name": "es-GT-AndresNeural",
+            "language": "es-GT"
+        },
+        {
+            "voice_name": "Marta",
+            "gender": "Female",
+            "name": "es-GT-MartaNeural",
+            "language": "es-GT"
+        }
+    ],
+    "es-HN": [
+        {
+            "voice_name": "Carlos",
+            "gender": "Male",
+            "name": "es-HN-CarlosNeural",
+            "language": "es-HN"
+        },
+        {
+            "voice_name": "Karla",
+            "gender": "Female",
+            "name": "es-HN-KarlaNeural",
+            "language": "es-HN"
+        }
+    ],
+    "es-MX": [
+        {
+            "voice_name": "Dalia",
+            "gender": "Female",
+            "name": "es-MX-DaliaNeural",
+            "language": "es-MX"
+        },
+        {
+            "voice_name": "Jorge",
+            "gender": "Male",
+            "name": "es-MX-JorgeNeural",
+            "language": "es-MX"
+        }
+    ],
+    "es-NI": [
+        {
+            "voice_name": "Federico",
+            "gender": "Male",
+            "name": "es-NI-FedericoNeural",
+            "language": "es-NI"
+        },
+        {
+            "voice_name": "Yolanda",
+            "gender": "Female",
+            "name": "es-NI-YolandaNeural",
+            "language": "es-NI"
+        }
+    ],
+    "es-PA": [
+        {
+            "voice_name": "Margarita",
+            "gender": "Female",
+            "name": "es-PA-MargaritaNeural",
+            "language": "es-PA"
+        },
+        {
+            "voice_name": "Roberto",
+            "gender": "Male",
+            "name": "es-PA-RobertoNeural",
+            "language": "es-PA"
+        }
+    ],
+    "es-PE": [
+        {
+            "voice_name": "Alex",
+            "gender": "Male",
+            "name": "es-PE-AlexNeural",
+            "language": "es-PE"
+        },
+        {
+            "voice_name": "Camila",
+            "gender": "Female",
+            "name": "es-PE-CamilaNeural",
+            "language": "es-PE"
+        }
+    ],
+    "es-PR": [
+        {
+            "voice_name": "Karina",
+            "gender": "Female",
+            "name": "es-PR-KarinaNeural",
+            "language": "es-PR"
+        },
+        {
+            "voice_name": "Victor",
+            "gender": "Male",
+            "name": "es-PR-VictorNeural",
+            "language": "es-PR"
+        }
+    ],
+    "es-PY": [
+        {
+            "voice_name": "Mario",
+            "gender": "Male",
+            "name": "es-PY-MarioNeural",
+            "language": "es-PY"
+        },
+        {
+            "voice_name": "Tania",
+            "gender": "Female",
+            "name": "es-PY-TaniaNeural",
+            "language": "es-PY"
+        }
+    ],
+    "es-SV": [
+        {
+            "voice_name": "Lorena",
+            "gender": "Female",
+            "name": "es-SV-LorenaNeural",
+            "language": "es-SV"
+        },
+        {
+            "voice_name": "Rodrigo",
+            "gender": "Male",
+            "name": "es-SV-RodrigoNeural",
+            "language": "es-SV"
+        }
+    ],
+    "es-US": [
+        {
+            "voice_name": "Alonso",
+            "gender": "Male",
+            "name": "es-US-AlonsoNeural",
+            "language": "es-US"
+        },
+        {
+            "voice_name": "Paloma",
+            "gender": "Female",
+            "name": "es-US-PalomaNeural",
+            "language": "es-US"
+        }
+    ],
+    "es-UY": [
+        {
+            "voice_name": "Mateo",
+            "gender": "Male",
+            "name": "es-UY-MateoNeural",
+            "language": "es-UY"
+        },
+        {
+            "voice_name": "Valentina",
+            "gender": "Female",
+            "name": "es-UY-ValentinaNeural",
+            "language": "es-UY"
+        }
+    ],
+    "es-VE": [
+        {
+            "voice_name": "Paola",
+            "gender": "Female",
+            "name": "es-VE-PaolaNeural",
+            "language": "es-VE"
+        },
+        {
+            "voice_name": "Sebastian",
+            "gender": "Male",
+            "name": "es-VE-SebastianNeural",
+            "language": "es-VE"
+        }
+    ],
+    "et-EE": [
+        {
+            "voice_name": "Anu",
+            "gender": "Female",
+            "name": "et-EE-AnuNeural",
+            "language": "et-EE"
+        },
+        {
+            "voice_name": "Kert",
+            "gender": "Male",
+            "name": "et-EE-KertNeural",
+            "language": "et-EE"
+        }
+    ],
+    "fa-IR": [
+        {
+            "voice_name": "Dilara",
+            "gender": "Female",
+            "name": "fa-IR-DilaraNeural",
+            "language": "fa-IR"
+        },
+        {
+            "voice_name": "Farid",
+            "gender": "Male",
+            "name": "fa-IR-FaridNeural",
+            "language": "fa-IR"
+        }
+    ],
+    "fi-FI": [
+        {
+            "voice_name": "Harri",
+            "gender": "Male",
+            "name": "fi-FI-HarriNeural",
+            "language": "fi-FI"
+        },
+        {
+            "voice_name": "Noora",
+            "gender": "Female",
+            "name": "fi-FI-NooraNeural",
+            "language": "fi-FI"
+        }
+    ],
+    "fil-PH": [
+        {
+            "voice_name": "Angelo",
+            "gender": "Male",
+            "name": "fil-PH-AngeloNeural",
+            "language": "fil-PH"
+        },
+        {
+            "voice_name": "Blessica",
+            "gender": "Female",
+            "name": "fil-PH-BlessicaNeural",
+            "language": "fil-PH"
+        }
+    ],
+    "fr-BE": [
+        {
+            "voice_name": "Charline",
+            "gender": "Female",
+            "name": "fr-BE-CharlineNeural",
+            "language": "fr-BE"
+        },
+        {
+            "voice_name": "Gerard",
+            "gender": "Male",
+            "name": "fr-BE-GerardNeural",
+            "language": "fr-BE"
+        }
+    ],
+    "fr-CA": [
+        {
+            "voice_name": "Antoine",
+            "gender": "Male",
+            "name": "fr-CA-AntoineNeural",
+            "language": "fr-CA"
+        },
+        {
+            "voice_name": "Jean",
+            "gender": "Male",
+            "name": "fr-CA-JeanNeural",
+            "language": "fr-CA"
+        },
+        {
+            "voice_name": "Sylvie",
+            "gender": "Female",
+            "name": "fr-CA-SylvieNeural",
+            "language": "fr-CA"
+        },
+        {
+            "voice_name": "Thierry",
+            "gender": "Male",
+            "name": "fr-CA-ThierryNeural",
+            "language": "fr-CA"
+        }
+    ],
+    "fr-CH": [
+        {
+            "voice_name": "Ariane",
+            "gender": "Female",
+            "name": "fr-CH-ArianeNeural",
+            "language": "fr-CH"
+        },
+        {
+            "voice_name": "Fabrice",
+            "gender": "Male",
+            "name": "fr-CH-FabriceNeural",
+            "language": "fr-CH"
+        }
+    ],
+    "fr-FR": [
+        {
+            "voice_name": "Denise",
+            "gender": "Female",
+            "name": "fr-FR-DeniseNeural",
+            "language": "fr-FR"
+        },
+        {
+            "voice_name": "Eloise",
+            "gender": "Female",
+            "name": "fr-FR-EloiseNeural",
+            "language": "fr-FR"
+        },
+        {
+            "voice_name": "Henri",
+            "gender": "Male",
+            "name": "fr-FR-HenriNeural",
+            "language": "fr-FR"
+        },
+        {
+            "voice_name": "RemyMultilingual",
+            "gender": "Male",
+            "name": "fr-FR-RemyMultilingualNeural",
+            "language": "fr-FR"
+        },
+        {
+            "voice_name": "VivienneMultilingual",
+            "gender": "Female",
+            "name": "fr-FR-VivienneMultilingualNeural",
+            "language": "fr-FR"
+        }
+    ],
+    "ga-IE": [
+        {
+            "voice_name": "Colm",
+            "gender": "Male",
+            "name": "ga-IE-ColmNeural",
+            "language": "ga-IE"
+        },
+        {
+            "voice_name": "Orla",
+            "gender": "Female",
+            "name": "ga-IE-OrlaNeural",
+            "language": "ga-IE"
+        }
+    ],
+    "gl-ES": [
+        {
+            "voice_name": "Roi",
+            "gender": "Male",
+            "name": "gl-ES-RoiNeural",
+            "language": "gl-ES"
+        },
+        {
+            "voice_name": "Sabela",
+            "gender": "Female",
+            "name": "gl-ES-SabelaNeural",
+            "language": "gl-ES"
+        }
+    ],
+    "gu-IN": [
+        {
+            "voice_name": "Dhwani",
+            "gender": "Female",
+            "name": "gu-IN-DhwaniNeural",
+            "language": "gu-IN"
+        },
+        {
+            "voice_name": "Niranjan",
+            "gender": "Male",
+            "name": "gu-IN-NiranjanNeural",
+            "language": "gu-IN"
+        }
+    ],
+    "he-IL": [
+        {
+            "voice_name": "Avri",
+            "gender": "Male",
+            "name": "he-IL-AvriNeural",
+            "language": "he-IL"
+        },
+        {
+            "voice_name": "Hila",
+            "gender": "Female",
+            "name": "he-IL-HilaNeural",
+            "language": "he-IL"
+        }
+    ],
+    "hi-IN": [
+        {
+            "voice_name": "Madhur",
+            "gender": "Male",
+            "name": "hi-IN-MadhurNeural",
+            "language": "hi-IN"
+        },
+        {
+            "voice_name": "Swara",
+            "gender": "Female",
+            "name": "hi-IN-SwaraNeural",
+            "language": "hi-IN"
+        }
+    ],
+    "hr-HR": [
+        {
+            "voice_name": "Gabrijela",
+            "gender": "Female",
+            "name": "hr-HR-GabrijelaNeural",
+            "language": "hr-HR"
+        },
+        {
+            "voice_name": "Srecko",
+            "gender": "Male",
+            "name": "hr-HR-SreckoNeural",
+            "language": "hr-HR"
+        }
+    ],
+    "hu-HU": [
+        {
+            "voice_name": "Noemi",
+            "gender": "Female",
+            "name": "hu-HU-NoemiNeural",
+            "language": "hu-HU"
+        },
+        {
+            "voice_name": "Tamas",
+            "gender": "Male",
+            "name": "hu-HU-TamasNeural",
+            "language": "hu-HU"
+        }
+    ],
+    "id-ID": [
+        {
+            "voice_name": "Ardi",
+            "gender": "Male",
+            "name": "id-ID-ArdiNeural",
+            "language": "id-ID"
+        },
+        {
+            "voice_name": "Gadis",
+            "gender": "Female",
+            "name": "id-ID-GadisNeural",
+            "language": "id-ID"
+        }
+    ],
+    "is-IS": [
+        {
+            "voice_name": "Gudrun",
+            "gender": "Female",
+            "name": "is-IS-GudrunNeural",
+            "language": "is-IS"
+        },
+        {
+            "voice_name": "Gunnar",
+            "gender": "Male",
+            "name": "is-IS-GunnarNeural",
+            "language": "is-IS"
+        }
+    ],
+    "it-IT": [
+        {
+            "voice_name": "Diego",
+            "gender": "Male",
+            "name": "it-IT-DiegoNeural",
+            "language": "it-IT"
+        },
+        {
+            "voice_name": "Elsa",
+            "gender": "Female",
+            "name": "it-IT-ElsaNeural",
+            "language": "it-IT"
+        },
+        {
+            "voice_name": "GiuseppeMultilingual",
+            "gender": "Male",
+            "name": "it-IT-GiuseppeMultilingualNeural",
+            "language": "it-IT"
+        },
+        {
+            "voice_name": "Isabella",
+            "gender": "Female",
+            "name": "it-IT-IsabellaNeural",
+            "language": "it-IT"
+        }
+    ],
+    "iu-Cans-CA": [
+        {
+            "voice_name": "Siqiniq",
+            "gender": "Female",
+            "name": "iu-Cans-CA-SiqiniqNeural",
+            "language": "iu-Cans-CA"
+        },
+        {
+            "voice_name": "Taqqiq",
+            "gender": "Male",
+            "name": "iu-Cans-CA-TaqqiqNeural",
+            "language": "iu-Cans-CA"
+        }
+    ],
+    "iu-Latn-CA": [
+        {
+            "voice_name": "Siqiniq",
+            "gender": "Female",
+            "name": "iu-Latn-CA-SiqiniqNeural",
+            "language": "iu-Latn-CA"
+        },
+        {
+            "voice_name": "Taqqiq",
+            "gender": "Male",
+            "name": "iu-Latn-CA-TaqqiqNeural",
+            "language": "iu-Latn-CA"
+        }
+    ],
+    "ja-JP": [
+        {
+            "voice_name": "Keita",
+            "gender": "Male",
+            "name": "ja-JP-KeitaNeural",
+            "language": "ja-JP"
+        },
+        {
+            "voice_name": "Nanami",
+            "gender": "Female",
+            "name": "ja-JP-NanamiNeural",
+            "language": "ja-JP"
+        }
+    ],
+    "jv-ID": [
+        {
+            "voice_name": "Dimas",
+            "gender": "Male",
+            "name": "jv-ID-DimasNeural",
+            "language": "jv-ID"
+        },
+        {
+            "voice_name": "Siti",
+            "gender": "Female",
+            "name": "jv-ID-SitiNeural",
+            "language": "jv-ID"
+        }
+    ],
+    "ka-GE": [
+        {
+            "voice_name": "Eka",
+            "gender": "Female",
+            "name": "ka-GE-EkaNeural",
+            "language": "ka-GE"
+        },
+        {
+            "voice_name": "Giorgi",
+            "gender": "Male",
+            "name": "ka-GE-GiorgiNeural",
+            "language": "ka-GE"
+        }
+    ],
+    "kk-KZ": [
+        {
+            "voice_name": "Aigul",
+            "gender": "Female",
+            "name": "kk-KZ-AigulNeural",
+            "language": "kk-KZ"
+        },
+        {
+            "voice_name": "Daulet",
+            "gender": "Male",
+            "name": "kk-KZ-DauletNeural",
+            "language": "kk-KZ"
+        }
+    ],
+    "km-KH": [
+        {
+            "voice_name": "Piseth",
+            "gender": "Male",
+            "name": "km-KH-PisethNeural",
+            "language": "km-KH"
+        },
+        {
+            "voice_name": "Sreymom",
+            "gender": "Female",
+            "name": "km-KH-SreymomNeural",
+            "language": "km-KH"
+        }
+    ],
+    "kn-IN": [
+        {
+            "voice_name": "Gagan",
+            "gender": "Male",
+            "name": "kn-IN-GaganNeural",
+            "language": "kn-IN"
+        },
+        {
+            "voice_name": "Sapna",
+            "gender": "Female",
+            "name": "kn-IN-SapnaNeural",
+            "language": "kn-IN"
+        }
+    ],
+    "ko-KR": [
+        {
+            "voice_name": "HyunsuMultilingual",
+            "gender": "Male",
+            "name": "ko-KR-HyunsuMultilingualNeural",
+            "language": "ko-KR"
+        },
+        {
+            "voice_name": "InJoon",
+            "gender": "Male",
+            "name": "ko-KR-InJoonNeural",
+            "language": "ko-KR"
+        },
+        {
+            "voice_name": "SunHi",
+            "gender": "Female",
+            "name": "ko-KR-SunHiNeural",
+            "language": "ko-KR"
+        }
+    ],
+    "lo-LA": [
+        {
+            "voice_name": "Chanthavong",
+            "gender": "Male",
+            "name": "lo-LA-ChanthavongNeural",
+            "language": "lo-LA"
+        },
+        {
+            "voice_name": "Keomany",
+            "gender": "Female",
+            "name": "lo-LA-KeomanyNeural",
+            "language": "lo-LA"
+        }
+    ],
+    "lt-LT": [
+        {
+            "voice_name": "Leonas",
+            "gender": "Male",
+            "name": "lt-LT-LeonasNeural",
+            "language": "lt-LT"
+        },
+        {
+            "voice_name": "Ona",
+            "gender": "Female",
+            "name": "lt-LT-OnaNeural",
+            "language": "lt-LT"
+        }
+    ],
+    "lv-LV": [
+        {
+            "voice_name": "Everita",
+            "gender": "Female",
+            "name": "lv-LV-EveritaNeural",
+            "language": "lv-LV"
+        },
+        {
+            "voice_name": "Nils",
+            "gender": "Male",
+            "name": "lv-LV-NilsNeural",
+            "language": "lv-LV"
+        }
+    ],
+    "mk-MK": [
+        {
+            "voice_name": "Aleksandar",
+            "gender": "Male",
+            "name": "mk-MK-AleksandarNeural",
+            "language": "mk-MK"
+        },
+        {
+            "voice_name": "Marija",
+            "gender": "Female",
+            "name": "mk-MK-MarijaNeural",
+            "language": "mk-MK"
+        }
+    ],
+    "ml-IN": [
+        {
+            "voice_name": "Midhun",
+            "gender": "Male",
+            "name": "ml-IN-MidhunNeural",
+            "language": "ml-IN"
+        },
+        {
+            "voice_name": "Sobhana",
+            "gender": "Female",
+            "name": "ml-IN-SobhanaNeural",
+            "language": "ml-IN"
+        }
+    ],
+    "mn-MN": [
+        {
+            "voice_name": "Bataa",
+            "gender": "Male",
+            "name": "mn-MN-BataaNeural",
+            "language": "mn-MN"
+        },
+        {
+            "voice_name": "Yesui",
+            "gender": "Female",
+            "name": "mn-MN-YesuiNeural",
+            "language": "mn-MN"
+        }
+    ],
+    "mr-IN": [
+        {
+            "voice_name": "Aarohi",
+            "gender": "Female",
+            "name": "mr-IN-AarohiNeural",
+            "language": "mr-IN"
+        },
+        {
+            "voice_name": "Manohar",
+            "gender": "Male",
+            "name": "mr-IN-ManoharNeural",
+            "language": "mr-IN"
+        }
+    ],
+    "ms-MY": [
+        {
+            "voice_name": "Osman",
+            "gender": "Male",
+            "name": "ms-MY-OsmanNeural",
+            "language": "ms-MY"
+        },
+        {
+            "voice_name": "Yasmin",
+            "gender": "Female",
+            "name": "ms-MY-YasminNeural",
+            "language": "ms-MY"
+        }
+    ],
+    "mt-MT": [
+        {
+            "voice_name": "Grace",
+            "gender": "Female",
+            "name": "mt-MT-GraceNeural",
+            "language": "mt-MT"
+        },
+        {
+            "voice_name": "Joseph",
+            "gender": "Male",
+            "name": "mt-MT-JosephNeural",
+            "language": "mt-MT"
+        }
+    ],
+    "my-MM": [
+        {
+            "voice_name": "Nilar",
+            "gender": "Female",
+            "name": "my-MM-NilarNeural",
+            "language": "my-MM"
+        },
+        {
+            "voice_name": "Thiha",
+            "gender": "Male",
+            "name": "my-MM-ThihaNeural",
+            "language": "my-MM"
+        }
+    ],
+    "nb-NO": [
+        {
+            "voice_name": "Finn",
+            "gender": "Male",
+            "name": "nb-NO-FinnNeural",
+            "language": "nb-NO"
+        },
+        {
+            "voice_name": "Pernille",
+            "gender": "Female",
+            "name": "nb-NO-PernilleNeural",
+            "language": "nb-NO"
+        }
+    ],
+    "ne-NP": [
+        {
+            "voice_name": "Hemkala",
+            "gender": "Female",
+            "name": "ne-NP-HemkalaNeural",
+            "language": "ne-NP"
+        },
+        {
+            "voice_name": "Sagar",
+            "gender": "Male",
+            "name": "ne-NP-SagarNeural",
+            "language": "ne-NP"
+        }
+    ],
+    "nl-BE": [
+        {
+            "voice_name": "Arnaud",
+            "gender": "Male",
+            "name": "nl-BE-ArnaudNeural",
+            "language": "nl-BE"
+        },
+        {
+            "voice_name": "Dena",
+            "gender": "Female",
+            "name": "nl-BE-DenaNeural",
+            "language": "nl-BE"
+        }
+    ],
+    "nl-NL": [
+        {
+            "voice_name": "Colette",
+            "gender": "Female",
+            "name": "nl-NL-ColetteNeural",
+            "language": "nl-NL"
+        },
+        {
+            "voice_name": "Fenna",
+            "gender": "Female",
+            "name": "nl-NL-FennaNeural",
+            "language": "nl-NL"
+        },
+        {
+            "voice_name": "Maarten",
+            "gender": "Male",
+            "name": "nl-NL-MaartenNeural",
+            "language": "nl-NL"
+        }
+    ],
+    "pl-PL": [
+        {
+            "voice_name": "Marek",
+            "gender": "Male",
+            "name": "pl-PL-MarekNeural",
+            "language": "pl-PL"
+        },
+        {
+            "voice_name": "Zofia",
+            "gender": "Female",
+            "name": "pl-PL-ZofiaNeural",
+            "language": "pl-PL"
+        }
+    ],
+    "ps-AF": [
+        {
+            "voice_name": "GulNawaz",
+            "gender": "Male",
+            "name": "ps-AF-GulNawazNeural",
+            "language": "ps-AF"
+        },
+        {
+            "voice_name": "Latifa",
+            "gender": "Female",
+            "name": "ps-AF-LatifaNeural",
+            "language": "ps-AF"
+        }
+    ],
+    "pt-BR": [
+        {
+            "voice_name": "Antonio",
+            "gender": "Male",
+            "name": "pt-BR-AntonioNeural",
+            "language": "pt-BR"
+        },
+        {
+            "voice_name": "Francisca",
+            "gender": "Female",
+            "name": "pt-BR-FranciscaNeural",
+            "language": "pt-BR"
+        },
+        {
+            "voice_name": "ThalitaMultilingual",
+            "gender": "Female",
+            "name": "pt-BR-ThalitaMultilingualNeural",
+            "language": "pt-BR"
+        }
+    ],
+    "pt-PT": [
+        {
+            "voice_name": "Duarte",
+            "gender": "Male",
+            "name": "pt-PT-DuarteNeural",
+            "language": "pt-PT"
+        },
+        {
+            "voice_name": "Raquel",
+            "gender": "Female",
+            "name": "pt-PT-RaquelNeural",
+            "language": "pt-PT"
+        }
+    ],
+    "ro-RO": [
+        {
+            "voice_name": "Alina",
+            "gender": "Female",
+            "name": "ro-RO-AlinaNeural",
+            "language": "ro-RO"
+        },
+        {
+            "voice_name": "Emil",
+            "gender": "Male",
+            "name": "ro-RO-EmilNeural",
+            "language": "ro-RO"
+        }
+    ],
+    "ru-RU": [
+        {
+            "voice_name": "Dmitry",
+            "gender": "Male",
+            "name": "ru-RU-DmitryNeural",
+            "language": "ru-RU"
+        },
+        {
+            "voice_name": "Svetlana",
+            "gender": "Female",
+            "name": "ru-RU-SvetlanaNeural",
+            "language": "ru-RU"
+        }
+    ],
+    "si-LK": [
+        {
+            "voice_name": "Sameera",
+            "gender": "Male",
+            "name": "si-LK-SameeraNeural",
+            "language": "si-LK"
+        },
+        {
+            "voice_name": "Thilini",
+            "gender": "Female",
+            "name": "si-LK-ThiliniNeural",
+            "language": "si-LK"
+        }
+    ],
+    "sk-SK": [
+        {
+            "voice_name": "Lukas",
+            "gender": "Male",
+            "name": "sk-SK-LukasNeural",
+            "language": "sk-SK"
+        },
+        {
+            "voice_name": "Viktoria",
+            "gender": "Female",
+            "name": "sk-SK-ViktoriaNeural",
+            "language": "sk-SK"
+        }
+    ],
+    "sl-SI": [
+        {
+            "voice_name": "Petra",
+            "gender": "Female",
+            "name": "sl-SI-PetraNeural",
+            "language": "sl-SI"
+        },
+        {
+            "voice_name": "Rok",
+            "gender": "Male",
+            "name": "sl-SI-RokNeural",
+            "language": "sl-SI"
+        }
+    ],
+    "so-SO": [
+        {
+            "voice_name": "Muuse",
+            "gender": "Male",
+            "name": "so-SO-MuuseNeural",
+            "language": "so-SO"
+        },
+        {
+            "voice_name": "Ubax",
+            "gender": "Female",
+            "name": "so-SO-UbaxNeural",
+            "language": "so-SO"
+        }
+    ],
+    "sq-AL": [
+        {
+            "voice_name": "Anila",
+            "gender": "Female",
+            "name": "sq-AL-AnilaNeural",
+            "language": "sq-AL"
+        },
+        {
+            "voice_name": "Ilir",
+            "gender": "Male",
+            "name": "sq-AL-IlirNeural",
+            "language": "sq-AL"
+        }
+    ],
+    "sr-RS": [
+        {
+            "voice_name": "Nicholas",
+            "gender": "Male",
+            "name": "sr-RS-NicholasNeural",
+            "language": "sr-RS"
+        },
+        {
+            "voice_name": "Sophie",
+            "gender": "Female",
+            "name": "sr-RS-SophieNeural",
+            "language": "sr-RS"
+        }
+    ],
+    "su-ID": [
+        {
+            "voice_name": "Jajang",
+            "gender": "Male",
+            "name": "su-ID-JajangNeural",
+            "language": "su-ID"
+        },
+        {
+            "voice_name": "Tuti",
+            "gender": "Female",
+            "name": "su-ID-TutiNeural",
+            "language": "su-ID"
+        }
+    ],
+    "sv-SE": [
+        {
+            "voice_name": "Mattias",
+            "gender": "Male",
+            "name": "sv-SE-MattiasNeural",
+            "language": "sv-SE"
+        },
+        {
+            "voice_name": "Sofie",
+            "gender": "Female",
+            "name": "sv-SE-SofieNeural",
+            "language": "sv-SE"
+        }
+    ],
+    "sw-KE": [
+        {
+            "voice_name": "Rafiki",
+            "gender": "Male",
+            "name": "sw-KE-RafikiNeural",
+            "language": "sw-KE"
+        },
+        {
+            "voice_name": "Zuri",
+            "gender": "Female",
+            "name": "sw-KE-ZuriNeural",
+            "language": "sw-KE"
+        }
+    ],
+    "sw-TZ": [
+        {
+            "voice_name": "Daudi",
+            "gender": "Male",
+            "name": "sw-TZ-DaudiNeural",
+            "language": "sw-TZ"
+        },
+        {
+            "voice_name": "Rehema",
+            "gender": "Female",
+            "name": "sw-TZ-RehemaNeural",
+            "language": "sw-TZ"
+        }
+    ],
+    "ta-IN": [
+        {
+            "voice_name": "Pallavi",
+            "gender": "Female",
+            "name": "ta-IN-PallaviNeural",
+            "language": "ta-IN"
+        },
+        {
+            "voice_name": "Valluvar",
+            "gender": "Male",
+            "name": "ta-IN-ValluvarNeural",
+            "language": "ta-IN"
+        }
+    ],
+    "ta-LK": [
+        {
+            "voice_name": "Kumar",
+            "gender": "Male",
+            "name": "ta-LK-KumarNeural",
+            "language": "ta-LK"
+        },
+        {
+            "voice_name": "Saranya",
+            "gender": "Female",
+            "name": "ta-LK-SaranyaNeural",
+            "language": "ta-LK"
+        }
+    ],
+    "ta-MY": [
+        {
+            "voice_name": "Kani",
+            "gender": "Female",
+            "name": "ta-MY-KaniNeural",
+            "language": "ta-MY"
+        },
+        {
+            "voice_name": "Surya",
+            "gender": "Male",
+            "name": "ta-MY-SuryaNeural",
+            "language": "ta-MY"
+        }
+    ],
+    "ta-SG": [
+        {
+            "voice_name": "Anbu",
+            "gender": "Male",
+            "name": "ta-SG-AnbuNeural",
+            "language": "ta-SG"
+        },
+        {
+            "voice_name": "Venba",
+            "gender": "Female",
+            "name": "ta-SG-VenbaNeural",
+            "language": "ta-SG"
+        }
+    ],
+    "te-IN": [
+        {
+            "voice_name": "Mohan",
+            "gender": "Male",
+            "name": "te-IN-MohanNeural",
+            "language": "te-IN"
+        },
+        {
+            "voice_name": "Shruti",
+            "gender": "Female",
+            "name": "te-IN-ShrutiNeural",
+            "language": "te-IN"
+        }
+    ],
+    "th-TH": [
+        {
+            "voice_name": "Niwat",
+            "gender": "Male",
+            "name": "th-TH-NiwatNeural",
+            "language": "th-TH"
+        },
+        {
+            "voice_name": "Premwadee",
+            "gender": "Female",
+            "name": "th-TH-PremwadeeNeural",
+            "language": "th-TH"
+        }
+    ],
+    "tr-TR": [
+        {
+            "voice_name": "Ahmet",
+            "gender": "Male",
+            "name": "tr-TR-AhmetNeural",
+            "language": "tr-TR"
+        },
+        {
+            "voice_name": "Emel",
+            "gender": "Female",
+            "name": "tr-TR-EmelNeural",
+            "language": "tr-TR"
+        }
+    ],
+    "uk-UA": [
+        {
+            "voice_name": "Ostap",
+            "gender": "Male",
+            "name": "uk-UA-OstapNeural",
+            "language": "uk-UA"
+        },
+        {
+            "voice_name": "Polina",
+            "gender": "Female",
+            "name": "uk-UA-PolinaNeural",
+            "language": "uk-UA"
+        }
+    ],
+    "ur-IN": [
+        {
+            "voice_name": "Gul",
+            "gender": "Female",
+            "name": "ur-IN-GulNeural",
+            "language": "ur-IN"
+        },
+        {
+            "voice_name": "Salman",
+            "gender": "Male",
+            "name": "ur-IN-SalmanNeural",
+            "language": "ur-IN"
+        }
+    ],
+    "ur-PK": [
+        {
+            "voice_name": "Asad",
+            "gender": "Male",
+            "name": "ur-PK-AsadNeural",
+            "language": "ur-PK"
+        },
+        {
+            "voice_name": "Uzma",
+            "gender": "Female",
+            "name": "ur-PK-UzmaNeural",
+            "language": "ur-PK"
+        }
+    ],
+    "uz-UZ": [
+        {
+            "voice_name": "Madina",
+            "gender": "Female",
+            "name": "uz-UZ-MadinaNeural",
+            "language": "uz-UZ"
+        },
+        {
+            "voice_name": "Sardor",
+            "gender": "Male",
+            "name": "uz-UZ-SardorNeural",
+            "language": "uz-UZ"
+        }
+    ],
+    "vi-VN": [
+        {
+            "voice_name": "HoaiMy",
+            "gender": "Female",
+            "name": "vi-VN-HoaiMyNeural",
+            "language": "vi-VN"
+        },
+        {
+            "voice_name": "NamMinh",
+            "gender": "Male",
+            "name": "vi-VN-NamMinhNeural",
+            "language": "vi-VN"
+        }
+    ],
+    "zh-CN": [
+        {
+            "voice_name": "Xiaoxiao",
+            "gender": "Female",
+            "name": "zh-CN-XiaoxiaoNeural",
+            "language": "zh-CN"
+        },
+        {
+            "voice_name": "Xiaoyi",
+            "gender": "Female",
+            "name": "zh-CN-XiaoyiNeural",
+            "language": "zh-CN"
+        },
+        {
+            "voice_name": "Yunjian",
+            "gender": "Male",
+            "name": "zh-CN-YunjianNeural",
+            "language": "zh-CN"
+        },
+        {
+            "voice_name": "Yunxi",
+            "gender": "Male",
+            "name": "zh-CN-YunxiNeural",
+            "language": "zh-CN"
+        },
+        {
+            "voice_name": "Yunxia",
+            "gender": "Male",
+            "name": "zh-CN-YunxiaNeural",
+            "language": "zh-CN"
+        },
+        {
+            "voice_name": "Yunyang",
+            "gender": "Male",
+            "name": "zh-CN-YunyangNeural",
+            "language": "zh-CN"
+        }
+    ],
+    "zh-CN-liaoning": [
+        {
+            "voice_name": "Xiaobei",
+            "gender": "Female",
+            "name": "zh-CN-liaoning-XiaobeiNeural",
+            "language": "zh-CN-liaoning"
+        }
+    ],
+    "zh-CN-shaanxi": [
+        {
+            "voice_name": "Xiaoni",
+            "gender": "Female",
+            "name": "zh-CN-shaanxi-XiaoniNeural",
+            "language": "zh-CN-shaanxi"
+        }
+    ],
+    "zh-HK": [
+        {
+            "voice_name": "HiuGaai",
+            "gender": "Female",
+            "name": "zh-HK-HiuGaaiNeural",
+            "language": "zh-HK"
+        },
+        {
+            "voice_name": "HiuMaan",
+            "gender": "Female",
+            "name": "zh-HK-HiuMaanNeural",
+            "language": "zh-HK"
+        },
+        {
+            "voice_name": "WanLung",
+            "gender": "Male",
+            "name": "zh-HK-WanLungNeural",
+            "language": "zh-HK"
+        }
+    ],
+    "zh-TW": [
+        {
+            "voice_name": "HsiaoChen",
+            "gender": "Female",
+            "name": "zh-TW-HsiaoChenNeural",
+            "language": "zh-TW"
+        },
+        {
+            "voice_name": "HsiaoYu",
+            "gender": "Female",
+            "name": "zh-TW-HsiaoYuNeural",
+            "language": "zh-TW"
+        },
+        {
+            "voice_name": "YunJhe",
+            "gender": "Male",
+            "name": "zh-TW-YunJheNeural",
+            "language": "zh-TW"
+        }
+    ],
+    "zu-ZA": [
+        {
+            "voice_name": "Thando",
+            "gender": "Female",
+            "name": "zu-ZA-ThandoNeural",
+            "language": "zu-ZA"
+        },
+        {
+            "voice_name": "Themba",
+            "gender": "Male",
+            "name": "zu-ZA-ThembaNeural",
+            "language": "zu-ZA"
+        }
+    ]
+}

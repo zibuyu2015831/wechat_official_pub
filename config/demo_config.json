@@ -1,0 +1,61 @@
+{
+  "wechat_config": {
+    "manager": "xxx",
+    "app_name": "xxx",
+    "app_id": "xxx",
+    "app_secret": "xxx",
+    "wechat_token": "xxx",
+    "sep_char": "---",
+    "subscribe_greeting": "欢迎你的到来，这是一个有趣的公众号哦~"
+  },
+  "request_token": "xxx",
+  "encrypt_key": "xxx",
+  "sign_in_word": "签到",
+  "yun_func_tts_config": {
+    "func_token": "xxx",
+    "func_url": "xxx",
+    "default_en_voice": "zh-CN-XiaoxiaoNeural",
+    "default_zh_voice": "en-GB-SoniaNeural",
+    "expires": 3600
+  },
+  "min_credit": 2,
+  "max_credit": 10,
+  "is_debug": true,
+  "is_yun_function": false,
+  "need_check_database": true,
+  "retry_time": 1,
+  "weather_show_hours": 6,
+  "logger_config": null,
+  "caiyun_token": "xxx",
+  "note_card_wechat_token": "xxx",
+  "qiniu_config": {
+    "access_key": "xxx",
+    "secret_key": "xxx",
+    "bucket_name": "xxx",
+    "bucket_domain": "xxx"
+  },
+  "db_config": {
+    "db_type": "postgresql",
+    "db_host": "xxx",
+    "db_port": "5433",
+    "db_user": "xxx",
+    "db_password": "xxx",
+    "db_name": "xxx"
+  },
+  "ai_config": {
+    "model_name": "xxx",
+    "key_list": [
+      "xxx",
+      "xxx",
+      "xxx",
+      "xxx"
+    ],
+    "base_url": "xxx",
+    "system_prompt": "你是公众号的专属助理，请尽量掩藏你是AI的事实，同时要求回答尽量简短。"
+  },
+  "history_message_limit": 10,
+  "baidu_config": {
+    "api_key": "xxx",
+    "secret_key": "xxx"
+  }
+}
